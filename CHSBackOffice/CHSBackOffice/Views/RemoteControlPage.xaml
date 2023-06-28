@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ExtendedNaviPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extentions="clr-namespace:CHSBackOffice.Extensions"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    
+    Title="{extentions:Translate RemoteControlTitle}"
+    NaviBarBackgroundColor="{StaticResource RemoteControlTitleColor}"
+    ChangeLocationToolbarButtonIsVisible="True"
+    SearchPanelEnabled="True"
+    SearchText="{Binding SearchText, Mode=TwoWay}"
+    IsNetworkDependent="True"
+                                 
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.RemoteControlPage">
+    <ContentPage.Resources>
+        <StyleSheet Source="../Styles/RemoteControlPageStyles.css"/>
+    </ContentPage.Resources>
+    <customcontrols:ExtendedNaviPage.ToolbarButtons>
+        <customcontrols:ToolbarButton FontName="{StaticResource ChsIcons}" Name="filterToolbarButton" Text="{StaticResource CHSIconFilter}" FontSize="{StaticResource CHSIconSize}"/>
+    </customcontrols:ExtendedNaviPage.ToolbarButtons>
+    <customcontrols:ExtendedNaviPage.Content>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"
+                          HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand" 
+                          Padding="10"
+                          ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.Resources>
+                            <ResourceDictionary>
+                                <Style TargetType="Button">
+                                    <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                                    <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                                    <Setter Property="TextColor" Value="White"/>
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                    <Setter Property="FontFamily" Value="{StaticResource KlavikaCHRegular}"/>
+                                    <Setter Property="FontSize" Value="{StaticResource Medium}"/>
+                                </Style>
+                            </ResourceDictionary>
+                        </Grid.Resources>
+                        <Button Grid.Column="0"
+                            class="topbutton" 
+                            Text="{Binding SelectAllText}"
+                            Command="{Binding SelectAllCommand}"/>
+                        <Button Grid.Column="1"
+                            class="topbutton"
+                            Text="{Binding InvertSelectionText}"
+                            Command="{Binding InvertSelectionCommand}"/>
+                        <Button Grid.Column="2"
+                            class="topbutton" 
+                            Text="{Binding ClearAllText}" 
+                            Command="{Binding ClearAllCommand}"/>
+                    </Grid>
+                    
+                    <StackLayout Grid.Row="1"
+                                 Orientation="Vertical"
+                                 VerticalOptions="StartAndExpand"
+                                 HorizontalOptions="FillAndExpand" Spacing="0">
+                        <Grid x:Name="remoteActionButtons"
+                              Padding="0"
+                              HorizontalOptions="FillAndExpand"
+                              VerticalOptions="Start"
+                              ColumnSpacing="8"
+                              BackgroundColor="#5B45A9"
+                              HeightRequest="0"
+                              Opacity="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.Resources>
+                                <ResourceDictionary>
+                                    <Style TargetType="Button">
+                                        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                                        <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                                        <Setter Property="TextColor" Value="White"/>
+                                        <Setter Property="CornerRadius" Value="5"/>
+                                        <Setter Property="FontFamily" Value="{StaticResource KlavikaCHLight}"/>
+                                        <Setter Property="FontSize" Value="{StaticResource Medium}"/>
+                                    </Style>
+                                </ResourceDictionary>
+                            </Grid.Resources>
+                            <Button Grid.Column="0" 
+                                class="middlebutton"
+                                Text="{Binding ShutdownString}" 
+                                IsEnabled="{Binding ShutdownEnabled}"
+                                Command="{Binding MachineActionCommand}"
+                                CommandParameter="{Binding ShutdownString}"/>
+                            <Button Grid.Column="1" 
+                                class="middlebutton" 
+                                Text="{Binding RebootString}" 
+                                IsEnabled="{Binding RebootEnabled}"
+                                Command="{Binding MachineActionCommand}"
+                                CommandParameter="{Binding RebootString}"/>
+                            <Button Grid.Column="2"
+                                class="middlebutton"
+                                Text="{Binding CloseString}" 
+                                IsEnabled="{Binding CloseEnabled}"
+                                Command="{Binding MachineActionCommand}"
+                                CommandParameter="{Binding CloseString}"/>
+                            <Button Grid.Column="3" 
+                                class="middlebutton"
+                                Text="{Binding InServiceString}" 
+                                IsEnabled="{Binding InServiceEnabled}"
+                                Command="{Binding MachineActionCommand}"
+                                CommandParameter="{Binding InServiceString}"/>
+                            <Button Grid.Column="4" 
+                                class="middlebutton"
+                                Text="{Binding OutOfServiceString}" 
+                                IsEnabled="{Binding OutOfServiceEnabled}"
+                                Command="{Binding MachineActionCommand}"
+                                CommandParameter="{Binding OutOfServiceString}"/>
+                        </Grid>
+                        <ScrollView x:Name="machinesLayoutContainer"
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="FillAndExpand"
+                            Padding="{OnIdiom Phone='10,5,10,10', Tablet='20,10,20,20'}">
+                                <customcontrols:FlowLayout 
+                                    x:Name="MachinesLayout"
+                                    class="container" 
+                                    ItemsSource="{Binding Machines}" 
+                                    ItemTappedCommand="{Binding MachineTappedCommand}">
+                                    <customcontrols:FlowLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame
+                                                    Margin="5"
+                                                    BackgroundColor="{Binding Selected, Converter={StaticResource SelectedMachineBackcolorConverter}}"
+                                                    HeightRequest="40" 
+                                                    WidthRequest="{Binding Source={x:Reference MachinesLayout}, Path=Width, Converter={StaticResource CoeffConverter}, ConverterParameter=0.3}" 
+                                                    Padding="0"
+                                                    HasShadow="False"
+                                                    CornerRadius="5" >
+                                                <Grid 
+                                                        Padding="0" 
+                                                        HorizontalOptions="FillAndExpand" 
+                                                        VerticalOptions="FillAndExpand" >
+                                                    <Label 
+                                                            FontAttributes="Bold" 
+                                                            HorizontalOptions="FillAndExpand" 
+                                                            HorizontalTextAlignment="Center" 
+                                                            VerticalTextAlignment="Center" 
+                                                            VerticalOptions="FillAndExpand" 
+                                                            Text="{Binding Name}" />
+                                                </Grid>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </customcontrols:FlowLayout.ItemTemplate>
+                                </customcontrols:FlowLayout>
+                        </ScrollView>
+                    </StackLayout>
+                    
+                </Grid>
+                <customcontrols:LocationSwitcher PopupIsVisible="{Binding LocationSwitcherVisible, Mode=TwoWay}" 
+                                             OnLocationChangedCommand="{Binding OnLocationChangedCommand}"/>
+            </Grid>
+            <Grid x:Name="RemoteBlackOpacityGrid"
+                HorizontalOptions="FillAndExpand" 
+                VerticalOptions="FillAndExpand"
+                BackgroundColor="Black"
+                Opacity="{StaticResource BlackMaskOpacity}"
+                InputTransparent="False"
+                IsVisible="{Binding AdditionalWindowsVisible}">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding HideAdditionalWindowsCommand}"/>
+                </Grid.GestureRecognizers>
+            </Grid>
+            <Grid
+                Padding="0,0,10,0"
+                WidthRequest="{OnIdiom Tablet=170,Phone=130}"
+                HeightRequest="{OnIdiom Tablet=230,Phone=170}"
+                IsVisible="{Binding FilterGridVisible}"
+                HorizontalOptions="End"
+                RowSpacing="0"
+                VerticalOptions="Start">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="16"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image
+                    Grid.Row="0"
+                    Margin="{StaticResource RemoteControlUpIcon}"
+                    HorizontalOptions="End"
+                    Source="PopupPickerArrowTop.png"
+                    Aspect="AspectFit"/>
+                <Frame
+                    Grid.Row="1"
+                    WidthRequest="{OnIdiom Tablet=170,Phone=130}"
+                    HeightRequest="{OnIdiom Tablet=220,Phone=160}"
+                    IsVisible="{Binding FilterGridVisible}"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    BackgroundColor="Transparent"
+                    IsClippedToBounds="True"
+                    OutlineColor="Transparent"
+                    BorderColor="Transparent"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    Margin="0"
+                    Padding="0">
+                    <customcontrols:RoundedCornerView
+                        BackgroundColor="White"
+                        FillColor="White"
+                        BorderWidth="0"
+                        RoundedCornerRadius="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{OnIdiom Phone=30,Tablet=50}"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid
+                            Grid.Row="0"
+                            BackgroundColor="{StaticResource PopoverTopPanelColor}"
+                            RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="1"/>
+                            </Grid.RowDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Text="Filter" 
+                                FontSize="{StaticResource Medium}"
+                                FontFamily="{StaticResource KlavikaCHMedium}"
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="FillAndExpand" 
+                                HorizontalTextAlignment="Center" 
+                                VerticalTextAlignment="Center"/>
+                            <BoxView
+                                Grid.Row="1"
+                                HeightRequest="1"
+                                BackgroundColor="{StaticResource PopoverTopPanelLineColor}"/>
+                        </Grid>
+                        <ListView
+                            Grid.Row="1"
+                            BackgroundColor="White"
+                            Margin="0"
+                            HasUnevenRows="True"
+                            SeparatorColor="Transparent"
+                            SelectedItem="{Binding SelectedFilterItem, Mode=TwoWay}"
+                            ItemsSource="{Binding FilterItems}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid 
+                                            Padding="{OnIdiom Phone='10,3,3,3',Tablet='15,3,3,3'}"
+                                            HeightRequest="{OnIdiom Phone=25,Tablet=30}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="1"/>
+                                            </Grid.RowDefinitions>
+                                            <Label
+                                                Grid.Row="0"
+                                                FontSize="{StaticResource Small}"
+                                                FontFamily="{StaticResource KlavikaCHRegular}"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Center"
+                                                VerticalTextAlignment="Center"
+                                                Text="{Binding Key}"/>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                HorizontalOptions="End"
+                                                VerticalOptions="Center"
+                                                VerticalTextAlignment="Center"
+                                                Text="{StaticResource CHSIconSelected}" 
+                                                FontFamily="{StaticResource ChsIcons}" 
+                                                FontSize="{StaticResource Small}" 
+                                                TextColor="{StaticResource Key=SelectedIconColor}" 
+                                                IsVisible="{Binding Selected}"/>
+                                            <BoxView
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                BackgroundColor="{StaticResource PopoverTopPanelLineColor}"
+                                                HeightRequest="1"/>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </customcontrols:RoundedCornerView>
+                    
+                </Frame>
+
+            </Grid>
+            
+            <Grid x:Name="RemoteConfirmationGrid"
+                HorizontalOptions="FillAndExpand" 
+                VerticalOptions="FillAndExpand"
+                BackgroundColor="Transparent"
+                IsVisible="{Binding ConfirmVisible}">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding HideAdditionalWindowsCommand}"/>
+                </Grid.GestureRecognizers>
+                <Frame
+                    WidthRequest="{OnIdiom Tablet=410,Phone=260}"
+                    HeightRequest="{OnIdiom Tablet=290,Phone=240}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    BackgroundColor="White"
+                    OutlineColor="Transparent"
+                    BorderColor="Transparent"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    Padding="0">
+                    <Grid
+                        BackgroundColor="Transparent" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{OnIdiom Tablet=25,Phone=50}"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="45"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label 
+                            Text="{Binding CommandConfirmationText}" 
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            Grid.ColumnSpan="2"/>
+                        <Label
+                            Text="Comment:" 
+                            HorizontalOptions="Start"
+                            VerticalOptions="Start"
+                            Margin="5, 5, 0, 5"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            Grid.Row="1"/>
+                        <customcontrols:BorderlessEntry
+                            Margin="3"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{Binding CommandCommentText, Mode=TwoWay}"
+                            Placeholder="Comment"
+                            RoundedStyle="White"
+                            PlaceholderColor="LightGray"
+                            FontSize="{StaticResource ExtraSmall}"/>
+                        <Grid
+                            Grid.Column="0"
+                            Grid.Row="2"
+                            Grid.ColumnSpan="2"
+                            Padding="3"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button    
+                                Grid.Column="0"
+                                BorderRadius="8"
+                                Margin="5"
+                                Text="Confirm"
+                                TextColor="White"
+                                Command="{Binding SendRemoteCommand}"
+                                FontSize="{StaticResource ExtraSmall}"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="{Binding Source={x:Reference ThisPage}, Path=NaviBarBackgroundColor}"/>
+                            <Button  
+                                Grid.Column="1"
+                                BorderRadius="8"
+                                Margin="5"
+                                Text="Cancel"
+                                TextColor="White"
+                                Command="{Binding HideAdditionalWindowsCommand}"
+                                FontSize="{StaticResource ExtraSmall}"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="{Binding Source={x:Reference ThisPage}, Path=NaviBarBackgroundColor}"/>
+                        </Grid>
+                    </Grid>
+                </Frame>
+            </Grid>
+            <Grid x:Name="RemoteSendedMessageGrid"
+                HorizontalOptions="FillAndExpand" 
+                VerticalOptions="FillAndExpand"
+                BackgroundColor="Transparent"
+                IsVisible="{Binding CommandSendedVisible}">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding HideAdditionalWindowsCommand}"/>
+                </Grid.GestureRecognizers>
+                <Frame
+                    WidthRequest="{OnIdiom Tablet=260,Phone=160}"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    BackgroundColor="White"
+                    OutlineColor="Transparent"
+                    BorderColor="Transparent"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    Padding="0">
+                    <Grid
+                        BackgroundColor="Transparent" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="45"/>
+                        </Grid.RowDefinitions>
+                        <Label 
+                            Text="{Binding CommandSendResultText}" 
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"/>
+                        <Button  
+                            Grid.Row="1"
+                            BorderRadius="8"
+                            Text="Ok"
+                            Margin="5"
+                            TextColor="White"
+                            Command="{Binding HideAdditionalWindowsCommand}"
+                            FontSize="{StaticResource ExtraSmall}"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{Binding Source={x:Reference ThisPage}, Path=NaviBarBackgroundColor}"/>
+                    </Grid>
+                </Frame>
+            </Grid>
+        </Grid>
+    </customcontrols:ExtendedNaviPage.Content>
+</customcontrols:ExtendedNaviPage>

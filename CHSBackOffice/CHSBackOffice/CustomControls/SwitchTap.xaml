@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             VerticalOptions="Fill"
+             x:Class="CHSBackOffice.CustomControls.SwitchTap">
+  <ContentView.Content>
+        <Grid 
+          x:Name="Container"
+          VerticalOptions="Fill"  
+          ColumnSpacing="0"  
+          RowSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid
+                x:Name="LeftInnerContainer"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Fill"
+                RowSpacing="0"
+                ColumnSpacing="0"
+                Grid.Column="0">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnLeftTap"/>
+                    <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_Swiped"/>
+                </Grid.GestureRecognizers>
+                <Label
+                    x:Name="LeftLabel"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"/>
+            </Grid>
+
+            <Grid
+                x:Name="RightInnerContainer"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                RowSpacing="0"
+                ColumnSpacing="0"
+                Grid.Column="1">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRightTap"/>
+                    <SwipeGestureRecognizer Swiped="SwipeGestureRecognizer_Swiped" Direction="Left"/>
+                </Grid.GestureRecognizers>
+                <Label
+                    x:Name="RightLabel"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"/>
+            </Grid>
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>

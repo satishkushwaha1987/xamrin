@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ExtendedNaviPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+    xmlns:extensions="clr-namespace:CHSBackOffice.Extensions"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns:cells="clr-namespace:CHSBackOffice.CustomControls.CustomCells"
+    xmlns:support="clr-namespace:CHSBackOffice.Support" 
+    prism:ViewModelLocator.AutowireViewModel="True"
+    
+    Title="{extensions:Translate EventsTitle}"
+    NaviBarBackgroundColor="{StaticResource EventsTitleColor}"
+    ChangeLocationToolbarButtonIsVisible="True"
+    AppearingCommand="{Binding AppearingCommand}"
+    SearchPanelEnabled="True"
+    SearchText="{Binding SearchText, Mode=TwoWay}"
+    IsNetworkDependent="True"
+    
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.EventsPage">
+    <customcontrols:ExtendedNaviPage.ToolbarButtons>
+        <customcontrols:ToolbarButton FontName="{StaticResource ChsIcons}" Name="but2" Text="{StaticResource CHSIconFilter}" FontSize="{StaticResource CHSIconSize}"/>
+    </customcontrols:ExtendedNaviPage.ToolbarButtons>
+    <customcontrols:ExtendedNaviPage.Content>
+        <Grid
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="FillAndExpand">
+            <customcontrols:DetailPopup 
+                x:Name="detailPopup"
+                InputTransparent="True"/>
+            <Grid HorizontalOptions="FillAndExpand" 
+                  VerticalOptions="FillAndExpand"
+                  IsVisible="{Binding IsLoadingVisible, Source={x:Static support:CommonViewObjects.Instance}, Converter={StaticResource InvertBooleanConverter}}">
+                <Label
+                    IsVisible="{Binding IsNoDataLabelVisible}"
+                    Text="No Data Available"
+                    FontFamily="{StaticResource KlavikaCHRegular}"
+                    FontSize="{StaticResource Large}"
+                    TextColor="#808080"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"/>
+                <ScrollView>
+                    <customcontrols:FlowLayout
+                        x:Name="items"
+                        InputTransparent="False"
+                        Padding="0,5,0,0"
+                        ItemsSource="{Binding Events}"
+                        DetailCommand="{Binding DetailPressedCommand,Source={x:Reference detailPopup}}"
+                        ItemTappedAnimationType="ScaleIn"
+                        ItemTappedCommand="{Binding EventTappedCommand}"
+                        Direction="Row"
+                        AlignContent="Start"
+                        Wrap="Wrap">
+                        <customcontrols:FlowLayout.ItemTemplate>
+                            <DataTemplate>
+                                <cells:EventsLayout
+                                FlexLayout.Grow="0"
+                                FlexLayout.Basis="100%"/>
+                            </DataTemplate>
+                        </customcontrols:FlowLayout.ItemTemplate>
+                    </customcontrols:FlowLayout>
+                </ScrollView>
+                
+            </Grid>
+        </Grid>
+    </customcontrols:ExtendedNaviPage.Content>
+</customcontrols:ExtendedNaviPage>

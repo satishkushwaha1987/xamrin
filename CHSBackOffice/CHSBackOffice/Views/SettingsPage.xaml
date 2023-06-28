@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ExtendedNaviPage 
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extentions="clr-namespace:CHSBackOffice.Extensions"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    
+    Title="{extentions:Translate SettingsTitle}"
+    NaviBarBackgroundColor="{StaticResource SettingsTitleColor}"
+    
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.SettingsPage">
+    <customcontrols:ExtendedNaviPage.Content>
+        
+        <Grid
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <ScrollView
+                x:Name="scroll"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <StackLayout Padding="25, 0, 25, 0"
+                    Orientation="Vertical"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <StackLayout.Resources>
+                        <ResourceDictionary>
+                            <Style TargetType="customcontrols:RoundedCornerView">
+                                <Setter Property="BackgroundColor" Value="#d8d3bf"/>
+                                <Setter Property="FillColor" Value="#d8d3bf"/>
+                                <Setter Property="BorderColor" Value="#d8d3bf"/>
+                                <Setter Property="RoundedCornerRadius" Value="8"/>
+                                <Setter Property="BorderWidth" Value="0"/>
+                                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                            </Style>
+                            <Style TargetType="Frame">
+                                <Setter Property="HasShadow" Value="False"/>
+                                <Setter Property="BorderColor" Value="Transparent"/>
+                                <Setter Property="OutlineColor" Value="Transparent"/>
+                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                                <Setter Property="CornerRadius" Value="8"/>
+                                <Setter Property="IsClippedToBounds" Value="True"/>
+                            </Style>
+                            <Style TargetType="customcontrols:BorderlessEntry">
+                                <Setter Property="HeightRequest" Value="{OnIdiom Tablet=40,Phone=25}"/>
+                                <Setter Property="RoundedStyle" Value="White"/>
+                                <Setter Property="PlaceholderColor" Value="LightGray"/>
+                                <Setter Property="FontFamily" Value="{StaticResource KlavikaCHRegular}"/>
+                                <Setter Property="FontSize" Value="{StaticResource Small}"/>
+                            </Style>
+                            <Style TargetType="customcontrols:PickerWithPopover">
+                                <Setter Property="HeightRequest" Value="{OnIdiom Tablet=40,Phone=25}"/>
+                                <Setter Property="VerticalPosition" Value="RelativeToParent"/>
+                                <Setter Property="Location" Value="Top"/>
+                                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                            </Style>
+                            <Style TargetType="Button">
+                                <Setter Property="BorderRadius" Value="8"/>
+                                <Setter Property="TextColor" Value="White"/>
+                                <Setter Property="FontFamily" Value="{StaticResource KlavikaCHRegular}"/>
+                                <Setter Property="FontSize" Value="{StaticResource Medium}"/>
+                                <Setter Property="BackgroundColor" Value="#b09f7d"/>
+                                <Setter Property="WidthRequest" Value="{OnIdiom Tablet=120,Phone=80}"/>
+                                <Setter Property="HeightRequest" Value="{OnIdiom Tablet=40,Phone=30}"/>
+                            </Style>
+                            <Style TargetType="Label">
+                                <Setter Property="TextColor" Value="Black"/>
+                                <Setter Property="FontFamily" Value="{StaticResource KlavikaCHRegular}"/>
+                                <Setter Property="FontSize" Value="{StaticResource Small}"/>
+                            </Style>
+                            <Style TargetType="StackLayout">
+                                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                                <Setter Property="Orientation" Value="Vertical"/>
+                                <Setter Property="Padding" Value="{OnIdiom Tablet='20,20,20,20',Phone='20,10,20,10'}"/>
+                            </Style>
+                            <Style TargetType="Grid" x:Key="CheckBoxGrid">
+                                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                                <Setter Property="VerticalOptions" Value="Start"/>
+                                <Setter Property="HeightRequest" Value="40"/>
+                            </Style>
+                            <Style TargetType="customcontrols:CheckBox">
+                                <Setter Property="FontSize" Value="{StaticResource Medium}"/>
+                                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                                <Setter Property="TextColor" Value="Black"/>
+                            </Style>
+                            <ColumnDefinitionCollection x:Key="PasswordGridColumnDefinitionCollection">
+                                <ColumnDefinition Width="0.2*"/>
+                                <ColumnDefinition Width="0.8*"/>
+                            </ColumnDefinitionCollection>
+                        </ResourceDictionary>
+                    </StackLayout.Resources>
+                    <!--Change Password section-->
+                    <Grid   
+                        Padding="0,20,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Start">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{OnIdiom Tablet=40,Phone=20}"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <Label     
+                            Grid.Row="0"
+                            Text="Change Password"
+                            FontSize="{StaticResource Medium}"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+                        <Frame      
+                            Grid.Row="1"
+                            Padding="0"
+                            Margin="0">
+                            <customcontrols:RoundedCornerView>
+                                <StackLayout>
+                                    <StackLayout.Resources>
+                                        <ResourceDictionary>
+                                            <Style TargetType="Grid">
+                                                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                                                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                                                <Setter Property="ColumnDefinitions" Value="{StaticResource PasswordGridColumnDefinitionCollection}"/>
+                                            </Style>
+                                        </ResourceDictionary>
+                                    </StackLayout.Resources>
+                                    <Grid>
+                                        <Label
+                                            Grid.Column="0"
+                                            HorizontalOptions="EndAndExpand"
+                                            VerticalOptions="Center"
+                                            Text="Current"/>
+                                        <customcontrols:BorderlessEntry
+                                            Grid.Column="1"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="FillAndExpand"
+                                            IsPassword="True"
+                                            Text="{Binding CurrentPassword,Mode=TwoWay}"
+                                            Placeholder="Current Password"/>
+                                    </Grid>
+                                    <Grid>
+                                        <Label 
+                                            Grid.Column="0"
+                                            HorizontalOptions="EndAndExpand"
+                                            VerticalOptions="Center"
+                                            Text="New"/>
+                                        <customcontrols:BorderlessEntry       
+                                            Grid.Column="1"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="Center"
+                                            IsPassword="True"
+                                            Text="{Binding NewPassword,Mode=TwoWay}"
+                                            Placeholder="New Password"/>
+                                    </Grid>
+                                    <Grid>
+                                        <Label    
+                                            Grid.Column="0"
+                                            HorizontalOptions="EndAndExpand"
+                                            VerticalOptions="Center"
+                                            Text="Confirm"/>
+                                        <customcontrols:BorderlessEntry
+                                            Grid.Column="1"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="Center"
+                                            IsPassword="True"
+                                            Text="{Binding ConfirmPassword,Mode=TwoWay}"
+                                            Placeholder="Re-Enter New Password"/>
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button
+                                            Grid.Column="0"
+                                            Text="Change"
+                                            Command="{Binding ChangeCommand}"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"/>
+                                        <Button  
+                                            Grid.Column="1"
+                                            Text="Reset"
+                                            Command="{Binding ResetCommand}"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="End"/>
+                                    </Grid>
+                                </StackLayout>
+                            </customcontrols:RoundedCornerView>
+                        </Frame>
+                    </Grid>
+
+                    <!--BackOffice Host section-->
+                    <Grid    
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Start">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{OnIdiom Tablet=40,Phone=20}"/>
+                            <RowDefinition Height="1.5*"/>
+                        </Grid.RowDefinitions>
+                        <Label 
+                            Grid.Row="0"
+                            Text="BackOffice Host"
+                            FontSize="{StaticResource Medium}"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+                        <Frame
+                            Grid.Row="1"
+                            Padding="0"
+                            Margin="0">
+                            <customcontrols:RoundedCornerView>
+                                <StackLayout>
+                                    <customcontrols:BorderlessEntry
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="FillAndExpand"
+                                        Text="{Binding BackOfficeHost, Mode=TwoWay}"
+                                        Keyboard="Url"
+                                        Placeholder="BackOffice Host"/>
+                                    <Grid Style="{StaticResource CheckBoxGrid}">
+                                        <customcontrols:CheckBox
+                                            DefaultText="{Binding IgnoreCertText}"
+                                            Checked="{Binding IgnoreCert, Mode=TwoWay}"/>
+                                    </Grid>
+                                    
+                                    <Button
+                                        Text="Switch"
+                                        Command="{Binding SwitchCommand}"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="End"/>
+                                    <Label   
+                                        HorizontalOptions="StartAndExpand"
+                                        VerticalOptions="Center"
+                                        Text="*You will be signed out"/>
+                                </StackLayout>
+                            </customcontrols:RoundedCornerView>
+                        </Frame>
+                    </Grid>
+
+                    <!--Start Page-->
+                    <Grid
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Start">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{OnIdiom Tablet=40,Phone=20}"/>
+                            <RowDefinition Height="1.5*"/>
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            FontSize="{StaticResource Medium}"
+                            Text="Start Page"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+                        <Frame
+                            Grid.Row="1"
+                            Padding="0"
+                            Margin="0">
+                            <customcontrols:RoundedCornerView>
+                                <StackLayout>
+                                    <customcontrols:PickerWithPopover
+                                        x:Name="popover"
+                                        BackgroundColor="White"
+                                        Placeholder="{extentions:Translate SelectStartPage}"
+                                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                                        ItemsSource="{Binding Items}"/>
+                                    <Button    
+                                        Text="Save"
+                                        Command="{Binding SaveCommand}"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="End"/>
+                                </StackLayout>
+                            </customcontrols:RoundedCornerView>
+                        </Frame>
+                    </Grid>
+
+                    <!--Common Settings-->
+                    <Grid
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Start">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{OnIdiom Tablet=40,Phone=20}"/>
+                            <RowDefinition Height="1.5*"/>
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            FontSize="{StaticResource Medium}"
+                            Text="Common Settings"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+                        <Frame
+                            Grid.Row="1"
+                            Padding="0"
+                            Margin="0">
+                            <customcontrols:RoundedCornerView>
+                                <StackLayout>
+                                    <Grid Style="{StaticResource CheckBoxGrid}">
+                                        <customcontrols:CheckBox
+                                            DefaultText="{Binding AutoRefreshText}"
+                                            Checked="{Binding AutoRefresh, Mode=TwoWay}"/>
+                                    </Grid>
+                                    <Label   
+                                        HorizontalOptions="StartAndExpand"
+                                        VerticalOptions="Center"
+                                        Text="*It can reduce the ui performance and increase server load"/>
+                                </StackLayout>
+                            </customcontrols:RoundedCornerView>
+                        </Frame>
+                    </Grid>
+
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+        
+    </customcontrols:ExtendedNaviPage.Content>
+</customcontrols:ExtendedNaviPage>

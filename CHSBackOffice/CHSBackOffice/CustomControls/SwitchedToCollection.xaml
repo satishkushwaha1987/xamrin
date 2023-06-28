@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    BackgroundColor="Transparent"
+    x:Name="Root"
+    x:Class="CHSBackOffice.CustomControls.SwitchedToCollection">
+  <ContentView.Content>
+        <Grid
+            RowSpacing="0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <customcontrols:SwitchTap
+                Grid.Row="0"
+                x:Name="StateSwitch"
+                VerticalOptions="Fill"
+                HorizontalOptions="FillAndExpand"
+                ActiveBackgroundColor="Transparent"
+                InactiveBackgroundColor="#66D8EBC5"
+                IsToggled ="True"
+                Toggled="OnToggledStateSwitch"/>
+            <Grid
+                Grid.Row="1"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Fill">
+                <customcontrols:ExtendedVerticalList x:Name="CollectionView"
+                    RowHeight="140"
+                    HasUnevenRows="True"
+                    SeparatorColor="LightGray"
+                    LoadMoreCommand="{Binding Path=LoadMoreCommand,Source={x:Reference Root}}"
+                    Tapped="OnItemTappedCollectionView"/>
+                <Grid x:Name="HasData"
+                      BackgroundColor="White"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      IsVisible="False">
+                    <Label
+                        Text="No Data Available"
+                        FontSize="{StaticResource Large}"
+                        TextColor="#808080"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+                </Grid>
+            </Grid>
+        </Grid>
+  </ContentView.Content>
+</ContentView>

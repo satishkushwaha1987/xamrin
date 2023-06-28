@@ -1,0 +1,25 @@
+﻿.body
+{
+    align-items:center;
+    justify-content:center;
+    background-color:transparent;
+}
+.container 
+{
+    background-color:transparent;
+    width:200;
+    height:270;
+    flex-direction:column;
+}
+
+.containertablet {
+    background-color: transparent;
+    width: 350;
+    height: 500;
+    flex-direction: column;
+}
+
+.frame 
+{
+    margin:0,0,0,20;
+}

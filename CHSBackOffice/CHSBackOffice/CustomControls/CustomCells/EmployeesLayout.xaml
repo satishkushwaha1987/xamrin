@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Frame
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="Transparent"
+    OutlineColor="Transparent"
+    BorderColor="Transparent"
+    WidthRequest="{OnIdiom Phone=150, Tablet=350}" 
+    HeightRequest="{OnIdiom Phone=60,Tablet=120}"
+    CornerRadius="8"
+    HasShadow="False"
+    Padding="0"
+    Margin="0"
+    x:Name="frame"
+    IsClippedToBounds="True"
+    x:Class="CHSBackOffice.CustomControls.CustomCells.EmployeesLayout">
+    <customcontrols:RoundedCornerView
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+        BackgroundColor="#fbc266"
+        FillColor="#fbc266"
+        BorderColor="#fbc266"
+        RoundedCornerRadius="8"
+        RowSpacing="10"
+        ColumnSpacing="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label   
+            Grid.Column="0"
+            Grid.Row="0"
+            LineBreakMode="TailTruncation"
+            Text="{Binding FirstName}"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            FontFamily="{StaticResource KlavikaCHRegular}"
+            FontSize="{StaticResource Medium}"/>
+        <Label
+            Grid.Column="1"
+            Grid.Row="0"
+            LineBreakMode="TailTruncation"
+            Text="{Binding Id,StringFormat='({0:N})'}"
+            HorizontalOptions="Start"
+            VerticalOptions="End"
+            FontFamily="{StaticResource KlavikaCHRegular}"
+            FontSize="{StaticResource Small}"/>
+        <Label
+            Grid.Column="0"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Text="{Binding Group}"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            FontFamily="{StaticResource KlavikaCHRegular}"
+            FontSize="{StaticResource Small}"/>
+    </customcontrols:RoundedCornerView>
+
+</Frame>

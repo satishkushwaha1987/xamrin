@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customcells:FastCell
+    xmlns="http://xamarin.com/schemas/2014/forms"    
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customcells="clr-namespace:CHSBackOffice.CustomControls.CustomCells"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    x:Class="CHSBackOffice.CustomControls.CustomCells.TransactionDetailRow"
+    x:Name="root">
+    <Grid
+        RowSpacing="0"
+        ColumnSpacing="0"
+        BackgroundColor="{Binding BackgroundColor}"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="Fill">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <Style TargetType="Label">
+                    <Setter Property="FontFamily" Value="{StaticResource KlavikaCHRegular}"  />
+                    <Setter Property="FontSize" Value="{StaticResource Small}"/>
+                    <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                    <Setter Property="VerticalOptions" Value="Center"/>
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <!--Transaction Id-->
+        <Grid
+            Padding="10,0,0,0"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Transaction ID"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="id"/>
+        </Grid>
+        <!--Transaction Code-->
+        <Grid
+            Padding="10,0,0,0"
+            Grid.Row="1"
+            BackgroundColor="White"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Transaction Code"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="type"/>
+        </Grid>
+        <!--Transaction Strart Date-->
+        <Grid
+            Padding="10,0,0,0"
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Transaction Strart Date"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="startDate"/>
+        </Grid>
+        <!--Transaction End Date-->
+        <Grid
+            BackgroundColor="White"
+            Padding="10,0,0,0"
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Transaction End Date"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="endDate"/>
+        </Grid>
+        <!--Unit ID-->
+        <Grid
+            Padding="10,0,0,0"
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Unit ID"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="unitId"/>
+        </Grid>
+        <!--Sequence ID-->
+        <Grid
+            BackgroundColor="White"
+            Padding="10,0,0,0"
+            Grid.Row="5"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Sequence ID"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="sequenceId"/>
+        </Grid>
+        <!--Patron-->
+        <Grid
+            Padding="10,0,0,0"
+            Grid.Row="6"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Patron"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="patron"/>
+        </Grid>
+        <!--Requested Amount-->
+        <Grid
+            BackgroundColor="White"
+            Padding="10,0,0,0"
+            Grid.Row="7"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Requested Amount"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="reqAmount"/>
+        </Grid>
+        <!--Dispensed Amount-->
+        <Grid
+            Padding="10,0,0,0"
+            Grid.Row="8"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Dispensed Amount"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="disAmount"/>
+        </Grid>
+        <!--Transaction Fee-->
+        <Grid
+            BackgroundColor="White"
+            Padding="10,0,0,0"
+            Grid.Row="9"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Transaction Fee"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="fee"/>
+        </Grid>
+        <!--Printed Ticket-->
+        <Grid
+            BackgroundColor="White"
+            Padding="10,0,0,0"
+            Grid.Row="9"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Printed Ticket"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="ticket"/>
+        </Grid>
+        <!--Total Amount Debited-->
+        <Grid
+            Padding="10,0,0,0"
+            Grid.Row="10"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Total Amount Debited"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="amountDeb"/>
+        </Grid>
+        <!--Host Date-->
+        <Grid
+            BackgroundColor="White"
+            Padding="10,0,0,0"
+            Grid.Row="11"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Host Date"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="hostDate"/>
+        </Grid>
+        <!--Host Response-->
+        <Grid
+            Padding="10,0,0,0"
+            Grid.Row="12"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Host Response"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="hostResponce"/>
+        </Grid>
+        <!--Host Sequence ID-->
+        <Grid
+            BackgroundColor="White"
+            Padding="10,0,0,0"
+            Grid.Row="13"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Host Sequence ID"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="hostSequence"/>
+        </Grid>
+        <!--Status-->
+        <Grid
+            Padding="10,0,0,0"
+            Grid.Row="14"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Status"/>
+            <Label Grid.Column="1" Text=":"/>
+            <Label Grid.Column="2" x:Name="status"/>
+        </Grid>
+    </Grid>
+</customcells:FastCell>

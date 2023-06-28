@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ReportPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:CHSBackOffice.Extensions"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:support="clr-namespace:CHSBackOffice.Support" 
+    prism:ViewModelLocator.AutowireViewModel="True"
+    
+    Title="{extensions:Translate CashUtilizationTitle}"
+    NaviBarBackgroundColor="{StaticResource CashUtilizationTitleColor}"
+    ChangeLocationToolbarButtonIsVisible="True"
+    IsNetworkDependent="True"
+    
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.CashUtilizationPage">
+</customcontrols:ReportPage>
+    

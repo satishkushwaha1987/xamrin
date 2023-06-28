@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ExtendedNaviPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:CHSBackOffice.Extensions"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:cells="clr-namespace:CHSBackOffice.CustomControls.CustomCells"
+    xmlns:support="clr-namespace:CHSBackOffice.Support"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    
+    Title="{extensions:Translate DoorOpenEventsTitle}"
+    NaviBarBackgroundColor="{StaticResource DoorOpenEventsTitleColor}"
+    ChangeLocationToolbarButtonIsVisible="True"
+    SearchPanelEnabled="True"
+    SearchText="{Binding SearchText, Mode=TwoWay}"
+    IsNetworkDependent="True"
+    
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.DoorOpenEventsPage">
+    <customcontrols:ExtendedNaviPage.ToolbarButtons>
+    </customcontrols:ExtendedNaviPage.ToolbarButtons>
+    <customcontrols:ExtendedNaviPage.Content>
+        <Grid HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                IsVisible="{Binding IsLoadingVisible, Source={x:Static support:CommonViewObjects.Instance}, Converter={StaticResource InvertBooleanConverter}}">
+            <Label
+                IsVisible="{Binding IsNoDataLabelVisible}"
+                FontFamily="{StaticResource KlavikaCHRegular}"
+                Text="No Data Available"
+                FontSize="{StaticResource Large}"
+                TextColor="#808080"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"/>
+            <ScrollView>
+                <customcontrols:FlowLayout
+                    x:Name="items"
+                    InputTransparent="False"
+                    Padding="0,5,0,0"
+                    ItemsSource="{Binding Events}"
+                    Direction="Row"
+                    AlignContent="Start"
+                    Wrap="Wrap">
+                    <customcontrols:FlowLayout.ItemTemplate>
+                        <DataTemplate>
+                            <cells:DoorOpenEventLayout
+                                FlexLayout.Grow="0"
+                                FlexLayout.Basis="100%"/>
+                        </DataTemplate>
+                    </customcontrols:FlowLayout.ItemTemplate>
+                </customcontrols:FlowLayout>
+            </ScrollView>
+        </Grid>
+    </customcontrols:ExtendedNaviPage.Content>
+</customcontrols:ExtendedNaviPage>

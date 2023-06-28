@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms"            
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns:proxy="clr-namespace:CHSBackOffice.Support.Proxy"
+    xmlns:converter="clr-namespace:CHSBackOffice.Converters"
+    x:Name="Root"
+    x:Class="CHSBackOffice.CustomControls.HorizontalSelectPanel">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:EqualityConverter x:Key="EqualityConverter"/>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Frame
+        x:Name="frame"
+        CornerRadius="10"
+        Padding="0"
+        Margin="0"
+        IsClippedToBounds="True"
+        BackgroundColor="#3D9D9C">
+        <customcontrols:ExtendedStackLayout
+            x:Name="container"
+            HeightRequest="{OnIdiom Tablet=40,Phone=30}"
+            ItemsSource="{Binding Path=ItemsSource,Source={x:Reference Root}}"
+            ItemTappedCommand="{Binding Path=InternalItemTappedCommand,Source={x:Reference Root}}"
+            Orientation="Horizontal">
+            <customcontrols:ExtendedStackLayout.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="{OnIdiom Tablet='10,0,10,0',Phone='2,0,2,0'}" HorizontalOptions="CenterAndExpand">
+                        <Label Text="{Binding Value}" 
+                               FontSize="{StaticResource Small}" 
+                               HorizontalOptions="CenterAndExpand" 
+                               VerticalOptions="Center">
+                            <Label.Margin>
+                                <OnPlatform Android="10,0,20,0" iOS="10,0,10,0"/>
+                            </Label.Margin>
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Value="True">
+                                    <DataTrigger.Binding>
+                                        <proxy:MultiBinding Converter="{StaticResource EqualityConverter}" ConverterParameter="{Binding Path=IndexOf,Source={x:Reference container}}">
+                                            <Binding Path="ItemsSource" Source="{x:Reference Root}" />
+                                            <Binding  Path="SelectedKey" Source="{x:Reference Root}"/>
+                                        </proxy:MultiBinding>
+                                    </DataTrigger.Binding>
+                                    <Setter Property="TextColor" Value="White"/>
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                    </Grid>
+                </DataTemplate>
+            </customcontrols:ExtendedStackLayout.ItemTemplate>
+        </customcontrols:ExtendedStackLayout>
+    </Frame>
+</ContentView>
+    

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      x:Class="CHSBackOffice.CustomControls.CustomCells.TextValuePairLayout" 
+      x:Name="ThisControl" >
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="2*"/>
+    </Grid.ColumnDefinitions>
+    <Label TextColor="{Binding Source={x:Reference ThisControl}, Path=TextColor}" 
+           Text="{Binding Source={x:Reference ThisControl}, Path=Key}"
+           FontSize="{OnPlatform Android={OnIdiom Tablet=19, Phone=15}, iOS={OnIdiom Tablet=17, Phone=14}}"
+           Grid.Column="0" 
+           HorizontalOptions="FillAndExpand" 
+           VerticalOptions="FillAndExpand"/>
+    <Label TextColor="{Binding Source={x:Reference ThisControl}, Path=TextColor}" 
+           Text="{Binding Source={x:Reference ThisControl}, Path=Separator}"
+           FontSize="{OnPlatform Android={OnIdiom Tablet=19, Phone=15}, iOS={OnIdiom Tablet=17, Phone=14}}"
+           Grid.Column="1" 
+           HorizontalOptions="FillAndExpand" 
+           VerticalOptions="FillAndExpand"/>
+    <Label TextColor="{Binding Source={x:Reference ThisControl}, Path=TextColor}" 
+           Text="{Binding Source={x:Reference ThisControl}, Path=Value}"
+           FontSize="{OnPlatform Android={OnIdiom Tablet=19, Phone=15}, iOS={OnIdiom Tablet=17, Phone=14}}"
+           Grid.Column="2" 
+           HorizontalOptions="FillAndExpand" 
+           VerticalOptions="FillAndExpand"/>
+</Grid>

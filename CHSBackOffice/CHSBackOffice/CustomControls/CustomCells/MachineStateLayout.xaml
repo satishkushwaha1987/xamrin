@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customcells:FastCell
+    x:Name="cell"
+    xmlns="http://xamarin.com/schemas/2014/forms"              
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customcells="clr-namespace:CHSBackOffice.CustomControls.CustomCells"
+    xmlns:controls="clr-namespace:CHSBackOffice.CustomControls;assembly=CHSBackOffice"
+    xmlns:api="clr-namespace:CHBackOffice.ApiServices.ChsProxy;assembly=CHBackOffice.ApiServices"    
+    x:Class="CHSBackOffice.CustomControls.CustomCells.MachineStateLayout">
+    <Frame
+        BackgroundColor="Transparent"
+        OutlineColor="Transparent"
+        BorderColor="Transparent"
+        CornerRadius="5"
+        HasShadow="False"
+        Padding="0"
+        IsClippedToBounds="True">
+        <controls:RoundedCornerView
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            RoundedCornerRadius="5"
+            FillColor="{Binding ColorState, Source={x:Reference cell}}"
+            BackgroundColor="{Binding ColorState, Source={x:Reference cell}}"
+            BorderColor="Transparent"
+            BorderWidth="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label
+                Margin="{OnIdiom Phone='0,5,0,0', Tablet='0,10,0,0'}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Grid.Row="0"
+                Text="{Binding Id}"
+                FontSize="{StaticResource ExtraSmall}"/>
+            <Frame
+                Grid.Row="1"
+                BackgroundColor="Transparent"
+                OutlineColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="5"
+                HasShadow="False"
+                Margin="{OnIdiom Phone='5,1,5,5', Tablet='5,5,5,10'}"
+                Padding="0">
+                <controls:RoundedCornerView
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    RoundedCornerRadius="5"
+                    BorderColor="Transparent"
+                    BorderWidth="0"
+                    BackgroundColor="{StaticResource MachineStateLayoutBackgroundColor}"
+                    FillColor="White">
+                    <Grid Padding="{OnIdiom Phone='2,5,2,0', Tablet='5,5,5,0'}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackLayout Grid.Row="0"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="CenterAndExpand"
+                             Orientation="Vertical"
+                             Spacing="{OnIdiom Phone=0,Tablet=2}"
+                             IsVisible="{Binding CashDispenser, Converter={StaticResource IEnumerableHasDataConverter}}">
+                            <controls:FlowLayout
+                                x:Name="container"
+                                InputTransparent="True"
+                                HeightRequest="{OnIdiom Phone={StaticResource ChartHeightPhone}, Tablet={StaticResource ChartHeight}}"
+                                Direction="Row"
+                                Wrap="Wrap"
+                                FlowDirection="LeftToRight"
+                                AlignContent="Start"
+                                JustifyContent="Start"
+                                ItemsSource="{Binding CashDispenser}">
+                                <controls:FlowLayout.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="{StaticResource InnerWidthAndroid}" iOS="{StaticResource InnerWidthIos}"/>
+                                </controls:FlowLayout.WidthRequest>
+                                <controls:FlowLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <controls:ChartGrid
+                                            x:Name="chartitem"
+                                            HeightRequest="{OnIdiom Phone={StaticResource ChartHeightPhone},Tablet={StaticResource ChartHeight}}"
+                                            WidthRequest="{OnIdiom Phone=6,Tablet=10}"
+                                            IsDynamicColor="True"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            InputTransparent="True"
+                                    />
+                                    </DataTemplate>
+                                </controls:FlowLayout.ItemTemplate>
+                            </controls:FlowLayout>
+                            <Label
+                                Text="CASH DIS."
+                                Margin="{OnIdiom Phone='2,5,0,5', Tablet={StaticResource ChartMargin}}"
+                                FontSize="{StaticResource Micro}"
+                                HorizontalTextAlignment="Start"/>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="CenterAndExpand"
+                             Orientation="Vertical"
+                             Spacing="{OnIdiom Phone=0,Tablet=2}"
+                             IsVisible="{Binding CoinHopper, Converter={StaticResource IEnumerableHasDataConverter}}">
+                            <controls:FlowLayout
+                                InputTransparent="True"
+                                HeightRequest="{OnIdiom Phone=20, Tablet={StaticResource ChartHeight}}"
+                                Direction="Row"
+                                Wrap="Wrap"
+                                FlowDirection="LeftToRight"
+                                AlignContent="Start"
+                                JustifyContent="Start"
+                                ItemsSource="{Binding CoinHopper}">
+                                <controls:FlowLayout.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="{StaticResource InnerWidthAndroid}" iOS="{StaticResource InnerWidthIos}"/>
+                                </controls:FlowLayout.WidthRequest>
+                                <controls:FlowLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <controls:ChartGrid
+                                            x:Name="chartitem"
+                                            HeightRequest="{OnIdiom Phone=20,Tablet={StaticResource ChartHeight}}"
+                                            WidthRequest="{OnIdiom Phone=7,Tablet=10}"
+                                            IsDynamicColor="True"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                    />
+                                    </DataTemplate>
+                                </controls:FlowLayout.ItemTemplate>
+                            </controls:FlowLayout>
+                            <Label
+                                Text="COINS DIS."
+                                Margin="{OnIdiom Phone='2,5,0,5', Tablet={StaticResource ChartMargin}}"
+                                FontSize="{StaticResource Micro}"
+                                HorizontalTextAlignment="Start"/>
+                        </StackLayout>
+                        <StackLayout Grid.Row="2"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="CenterAndExpand"
+                             Orientation="Vertical"
+                             Spacing="{OnIdiom Phone=0,Tablet=2}"
+                             IsVisible="{Binding BillAcceptor, Converter={StaticResource IEnumerableHasDataConverter}}">
+                            <controls:FlowLayout           
+                                InputTransparent="True"
+                                HeightRequest="{OnIdiom Phone=20, Tablet={StaticResource ChartHeight}}"
+                                Direction="Row"
+                                Wrap="Wrap"
+                                FlowDirection="LeftToRight"
+                                AlignContent="Start"
+                                JustifyContent="Start"
+                                ItemsSource="{Binding BillAcceptor}">
+                                <controls:FlowLayout.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="{StaticResource InnerWidthAndroid}" iOS="{StaticResource InnerWidthIos}"/>
+                                </controls:FlowLayout.WidthRequest>
+                                <controls:FlowLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <controls:ChartGrid
+                                            x:Name="chartitem"
+                                            HeightRequest="{OnIdiom Phone=20,Tablet={StaticResource ChartHeight}}"
+                                            WidthRequest="{OnIdiom Phone=7,Tablet=10}"
+                                            IsDynamicColor="True"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                    />
+                                    </DataTemplate>
+                                </controls:FlowLayout.ItemTemplate>
+                            </controls:FlowLayout>
+                            <Label
+                                Text="BILL VAL."
+                                Margin="{OnIdiom Phone='2,5,0,5', Tablet={StaticResource ChartMargin}}"
+                                FontSize="{StaticResource Micro}"
+                                HorizontalTextAlignment="Start"/>
+                        </StackLayout>
+                    </Grid>
+                </controls:RoundedCornerView>
+            </Frame>
+        </controls:RoundedCornerView>
+    </Frame>
+</customcells:FastCell>

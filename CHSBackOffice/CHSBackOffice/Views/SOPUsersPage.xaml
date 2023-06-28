@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ExtendedNaviPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extentions="clr-namespace:CHSBackOffice.Extensions"
+    xmlns:cells="clr-namespace:CHSBackOffice.CustomControls.CustomCells"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:support="clr-namespace:CHSBackOffice.Support" 
+    prism:ViewModelLocator.AutowireViewModel="True"
+    
+    Title="{extentions:Translate SOPUsersTitle}"
+    NaviBarBackgroundColor="{StaticResource SOPUsersTitleColor}"
+    ChangeLocationToolbarButtonIsVisible="True"
+    SearchPanelEnabled="True"
+    SearchText="{Binding SearchText, Mode=TwoWay}"
+    IsNetworkDependent="True"
+    
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.SOPUsersPage">
+    <customcontrols:ExtendedNaviPage.ToolbarButtons>
+    </customcontrols:ExtendedNaviPage.ToolbarButtons>
+    <customcontrols:ExtendedNaviPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <customcontrols:UseDetailPopup 
+                x:Name="detailPopup"
+                InputTransparent="True"/>
+            <StackLayout
+                HorizontalOptions="FillAndExpand" 
+                VerticalOptions="Fill"
+                IsVisible="{Binding IsLoadingVisible, Source={x:Static support:CommonViewObjects.Instance}, Converter={StaticResource InvertBooleanConverter}}">
+                <Label
+                    IsVisible="{Binding IsNoDataLabelVisible}"
+                    Text="No Data Available"
+                    FontSize="{StaticResource Large}"
+                    TextColor="#808080"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"/>
+                <ScrollView
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Fill">
+                    <customcontrols:WrapLayout
+                        x:Name="layout"
+                        Margin="{OnIdiom Phone=15,Tablet=20}"
+                        ColumnSpacing="{OnIdiom Phone=5,Tablet=10}"
+                        RowSpacing="{OnIdiom Phone=5,Tablet=10}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Fill"
+                        FlowDirection="LeftToRight"
+                        ItemsSource="{Binding Users}"
+                        WidthRequest="{Binding Width}"
+                        ItemTappedAnimationType="ScaleIn"
+                        ItemTappedCommand="{Binding ItemTappedCommand}">
+                        <customcontrols:WrapLayout.ItemTemplate>
+                            <DataTemplate>
+                                <cells:SopUsersLayout />
+                            </DataTemplate>
+                        </customcontrols:WrapLayout.ItemTemplate>
+                    </customcontrols:WrapLayout>
+                </ScrollView>
+                
+            </StackLayout>
+        </Grid>
+    </customcontrols:ExtendedNaviPage.Content>
+</customcontrols:ExtendedNaviPage>

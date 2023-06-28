@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    x:Class="CHSBackOffice.CustomControls.RadioButtonGroup"
+    x:Name="root">
+    <Grid
+        Padding="10,0,0,0"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+        BackgroundColor="#f0f0f8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+
+        <!--SPECIFIC TRANSACTION DATE-->
+        <customcontrols:CustomRadioButton
+            x:Name="specificDayButton"
+            FontName="{StaticResource KlavikaCHRegular}"
+            Grid.Row="1"
+            VerticalOptions="Center"
+            FontSize="{StaticResource Small}"
+            Text="SPECIFIC TRANSACTION DATE"/>
+        <StackLayout
+            x:Name="specificDateContainer"
+            Padding="25,0,0,0"
+            Orientation="Horizontal"
+            Grid.Row="2">
+            <Label
+                x:Name="transaction_icon"
+                FontFamily="{StaticResource ChsIcons}"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                FontSize="{StaticResource Small}"/>
+            <!--Text="{Binding DateIcon}"-->
+            <customcontrols:ExtendedLabel
+                x:Name="specificDate"
+                FontSize="{StaticResource Small}"
+                VerticalOptions="Center"
+                VerticalTextAlignment="End"
+                TextColor="Black"
+                customcontrols:AddDataPicker.TapCommand="{Binding Path=SpecificDateTapCommand ,Source={x:Reference root}}"
+                customcontrols:AddDataPicker.Command="{Binding Path=SelectedSpecificDateCommand,ConverterParameter=SpecificDateDateTime ,Source={x:Reference root}}"
+                customcontrols:AddDataPicker.On="True"
+                Text="{Binding Path=SpecificDateDateTime,Source={x:Reference root},StringFormat='{0:dd/MM/yy}',Converter={StaticResource DateConverter2}}"
+                customcontrols:AddDataPicker.Date="{Binding Path=SpecificDateDateTime,Source={x:Reference root},Converter={StaticResource DateConverter2},Mode=TwoWay}"
+                />
+        </StackLayout>
+        <!--DATE RANGE-->
+        <customcontrols:CustomRadioButton 
+            x:Name="dateRangeButton"
+            Grid.Row="3"
+            VerticalOptions="Center"
+            FontName="{StaticResource KlavikaCHRegular}"
+            FontSize="{StaticResource Small}"
+            Text="DATE RANGE"/>
+        <!--FROM-->
+        <StackLayout
+            x:Name="fromDateContainer"
+            Padding="25,0,0,0"
+            Orientation="Horizontal"
+            Grid.Row="4">
+            <Label
+                Text="FROM"
+                FontSize="{StaticResource ExtraSmall}"
+                VerticalOptions="Center"     
+                HorizontalOptions="End"/>
+            <Label
+                x:Name="from_day_icon"
+                FontFamily="{StaticResource ChsIcons}"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                FontSize="{StaticResource Small}"/>
+            <customcontrols:ExtendedLabel
+                x:Name="fromDay"
+                FontSize="{StaticResource Small}"
+                VerticalTextAlignment="End"
+                VerticalOptions="Center"
+                TextColor="Black"
+                customcontrols:AddDataPicker.On="True"
+                customcontrols:AddDataPicker.TapCommand="{Binding Path=SpecificDateRangeTapCommand ,Source={x:Reference root}}"
+                customcontrols:AddDataPicker.Command="{Binding Path=SelectedDateRangeFromDateCommand,ConverterParameter=DateRangeFromDateTime,Source={x:Reference root}}"
+                Text="{Binding Path=DateRangeFromDateTime,Source={x:Reference root},StringFormat='{0:dd/MM/yy}',Converter={StaticResource DateConverter2}}"
+                customcontrols:AddDataPicker.Date="{Binding Path=DateRangeFromDateTime,Source={x:Reference root},Converter={StaticResource DateConverter2},Mode=TwoWay}"
+                />
+            <Label
+                x:Name="from_time_icon"
+                FontFamily="{StaticResource ChsIcons}"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                FontSize="{StaticResource Small}"/>
+            <customcontrols:ExtendedLabel
+                x:Name="fromTime"
+                FontSize="{StaticResource Small}"
+                VerticalTextAlignment="End"
+                VerticalOptions="Center"
+                TextColor="Black"
+                customcontrols:AddTimePicker.On="True"
+                customcontrols:AddTimePicker.TapCommand="{Binding Path=SpecificDateRangeTapCommand,Source={x:Reference root}}"
+                customcontrols:AddTimePicker.Command="{Binding Path=SelectedDateRangeFromTimeCommand,ConverterParameter=DateRangeFromTimeSpan,Source={x:Reference root}}"
+                Text="{Binding Path=DateRangeFromTimeSpan,Source={x:Reference root},StringFormat='{0:HH:mm:ss tt}'}"
+                customcontrols:AddTimePicker.Time="{Binding Path=DateRangeFromTimeSpan,Source={x:Reference root},Converter={StaticResource TimeConverter2},Mode=TwoWay}"
+                />
+         </StackLayout>
+
+        <!--TO-->
+        <StackLayout
+            x:Name="toDatyContainer"
+            Padding="40,0,0,0"
+            Orientation="Horizontal"
+            Grid.Row="5">
+            <Label
+                Text="TO"
+                FontSize="{StaticResource ExtraSmall}"
+                VerticalOptions="Center"
+                HorizontalOptions="End"/>
+            <Label
+                FontFamily="{StaticResource ChsIcons}"
+                x:Name="to_day_icon"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                FontSize="{StaticResource Small}"/>
+            <customcontrols:ExtendedLabel
+                x:Name="toDay"
+                FontSize="{StaticResource Small}"
+                VerticalTextAlignment="End"
+                VerticalOptions="Center"
+                TextColor="Black"
+                customcontrols:AddDataPicker.On="True"
+                customcontrols:AddDataPicker.TapCommand="{Binding Path=SpecificDateRangeTapCommand ,Source={x:Reference root}}"
+                customcontrols:AddDataPicker.Command="{Binding Path=SelectedDateRangeToDateCommand,ConverterParameter=DateRangeToDateTime,Source={x:Reference root}}"
+                Text="{Binding Path=DateRangeToDateTime,Source={x:Reference root},StringFormat='{0:dd/MM/yy}',Converter={StaticResource DateConverter2}}"
+                customcontrols:AddDataPicker.Date="{Binding Path=DateRangeToDateTime,Source={x:Reference root},Converter={StaticResource DateConverter2},Mode=TwoWay}"
+                />
+               <Label
+                x:Name="to_time_icon"
+                FontFamily="{StaticResource ChsIcons}"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                FontSize="{StaticResource Small}"/>
+            <customcontrols:ExtendedLabel
+                x:Name="toTime"
+                FontSize="{StaticResource Small}"
+                VerticalTextAlignment="End"
+                VerticalOptions="Center"
+                TextColor="Black"
+                customcontrols:AddTimePicker.On="True"
+                customcontrols:AddTimePicker.TapCommand="{Binding Path=SpecificDateRangeTapCommand,Source={x:Reference root}}"
+                customcontrols:AddTimePicker.Command="{Binding Path=SelectedDateRangeToTimeCommand,ConverterParameter=DateRangeToDateTime,Source={x:Reference root}}"
+                Text="{Binding Path=DateRangeToTimeSpan,Source={x:Reference root},StringFormat='{0:HH:mm:ss tt}'}"
+                customcontrols:AddTimePicker.Time="{Binding Path=DateRangeToTimeSpan,Source={x:Reference root},Converter={StaticResource TimeConverter2},Mode=TwoWay}"
+                />
+        </StackLayout>
+
+        <!--ALL DATES-->
+        <customcontrols:CustomRadioButton
+            x:Name="allDatesButton"
+            Grid.Row="6"
+            VerticalOptions="Center"
+            FontName="{StaticResource KlavikaCHRegular}"
+            FontSize="{StaticResource Small}"
+            Text="ALL DATES"/>
+        <StackLayout
+            IsVisible="False"
+            Orientation="Horizontal">
+            <customcontrols:ExtendedLabel
+                x:Name="startDay"
+                FontSize="{StaticResource Small}"
+                VerticalTextAlignment="End"
+                VerticalOptions="Center"
+                TextColor="Black"
+                customcontrols:AddDataPicker.On="True"
+                Text="{Binding Path=StartDateTime,Source={x:Reference root},StringFormat='{0:dd/MM/yy}',Converter={StaticResource DateConverter2},Mode=TwoWay}"
+                customcontrols:AddDataPicker.Date="{Binding Path=StartDateTime,Source={x:Reference root},Converter={StaticResource DateConverter2},Mode=TwoWay}"
+                />
+            <customcontrols:ExtendedLabel
+                x:Name="endDay"
+                FontSize="{StaticResource Small}"
+                VerticalTextAlignment="End"
+                VerticalOptions="Center"
+                TextColor="Black"
+                customcontrols:AddDataPicker.On="True"
+                Text="{Binding Path=EndDateTime,Source={x:Reference root},StringFormat='{0:dd/MM/yy}',Converter={StaticResource DateConverter2},Mode=TwoWay}"
+                customcontrols:AddDataPicker.Date="{Binding Path=EndDateTime,Source={x:Reference root},Converter={StaticResource DateConverter2},Mode=TwoWay}"
+                />
+        </StackLayout>
+    </Grid>
+</ContentView>

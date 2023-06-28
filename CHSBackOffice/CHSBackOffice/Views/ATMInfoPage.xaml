@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ExtendedNaviPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:support="clr-namespace:CHSBackOffice.Support" 
+    prism:ViewModelLocator.AutowireViewModel="True"
+                                 
+    NavigationPage.HasNavigationBar="True"
+    NavigationPage.HasBackButton="True"
+    NaviBarBackgroundColor="{StaticResource MachineStatusTitleColor}"
+    IsNetworkDependent="True"
+    Title="{Binding PageTitle}"
+    
+    AppearingCommand="{Binding AppearingCommand}"
+    DisappearingCommand="{Binding DisappearingCommand}"
+                                 
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.ATMInfoPage">
+    <customcontrols:ExtendedNaviPage.ToolbarButtons>
+        <customcontrols:ToolbarButton FontName="{StaticResource ChsIcons}" Name="but1" Text="{Binding Source={x:Reference ThisPage}, Path=BindingContext.ToolbarButtonText}" FontSize="{StaticResource CHSIconSize}"/>
+    </customcontrols:ExtendedNaviPage.ToolbarButtons>
+    <customcontrols:ExtendedNaviPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand"
+                x:Name="PageMainGrid"
+                VerticalOptions="FillAndExpand">
+            </Grid>
+            <customcontrols:LoadingView
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                IsVisible="{Binding IsLoadingVisible, Source={x:Static support:CommonViewObjects.Instance}}"/>
+        </Grid>
+        
+    </customcontrols:ExtendedNaviPage.Content>
+</customcontrols:ExtendedNaviPage>

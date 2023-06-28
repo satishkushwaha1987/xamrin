@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ExtendedNaviPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:CHSBackOffice.Extensions"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    
+    BackgroundColor="Transparent"
+    LeftButtonPressedCommand="{Binding LeftButtonPressedCommand}"
+    NaviBarBackgroundColor="{StaticResource LoginTitleColor}"
+    Title="{extensions:Translate LoginTitle}"
+    IsNetworkDependent="False"
+    
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.LoginPage">
+    <customcontrols:ExtendedNaviPage.LeftButton>
+        <customcontrols:ToolbarButton FontName="{StaticResource ChsIcons}" Name="exitBtn" Text="{StaticResource CHSIconOff}" FontSize="{StaticResource CHSIconOffSize}"/>
+    </customcontrols:ExtendedNaviPage.LeftButton>
+    <customcontrols:ExtendedNaviPage.ToolbarButtons>
+        <customcontrols:ToolbarButton FontName="{StaticResource ChsIcons}" Name="but1" Text="{StaticResource CHSIconGear}" FontSize="{StaticResource CHSIconSize}"/>
+    </customcontrols:ExtendedNaviPage.ToolbarButtons>
+    <customcontrols:ExtendedNaviPage.Content>
+        <Grid HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand">
+            <Grid
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{OnIdiom Tablet='0.25*', Phone='0.2*'}"/>
+                    <ColumnDefinition Width="{OnIdiom Tablet='0.5*', Phone='0.6*'}"/>
+                    <ColumnDefinition Width="{OnIdiom Tablet='0.25*', Phone='0.2*'}"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.ColumnSpan="3"
+                    Source="{Binding BackgroundIcon}"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Aspect="Fill"/>
+                <Grid Grid.Column="1"
+                    x:Name="container"
+                    Padding="{OnIdiom Phone='0,10,0,10',Tablet='0,50,0,0'}"  
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+                    <Grid  
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.3*"/>
+                            <RowDefinition Height="0.7*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Image
+                                Grid.Row="0"
+                                Source="{Binding LogoIcon}"
+                                Aspect="AspectFit"/>
+                            <Label
+                                FontSize="{StaticResource Mega}"
+                                HorizontalOptions="Center"
+                                Grid.Row="1"
+                                Text="{Binding CompanyName}"
+                                TextColor="White"/>
+                        </Grid>
+                        <!--Login section-->
+                        <StackLayout
+                            Grid.Row="1"
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <customcontrols:BorderlessEntry                        
+                                HeightRequest="{OnIdiom Tablet=40,Phone=25}"
+                                Margin="{OnIdiom Tablet='0,20,0,0',Phone='0,20,0,0'}"
+                                FontSize="{StaticResource Small}"
+                                FontFamily="{StaticResource KlavikaCHRegular}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center"
+                                Text="{Binding UserLogin}"
+                                PlaceholderColor="Gray"
+                                RoundedStyle="White"
+                                Placeholder="User Name"/>
+                            <customcontrols:BorderlessEntry
+                                IsPassword="True"
+                                HeightRequest="{OnIdiom Tablet=40,Phone=25}"
+                                Margin="{OnIdiom Tablet='0,10,0,0',Phone='0,10,0,0'}"
+                                FontSize="{StaticResource Small}"
+                                FontFamily="{StaticResource KlavikaCHRegular}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center"
+                                Text="{Binding UserPassword}"
+                                PlaceholderColor="Gray"
+                                RoundedStyle="White"
+                                Placeholder="Password"/>
+                            <customcontrols:CheckBox
+                                Margin="{OnIdiom Tablet='0,20,0,0',Phone='0,10,0,0'}"
+                                DefaultText="{Binding RememberMeText}"
+                                FontSize="{StaticResource Large}"
+                                Checked="{Binding RememberMe, Mode=TwoWay}"
+                                HorizontalOptions="FillAndExpand"
+                                TextColor="White"/>
+                            <Button
+                                BorderRadius="8"
+                                Margin="{OnIdiom Tablet='0,20,0,0',Phone='0,10,0,0'}"
+                                WidthRequest="{OnIdiom Tablet=150,Phone=120}"
+                                HeightRequest="{OnIdiom Tablet=50,Phone=34}"
+                                Text="{Binding ButtonText}"
+                                TextColor="White"
+                                Command="{Binding LoginButtonCommand}"
+                                FontSize="{StaticResource Large}"
+                                HorizontalOptions="Center"
+                                BackgroundColor="#579072"/>
+                        </StackLayout>
+                    </Grid>
+                    
+                </Grid>
+            </Grid>
+        </Grid>
+    </customcontrols:ExtendedNaviPage.Content>
+</customcontrols:ExtendedNaviPage>

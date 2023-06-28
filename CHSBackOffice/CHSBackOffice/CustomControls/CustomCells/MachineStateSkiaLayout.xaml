@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customcells:FastCell
+    x:Name="cell"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:customcells="clr-namespace:CHSBackOffice.CustomControls.CustomCells"
+    xmlns:controls="clr-namespace:CHSBackOffice.CustomControls.SkiaControls"
+    mc:Ignorable="d"
+    x:Class="CHSBackOffice.CustomControls.CustomCells.MachineStateSkiaLayout">
+    <Grid
+        ColumnSpacing="0"
+        RowSpacing="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource ChartWidth}"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{OnIdiom Phone={StaticResource ContainerHeightPhone}, Tablet={StaticResource ContainerHeight}}"/>
+        </Grid.RowDefinitions>
+        <controls:MachineSkiaView
+                x:Name="machine"
+                Grid.Column="0"
+                Grid.Row="0"/>
+    </Grid>
+</customcells:FastCell>

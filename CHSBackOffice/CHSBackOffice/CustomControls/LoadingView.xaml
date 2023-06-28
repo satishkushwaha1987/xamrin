@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CHSBackOffice.CustomControls.LoadingView">
+  <ContentView.Content>
+        <Grid 
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="Transparent"
+            VerticalOptions="FillAndExpand">
+            <Grid 
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                BackgroundColor="Black"
+                Opacity="{StaticResource BlackMaskOpacity}"/>
+            <ActivityIndicator
+                x:Name="indicator"
+                IsRunning="True"
+                IsVisible="True"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="40"
+                HeightRequest="40"
+                Opacity="0.5"
+                Color="{Binding LoadingIndicatorColor}"
+                BackgroundColor="Transparent"
+                Margin="0,0,0,20"/>
+        </Grid>
+        
+    </ContentView.Content>
+</ContentView>

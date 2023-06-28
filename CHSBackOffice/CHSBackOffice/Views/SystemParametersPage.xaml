@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ExtendedNaviPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extentions="clr-namespace:CHSBackOffice.Extensions"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:dxGrid="clr-namespace:DevExpress.Mobile.DataGrid;assembly=DevExpress.Mobile.Grid.v18.2" 
+    prism:ViewModelLocator.AutowireViewModel="True"
+    
+    Title="{extentions:Translate SystemParametersTitle}"
+    NaviBarBackgroundColor="{StaticResource SystemParametersTitleColor}"
+    ChangeLocationToolbarButtonIsVisible="True"
+    AppearingCommand="{Binding AppearingCommand}"
+    SearchPanelEnabled="True"
+    SearchText="{Binding SearchText}"
+    IsNetworkDependent="True"
+    
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.SystemParametersPage">
+    <customcontrols:ExtendedNaviPage.ToolbarButtons>
+        <customcontrols:ToolbarButton FontName="{StaticResource ChsIcons}" Name="filterToolbarButton" Text="{StaticResource CHSIconFilter}" FontSize="{StaticResource CHSIconSize}"/>
+        <customcontrols:ToolbarButton FontName="{StaticResource ChsIcons}" Name="addToolbarButton" Text="{StaticResource CHSIconAdd}" FontSize="{StaticResource CHSIconSize}"/>
+    </customcontrols:ExtendedNaviPage.ToolbarButtons>
+    <customcontrols:ExtendedNaviPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <dxGrid:GridControl
+                x:Name="parametersGrid"
+                RowTapCommand="{Binding SettingTappedCommand }" 
+                ItemsSource="{Binding ParametersData}">
+                <dxGrid:GridControl.Columns>
+                    <dxGrid:TextColumn Caption="Group" FieldName="Category" AllowGroup="True"/>
+                    <dxGrid:TextColumn Caption="Name" FieldName="Key" AllowGroup="True"/>
+                    <dxGrid:TextColumn FieldName="Value" AllowGroup="False"/>
+                    <dxGrid:TextColumn FieldName="Description" AllowGroup="False" Width="{OnIdiom Phone=200, Tablet=400}"/>
+                </dxGrid:GridControl.Columns>
+            </dxGrid:GridControl>
+
+            <Grid x:Name="BlackOpacityGrid"
+                HorizontalOptions="FillAndExpand" 
+                VerticalOptions="FillAndExpand"
+                BackgroundColor="Black"
+                Opacity="{StaticResource BlackMaskOpacity}"
+                InputTransparent="False"
+                IsVisible="{Binding FilterIsVisible}">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding HideAdditionalWindowsCommand}"/>
+                </Grid.GestureRecognizers>
+            </Grid>
+            <Grid
+                Padding="0,0,10,0"
+                WidthRequest="{OnIdiom Tablet=250,Phone=200}"
+                HeightRequest="{OnIdiom Tablet=330,Phone=280}"
+                IsVisible="{Binding FilterIsVisible}"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="16"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image
+                    Grid.Row="0"
+                    Margin="{StaticResource SysParamUpIcon}"
+                    HorizontalOptions="End"
+                    Source="PopupPickerArrowTop.png"
+                    Aspect="AspectFit"/>
+                <Frame
+                    Grid.Row="1"
+                    WidthRequest="{OnIdiom Tablet=250,Phone=200}"
+                    HeightRequest="{OnIdiom Tablet=320,Phone=270}"
+                    IsVisible="{Binding FilterIsVisible}"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    BackgroundColor="Transparent"
+                    IsClippedToBounds="True"
+                    OutlineColor="Transparent"
+                    BorderColor="Transparent"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    Margin="0"
+                    Padding="0">
+                    <customcontrols:RoundedCornerView
+                        BackgroundColor="White"
+                        FillColor="White"
+                        BorderWidth="0"
+                        RoundedCornerRadius="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{OnIdiom Phone=30,Tablet=40}"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0"
+                              BackgroundColor="{StaticResource PopoverTopPanelColor}"
+                              RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="1"/>
+                            </Grid.RowDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Text="Select Groups" 
+                                FontSize="{StaticResource Medium}"
+                                FontFamily="{StaticResource KlavikaCHMedium}"
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="Center" 
+                                HorizontalTextAlignment="Center" 
+                                VerticalTextAlignment="Center"/>
+                            <BoxView
+                                Grid.Row="1"
+                                HeightRequest="1"
+                                BackgroundColor="{StaticResource PopoverTopPanelLineColor}"/>
+                        </Grid>
+                        <ListView Grid.Row="1"
+                            BackgroundColor="White"
+                            Margin="0"
+                            HasUnevenRows="True"
+                            SeparatorColor="Transparent"
+                            SelectedItem="{Binding SelectedFilterItem, Mode=TwoWay}"
+                            ItemsSource="{Binding FilterItems}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid
+                                            Padding="{OnIdiom Phone='10,3,3,3',Tablet='15,3,3,3'}"
+                                            HeightRequest="{OnIdiom Phone=20,Tablet=25}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="1"/>
+                                            </Grid.RowDefinitions>
+                                            <Label 
+                                                Grid.Row="0"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Center"
+                                                VerticalTextAlignment="Center"
+                                                FontSize="{StaticResource Small}"
+                                                FontFamily="{StaticResource KlavikaCHRegular}"
+                                                Text="{Binding Value}"/>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                HorizontalOptions="End"
+                                                VerticalOptions="Center"
+                                                VerticalTextAlignment="Center"
+                                                Text="{StaticResource CHSIconSelected}" 
+                                                FontFamily="{StaticResource ChsIcons}" 
+                                                FontSize="{StaticResource ExtraSmall}" 
+                                                TextColor="{StaticResource Key=SelectedIconColor}" 
+                                                IsVisible="{Binding Selected}" />
+                                            <BoxView
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                BackgroundColor="{StaticResource PopoverTopPanelLineColor}"
+                                                HeightRequest="1"/>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </customcontrols:RoundedCornerView>
+                </Frame>
+            </Grid>
+        </Grid>
+    </customcontrols:ExtendedNaviPage.Content>
+</customcontrols:ExtendedNaviPage>

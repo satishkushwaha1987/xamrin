@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ExtendedNaviPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:extensions="clr-namespace:CHSBackOffice.Extensions"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"         
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    
+    Title="{extensions:Translate EventsFilterTitle}"
+    NaviBarBackgroundColor="{StaticResource EventsFilterTitleColor}"
+    AppearingCommand="{Binding AppearingCommand}"
+    IsNetworkDependent="True"
+    
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.EventsFilterPage">
+    <customcontrols:ExtendedNaviPage.Content>
+        <Grid
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="FillAndExpand">
+            <Grid
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{OnIdiom Tablet=0.8*,Phone=*}"/>
+                    <RowDefinition x:Name="secondRow" Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid
+                Grid.Row="0"
+                Padding="20,30,5,0"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="0.7*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <!--Machine ID-->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Text="Machine ID">
+                        <Label.FontSize>
+                            <OnIdiom Tablet="{StaticResource Medium}" Phone="{StaticResource Small}"/>
+                        </Label.FontSize>
+                    </Label>
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text=":">
+                        <Label.FontSize>
+                            <OnIdiom Tablet="{StaticResource Medium}" Phone="{StaticResource Small}"/>
+                        </Label.FontSize>
+                    </Label>
+                    <customcontrols:PickerWithPopoverBottom
+                        x:Name="machineIdPopover"
+                        Location="Bottom"
+                        BackgroundColor="#edf6f9"
+                        Placeholder="Select Machine ID"
+                        IsMultiSelect="True"
+                        SelectedItem="{Binding MachineIdSelected, Mode=TwoWay}"
+                        ItemsSource="{Binding MachineIDs}"
+                        RoundedCornerRadius="0"
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        HeightRequest="{OnIdiom Tablet=40,Phone=25}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"/>
+                    <!--Event Description-->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Text="Event Description">
+                        <Label.FontSize>
+                            <OnIdiom Tablet="{StaticResource Medium}" Phone="{StaticResource Small}"/>
+                        </Label.FontSize>
+                    </Label>
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text=":">
+                        <Label.FontSize>
+                            <OnIdiom Tablet="{StaticResource Medium}" Phone="{StaticResource Small}"/>
+                        </Label.FontSize>
+                    </Label>
+                    <customcontrols:PickerWithPopoverBottom
+                        x:Name="eventDescriptionPopover"
+                        Location="Bottom"
+                        BackgroundColor="#edf6f9"
+                        Placeholder="Select Event Description"
+                        IsMultiSelect="True"
+                        SelectedItem="{Binding EventDescriptionSelected, Mode=TwoWay}"
+                        ItemsSource="{Binding EventDescriptions}"
+                        RoundedCornerRadius="0"
+                        HeightRequest="{OnIdiom Tablet=40,Phone=25}"
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"/>
+                    <!--Machine Status-->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Text="Machine Status">
+                        <Label.FontSize>
+                            <OnIdiom Tablet="{StaticResource Medium}" Phone="{StaticResource Small}"/>
+                        </Label.FontSize>
+                    </Label>
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text=":">
+                        <Label.FontSize>
+                            <OnIdiom Tablet="{StaticResource Medium}" Phone="{StaticResource Small}"/>
+                        </Label.FontSize>
+                    </Label>
+                    <customcontrols:PickerWithPopoverBottom
+                        x:Name="machineStatusPopover"
+                        BackgroundColor="#edf6f9"
+                        Location="Bottom"
+                        Placeholder="Select Machine Status"
+                        IsMultiSelect="True"
+                        SelectedItem="{Binding MachineStatusSelected, Mode=TwoWay}"
+                        ItemsSource="{Binding MachineStatuses}"
+                        RoundedCornerRadius="0"
+                        HeightRequest="{OnIdiom Tablet=40,Phone=25}"
+                        Grid.Column="2"
+                        Grid.Row="2"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"/>
+                    <!--Event Severity-->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Text="Event Severity">
+                        <Label.FontSize>
+                            <OnIdiom Tablet="{StaticResource Medium}" Phone="{StaticResource Small}"/>
+                        </Label.FontSize>
+                    </Label>
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text=":">
+                        <Label.FontSize>
+                            <OnIdiom Tablet="{StaticResource Medium}" Phone="{StaticResource Small}"/>
+                        </Label.FontSize>
+                    </Label>
+                    <customcontrols:PickerWithPopoverBottom
+                        x:Name="eventSeverityPopover"
+                        BackgroundColor="#edf6f9"
+                        Location="Bottom"
+                        Placeholder="Select Event Severity"
+                        IsMultiSelect="True"
+                        SelectedItem="{Binding EventSeveritySelected, Mode=TwoWay}"
+                        ItemsSource="{Binding EventSeverites}"
+                        RoundedCornerRadius="0"
+                        HeightRequest="{OnIdiom Tablet=40,Phone=25}"
+                        Grid.Column="2"
+                        Grid.Row="3"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"/>
+                    <!--Machine State-->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="4"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Text="Machine State">
+                        <Label.FontSize>
+                            <OnIdiom Tablet="{StaticResource Medium}" Phone="{StaticResource Small}"/>
+                        </Label.FontSize>
+                    </Label>
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="4"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text=":">
+                        <Label.FontSize>
+                            <OnIdiom Tablet="{StaticResource Medium}" Phone="{StaticResource Small}"/>
+                        </Label.FontSize>
+                    </Label>
+                    <customcontrols:PickerWithPopoverBottom
+                        x:Name="machineStatePopover"
+                        BackgroundColor="#edf6f9"
+                        Location="Bottom"
+                        Placeholder="Select Machine State"
+                        IsMultiSelect="True"
+                        SelectedItem="{Binding MachineStateSelected, Mode=TwoWay}"
+                        ItemsSource="{Binding MachineStates}"
+                        RoundedCornerRadius="0"
+                        HeightRequest="{OnIdiom Tablet=40,Phone=25}"
+                        Grid.Column="2"
+                        Grid.Row="4"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"/>
+                    <!--Machine Type-->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="5"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Text="Machine Type">
+                        <Label.FontSize>
+                            <OnIdiom Tablet="{StaticResource Medium}" Phone="{StaticResource Small}"/>
+                        </Label.FontSize>
+                    </Label>
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="5"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text=":">
+                        <Label.FontSize>
+                            <OnIdiom Tablet="{StaticResource Medium}" Phone="{StaticResource Small}"/>
+                        </Label.FontSize>
+                    </Label>
+                    <customcontrols:PickerWithPopoverBottom
+                        x:Name="machineTypePopover"
+                        BackgroundColor="#edf6f9"
+                        Location="Bottom"
+                        Placeholder="Select Machine Type"
+                        IsMultiSelect="True"
+                        SelectedItem="{Binding MachineTypeSelected, Mode=TwoWay}"
+                        ItemsSource="{Binding MachineTypes}"
+                        RoundedCornerRadius="0"
+                        HeightRequest="{OnIdiom Tablet=40,Phone=25}"
+                        Grid.Column="2"
+                        Grid.Row="5"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"/>
+                    <Grid
+                        Padding="{OnIdiom Tablet='0,30,0,0',Phone='0,10,0,0'}"
+                        Grid.Column="0"
+                        Grid.Row="6"
+                        Grid.ColumnSpan="3"
+                        ColumnSpacing="30"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button
+                            Grid.Column="0"
+                            WidthRequest="{OnIdiom Tablet=150,Phone=120}"
+                            HeightRequest="{OnIdiom Tablet=50,Phone=34}"
+                            Command="{Binding SubmitCommand}"
+                            Text="Submit"
+                            TextColor="White"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            BackgroundColor="{StaticResource EventsFilterTitleColor}">
+                            <Button.FontSize>
+                                <OnIdiom Tablet="{StaticResource Large}" Phone="{StaticResource Medium}"/>
+                            </Button.FontSize>
+                        </Button>
+                        <Button
+                            Grid.Column="1"
+                            WidthRequest="{OnIdiom Tablet=150,Phone=120}"
+                            HeightRequest="{OnIdiom Tablet=50,Phone=34}"
+                            Command="{Binding ResetCommand}"
+                            Text="Reset"
+                            TextColor="White"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            BackgroundColor="{StaticResource EventsFilterTitleColor}">
+                            <Button.FontSize>
+                                <OnIdiom Tablet="{StaticResource Large}" Phone="{StaticResource Medium}"/>
+                            </Button.FontSize>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </customcontrols:ExtendedNaviPage.Content>
+</customcontrols:ExtendedNaviPage>

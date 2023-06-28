@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ExtendedNaviPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns:support="clr-namespace:CHSBackOffice.Support" 
+    
+    AppearingCommand="{Binding AppearingCommand}"
+    
+    x:Class="CHSBackOffice.CustomControls.ReportPage">
+    <customcontrols:ExtendedNaviPage.ToolbarButtons>
+    </customcontrols:ExtendedNaviPage.ToolbarButtons>
+    <customcontrols:ExtendedNaviPage.Content>
+        <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" 
+                  VerticalOptions="FillAndExpand" 
+                  Padding="{OnIdiom Tablet='20,20,20,60',Phone='10,10,10,50'}"
+                  IsVisible="{Binding IsLoadingVisible, Source={x:Static support:CommonViewObjects.Instance}, Converter={StaticResource InvertBooleanConverter}}">
+                <ScrollView x:Name="graphScrollContainer"
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="FillAndExpand" 
+                            Orientation="Horizontal"
+                            Margin="{OnIdiom Tablet='0,0,10,0',Phone='0,0,15,0'}"
+                            HorizontalScrollBarVisibility="Never">
+                </ScrollView>
+                <Label x:Name="noDataAvailable"
+                       Text="No Data Available"
+                       FontSize="{StaticResource Large}"
+                       TextColor="#808080"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       Opacity="0"/>
+            </Grid>
+            <Grid VerticalOptions="End" Padding="10,0,10,10">
+                <customcontrols:HorizontalSelectPanel 
+                    ItemsSource="{Binding StateCollection}" 
+                    SelectedKey="{Binding SelectedGroupKey}"
+                    ItemTappedCommand="{Binding GroupSelectedCommand}" 
+                    ItemSelectedCommand="{Binding GroupSelectedCommand}"/>
+            </Grid>
+        </Grid>
+    </customcontrols:ExtendedNaviPage.Content>
+</customcontrols:ExtendedNaviPage>

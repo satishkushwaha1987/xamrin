@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customcells:FastCell 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customcells="clr-namespace:CHSBackOffice.CustomControls.CustomCells"
+    x:Class="CHSBackOffice.CustomControls.CustomCells.TransactionLayoutTablet"
+    x:Name="cell">
+    <Grid
+        Padding="30,10,5,15"
+        HorizontalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <Style TargetType="Label">
+                    <Setter Property="FontFamily" Value="{StaticResource KlavikaCHRegular}"  />
+                    <Setter Property="TextColor" Value="Black"/>
+                    <Setter Property="FontSize" Value="{StaticResource Small}"/>
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Label  
+        Grid.Row="0"
+        Grid.Column="0"
+        Grid.ColumnSpan="2"
+        HorizontalOptions="Start"            
+        VerticalOptions="Center"           
+        Text="{Binding Type}"
+        FontSize="{StaticResource Medium}"
+        FontFamily="{StaticResource KlavikaCHMedium}"/>
+        <Grid
+        Grid.Row="1"
+        Grid.Column="0"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--Kiosk Id-->
+            <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Text="Unit Id"/>
+            <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            Text=":"/>
+            <Label
+            Grid.Row="0"
+            Grid.Column="2"
+            Text="{Binding KioskId}"/>
+            <!--Sequence Id-->
+            <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="Sequence Id"/>
+            <Label
+            Grid.Row="1"
+            Grid.Column="1"
+            Text=":"/>
+            <Label
+            Grid.Row="1"
+            Grid.Column="2"
+            Text="{Binding SequenceId}"/>
+            <!--Transaction Id-->
+            <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            Text="Transaction Id"/>
+            <Label
+            Grid.Row="2"
+            Grid.Column="1"
+            Text=":"/>
+            <Label
+            Grid.Row="2"
+            Grid.Column="2"
+            Text="{Binding Id}"/>
+        </Grid>
+        <Grid
+        Grid.Row="1"
+        Grid.Column="1"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--Status-->
+            <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Text="Status"/>
+            <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            Text=":"/>
+            <Label
+            Grid.Row="0"
+            Grid.Column="2"
+            Text="{Binding Status}"
+            TextColor="{Binding ColorState,Source={x:Reference cell}}">
+            </Label>
+            <!--Amount Requested-->
+            <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="Amount Requested"/>
+            <Label
+            Grid.Row="1"
+            Grid.Column="1"
+            Text=":"/>
+            <Label
+            Grid.Row="1"
+            Grid.Column="2"
+            Text="{Binding AmountRequested,StringFormat='${0:F2}',Converter={StaticResource AmountConverter}}"/>
+            <!--Amount Dispensed-->
+            <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            Text="Amount Dispensed"/>
+            <Label
+            Grid.Row="2"
+            Grid.Column="1"
+            Text=":"
+            FontSize="16"/>
+            <Label
+            Grid.Row="2"
+            Grid.Column="2"
+            Text="{Binding AmountDispensed,StringFormat='${0:F2}',Converter={StaticResource AmountConverter}}"/>
+        </Grid>
+        <Label
+        Grid.Row="0"
+        Grid.RowSpan="2"
+        Grid.Column="2"            
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        FontFamily="{StaticResource ChsIcons}"
+        Text="{StaticResource CHSIconArrowRight}"
+        TextColor="LightGray"
+        FontSize="{StaticResource CHSIconSize}"/>
+    </Grid>
+</customcells:FastCell>

@@ -1,0 +1,1494 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:extensions="clr-namespace:CHSBackOffice.Extensions"
+             xmlns:customcells="clr-namespace:CHSBackOffice.CustomControls.CustomCells"
+             xmlns:api="clr-namespace:CHBackOffice.ApiServices.ChsProxy;assembly=CHBackOffice.ApiServices"
+             xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+             xmlns:dxGrid="clr-namespace:DevExpress.Mobile.DataGrid;assembly=DevExpress.Mobile.Grid.v18.2"
+             mc:Ignorable="d"
+             x:Class="CHSBackOffice.CustomControls.ATMInfoPageContent">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="customcells:TextValuePairLayout">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="Separator" Value=":"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+  <ContentView.Content>
+        <Grid HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand"
+                  RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="ContentGrid" Grid.Row="0"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                <Grid x:Name="OverviewGrid"
+                        IsVisible="{Binding OverviewGridVisible}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                    <ScrollView 
+                            Orientation="Vertical"
+                            Padding="5">
+                        <StackLayout
+                                Orientation="Vertical"                                
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="StartAndExpand">
+                            <Frame
+                                    BackgroundColor="White"
+                                    OutlineColor="Transparent"
+                                
+                                    CornerRadius="6"
+                                    HeightRequest="{OnIdiom Phone=100, Tablet=140}"
+                                    HasShadow="False"
+                                    Margin="{OnIdiom Phone='-5,0,-5,0', Tablet='-5,0,-5,0'}"
+                                    Padding="10">
+                                <customcontrols:RoundedCornerView
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        RoundedCornerRadius="6"
+                                        BorderWidth="{OnPlatform Android=10, iOS=10}"
+                                        BackgroundColor="White"
+                                        BorderColor="{Binding ColorState}"
+                                        FillColor="White">
+                                    <Grid
+                                            Margin="{OnIdiom Phone='20,10,20,10', Tablet='30,10,30,10'}"
+                                            ColumnSpacing="2"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Column="0" 
+                                                         Orientation="Vertical"
+                                                         HorizontalOptions="StartAndExpand"
+                                                         VerticalOptions="EndAndExpand"
+                                                         IsVisible="{Binding CashDispenserDetailsIsVisible}">
+                                            <customcontrols:FlowLayout
+                                                    Margin="2,0,0,0"
+                                                    HeightRequest="{OnIdiom Phone=50, Tablet=80}" 
+                                                    Direction="Row"
+                                                    Wrap="Wrap" 
+                                                    FlowDirection="LeftToRight"
+                                                    AlignContent="Start" 
+                                                    JustifyContent="Start"  
+                                                    ItemsSource="{Binding CashDispenser}">
+                                                <customcontrols:FlowLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <customcontrols:ChartGrid x:Name="chartitem1"
+                                                                HeightRequest="{OnIdiom Phone=50,Tablet=80}"
+                                                                WidthRequest="{OnIdiom Phone=10,Tablet=20}"
+                                                                Padding="0,0,5,0"
+                                                                HorizontalOptions="Center"
+                                                                VerticalOptions="Center"
+                                                                IsDynamicColor="True"/>
+                                                    </DataTemplate>
+                                                </customcontrols:FlowLayout.ItemTemplate>
+                                            </customcontrols:FlowLayout>
+                                            <Label Text="{extensions:Translate CashDis}"
+                                                    FontSize="{OnPlatform Android={OnIdiom Tablet=19, Phone=15}, iOS={OnIdiom Tablet=17, Phone=14}}" 
+                                                    HorizontalTextAlignment="Start"/>
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="1" 
+                                                         Orientation="Vertical"
+                                                         HorizontalOptions="StartAndExpand"
+                                                         VerticalOptions="EndAndExpand"
+                                                         IsVisible="{Binding CoinHopperDetailsIsVisible}">
+                                            <customcontrols:FlowLayout 
+                                                    Margin="2,0,0,0"
+                                                    HeightRequest="{OnIdiom Phone=50, Tablet=80}" 
+                                                    Direction="Row"
+                                                    Wrap="Wrap" 
+                                                    FlowDirection="LeftToRight"
+                                                    AlignContent="Start" 
+                                                    JustifyContent="Start"  
+                                                    ItemsSource="{Binding CoinHopper}">
+                                                <customcontrols:FlowLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <customcontrols:ChartGrid x:Name="chartitem2"
+                                                                HeightRequest="{OnIdiom Phone=50,Tablet=80}"
+                                                                WidthRequest="{OnIdiom Phone=10,Tablet=20}"
+                                                                Padding="0,0,5,0"
+                                                                HorizontalOptions="Center"
+                                                                VerticalOptions="Center"
+                                                                IsDynamicColor="True"/>
+                                                    </DataTemplate>
+                                                </customcontrols:FlowLayout.ItemTemplate>
+                                            </customcontrols:FlowLayout>
+                                            <Label Text="{extensions:Translate CoinsDis}" 
+                                                    FontSize="{OnPlatform Android={OnIdiom Tablet=19, Phone=15}, iOS={OnIdiom Tablet=17, Phone=14}}" 
+                                                    HorizontalTextAlignment="Start"/>
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="2"
+                                                         Orientation="Vertical"
+                                                         HorizontalOptions="StartAndExpand"
+                                                         VerticalOptions="EndAndExpand"
+                                                         IsVisible="{Binding BillAcceptorDetailsIsVisible}">
+                                            <customcontrols:FlowLayout 
+                                                    Margin="2,0,0,0"
+                                                    HeightRequest="{OnIdiom Phone=50, Tablet=80}" 
+                                                    Direction="Row"
+                                                    Wrap="Wrap" 
+                                                    FlowDirection="LeftToRight"
+                                                    AlignContent="Start" 
+                                                    JustifyContent="Start"  
+                                                    ItemsSource="{Binding BillAcceptor}">
+                                                <customcontrols:FlowLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <customcontrols:ChartGrid x:Name="chartitem3"
+                                                                HeightRequest="{OnIdiom Phone=50,Tablet=80}"
+                                                                WidthRequest="{OnIdiom Phone=10,Tablet=20}" 
+                                                                Padding="0,0,5,0"
+                                                                HorizontalOptions="Center"
+                                                                VerticalOptions="Center"
+                                                                IsDynamicColor="True"/>
+                                                    </DataTemplate>
+                                                </customcontrols:FlowLayout.ItemTemplate>
+                                            </customcontrols:FlowLayout>
+                                            <Label Text="{extensions:Translate BillVal}" 
+                                                    FontSize="{OnPlatform Android={OnIdiom Tablet=19, Phone=15}, iOS={OnIdiom Tablet=17, Phone=14}}" 
+                                                    HorizontalTextAlignment="Start"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </customcontrols:RoundedCornerView>
+                            </Frame>
+
+                            <StackLayout Orientation="Vertical" 
+                                             Margin="{OnIdiom Phone='2',Tablet='5'}">
+                                <customcells:TextValuePairLayout
+                                        Key="Location"
+                                        Value="{Binding Location}"/>
+                                <customcells:TextValuePairLayout
+                                        Key="Current machine state"
+                                        Value="{Binding State}"/>
+                                <customcells:TextValuePairLayout
+                                        Key="Current machine status"
+                                        Value="{Binding Status}"/>
+                                <customcells:TextValuePairLayout
+                                        Key="CHS Version"
+                                        Value="{Binding CHSVersion}"/>
+                                <customcells:TextValuePairLayout
+                                        Key="Latest runtime status"
+                                        Value="{Binding RuntimeStatus}"/>
+                            </StackLayout>
+
+                            <StackLayout x:Name="EventsList"
+                                    Orientation="Vertical" 
+                                    Margin="{OnIdiom Phone='2',Tablet='5'}">
+                                <Label Text="{extensions:Translate Events}" 
+                                       HorizontalOptions="Start" 
+                                       VerticalOptions="Start"
+                                       FontSize="{OnPlatform Android={OnIdiom Tablet=20, Phone=16}, iOS={OnIdiom Tablet=18, Phone=15}}" />
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                    <Grid.Resources>
+                                        <ResourceDictionary>
+                                            <Style TargetType="Label">
+                                                <Setter Property="FontFamily" Value="{StaticResource KlavikaCHLight}"/>
+                                            </Style>
+                                        </ResourceDictionary>
+                                    </Grid.Resources>
+                                    <Frame BackgroundColor="White"
+                                               HorizontalOptions="FillAndExpand" 
+                                               VerticalOptions="FillAndExpand" 
+                                               CornerRadius="5"
+                                               HasShadow="False"
+                                               Padding="0">
+                                        <Grid BackgroundColor="#F0EFF5"
+                                                  HorizontalOptions="FillAndExpand"
+                                                  VerticalOptions="FillAndExpand"
+                                                  IsVisible="{Binding EventsListHasNoData}">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="30"></RowDefinition>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="{extensions:Translate NoDataAvailable}" Grid.Row="1"
+                                                       FontSize="{StaticResource Large}"
+                                                       TextColor="#808080"
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       VerticalOptions="CenterAndExpand"/>
+                                        </Grid>
+                                    </Frame>
+                                    <Frame
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="Start"
+                                            HeightRequest="140"
+                                            BackgroundColor="Transparent"
+                                            OutlineColor="Transparent"
+                                            BorderColor="DarkGray"
+                                            CornerRadius="5"
+                                            HasShadow="False"
+                                            Padding="0">
+
+                                        <ListView 
+                                                Margin="1,0,1,0"
+                                                ItemsSource="{Binding EventsList}"
+                                                HasUnevenRows="True"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="Start"
+                                                BackgroundColor="Transparent"
+                                                >
+                                            <ListView.Resources>
+                                                <ResourceDictionary>
+                                                    <Style TargetType="Label">
+                                                        <Setter Property="HorizontalOptions" Value="Center"/>
+                                                        <Setter Property="VerticalOptions" Value="Center"/>
+                                                        <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                                                        <Setter Property="VerticalTextAlignment" Value="Center"/>
+                                                        <Setter Property="FontFamily" Value="{StaticResource KlavikaCHLight}"/>
+                                                        <Setter Property="FontSize" Value="Small"/>
+                                                    </Style>
+                                                </ResourceDictionary>
+                                            </ListView.Resources>
+                                            <ListView.Header>
+                                                <Grid BackgroundColor="#66CBFF" HeightRequest="30">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="2*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="Device Name" Grid.Column="0" HorizontalOptions="StartAndExpand" Margin="5,0,0,0"/>
+                                                    <Label Text="Event Summary" Grid.Column="1" HorizontalOptions="StartAndExpand" Margin="5,0,0,0"/>
+                                                    <Label Text="Event Date" Grid.Column="2" HorizontalOptions="StartAndExpand" Margin="5,0,0,0"/>
+                                                </Grid>
+                                            </ListView.Header>
+                                            <ListView.ItemTemplate>
+
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <Grid  BackgroundColor="{Binding BackColor}" 
+                                                                   Padding="0,2,0,2" 
+                                                                   ColumnSpacing="0" 
+                                                                   RowSpacing="0">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="2*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Text="{Binding DeviceName}" Grid.Column="0" HorizontalOptions="StartAndExpand" Margin="5,0,0,0"/>
+                                                            <Label Text="{Binding Summary}" Grid.Column="1" HorizontalOptions="StartAndExpand" Margin="5,0,0,0"/>
+                                                            <Label Text="{Binding EventDate}" Grid.Column="2" HorizontalOptions="StartAndExpand" Margin="5,0,0,0"/>
+                                                        </Grid>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </Frame>
+                                </Grid>
+                            </StackLayout>
+
+                            <StackLayout x:Name="CashDispenserList"
+                                    Orientation="Vertical" 
+                                    Margin="{OnIdiom Phone='2',Tablet='5'}"
+                                    IsVisible="{Binding CashDispenserDetailsIsVisible}">
+                                <Label Text="{extensions:Translate CashDispenser}" 
+                                           HorizontalOptions="Start" 
+                                           VerticalOptions="Start"
+                                           FontSize="{OnPlatform Android={OnIdiom Tablet=20, Phone=16}, iOS={OnIdiom Tablet=18, Phone=15}}" />
+                                <Frame
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Start"
+                                        HeightRequest="175"
+                                        BackgroundColor="White"
+                                        OutlineColor="Transparent"
+                                        BorderColor="DarkGray"
+                                        CornerRadius="5"
+                                        HasShadow="False"
+                                        Padding="0">
+                                    <Frame.Resources>
+                                        <ResourceDictionary>
+                                            <Style TargetType="Label">
+                                                <Setter Property="FontFamily" Value="{StaticResource KlavikaCHLight}"/>
+                                            </Style>
+                                        </ResourceDictionary>
+                                    </Frame.Resources>
+
+                                    <ListView 
+                                            Margin="1,0,1,0"
+                                            ItemsSource="{Binding CashDispenserDetails}"
+                                            HasUnevenRows="True"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="Start" >
+                                        <ListView.Resources>
+                                            <ResourceDictionary>
+                                                <Style TargetType="Label">
+                                                    <Setter Property="HorizontalOptions" Value="Center"/>
+                                                    <Setter Property="VerticalOptions" Value="Center"/>
+                                                    <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                                                    <Setter Property="VerticalTextAlignment" Value="Center"/>
+                                                    <Setter Property="FontFamily" Value="{StaticResource KlavikaCHLight}"/>
+                                                    <Setter Property="FontSize" Value="Small"/>
+                                                </Style>
+                                                <Style TargetType="Frame">
+                                                    <Setter Property="HasShadow" Value="False"/>
+                                                    <Setter Property="BorderColor" Value="DarkGray"/>
+                                                    <Setter Property="Padding" Value="0"/>
+                                                    <Setter Property="Margin" Value="0"/>
+                                                    <Setter Property="CornerRadius" Value="0"/>
+                                                    <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                    <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                                                    <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                                                </Style>
+                                            </ResourceDictionary>
+                                        </ListView.Resources>
+                                        <ListView.Header>
+                                            <Grid BackgroundColor="#66CBFF" HeightRequest="60" Padding="0" ColumnSpacing="0" RowSpacing="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="3*"/>
+                                                    <ColumnDefinition Width="3*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                    <ColumnDefinition Width="4*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                    <ColumnDefinition Width="4*"/>
+                                                    <ColumnDefinition Width="3*"/>
+                                                    <ColumnDefinition Width="4*"/>
+                                                    <ColumnDefinition Width="7*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Frame Grid.Column="0" Grid.RowSpan="2">
+                                                    <Label Text="#"/>
+                                                </Frame>
+                                                <Frame Grid.Column="1" Grid.RowSpan="2">
+                                                    <Label Text="Currency"/>
+                                                </Frame>
+                                                <Frame Grid.Column="2" Grid.RowSpan="2">
+                                                    <Label Text="Denom" />
+                                                </Frame>
+                                                <Frame Grid.Column="3" Grid.ColumnSpan="2">
+                                                    <Label Text="Dispensed"/>
+                                                </Frame>
+                                                <Frame Grid.Column="3" Grid.Row="1">
+                                                    <Label Text="Unit"/>
+                                                </Frame>
+                                                <Frame Grid.Column="4" Grid.Row="1">
+                                                    <Label Text="Val"/>
+                                                </Frame>
+                                                <Frame Grid.Column="5" Grid.ColumnSpan="2">
+                                                    <Label Text="Rejected"/>
+                                                </Frame>
+                                                <Frame Grid.Column="5" Grid.Row="1">
+                                                    <Label Text="Unit"/>
+                                                </Frame>
+                                                <Frame Grid.Column="6" Grid.Row="1">
+                                                    <Label Text="Val"/>
+                                                </Frame>
+                                                <Frame Grid.Column="7" Grid.ColumnSpan="2">
+                                                    <Label Text="Remaining"/>
+                                                </Frame>
+                                                <Frame Grid.Column="7" Grid.Row="1">
+                                                    <Label Text="Unit"/>
+                                                </Frame>
+                                                <Frame Grid.Column="8" Grid.Row="1">
+                                                    <Label Text="Val"/>
+                                                </Frame>
+                                                <Frame Grid.Column="9" Grid.RowSpan="2">
+                                                    <Label Text="Remaining Status"/>
+                                                </Frame>
+
+                                            </Grid>
+                                        </ListView.Header>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <Grid  BackgroundColor="{Binding BackColor}" Padding="0,2,0,2" ColumnSpacing="0" RowSpacing="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="3*"/>
+                                                            <ColumnDefinition Width="3*"/>
+                                                            <ColumnDefinition Width="2*"/>
+                                                            <ColumnDefinition Width="4*"/>
+                                                            <ColumnDefinition Width="2*"/>
+                                                            <ColumnDefinition Width="4*"/>
+                                                            <ColumnDefinition Width="3*"/>
+                                                            <ColumnDefinition Width="4*"/>
+                                                            <ColumnDefinition Width="7*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Text="{Binding Id}" Grid.Column="0"/>
+                                                        <Label Text="{Binding Currency}" Grid.Column="1"/>
+                                                        <Label Text="{Binding DenomString}" Grid.Column="2"/>
+                                                        <Label Text="{Binding DispensedUnit}" Grid.Column="3"/>
+                                                        <Label Text="{Binding DispensedValue}" Grid.Column="4"/>
+                                                        <Label Text="{Binding RejectedUnit}" Grid.Column="5"/>
+                                                        <Label Text="{Binding RejectedValue}" Grid.Column="6"/>
+                                                        <Label Text="{Binding RemainingUnit}" Grid.Column="7"/>
+                                                        <Label Text="{Binding RemainingValue}" Grid.Column="8"/>
+                                                        <customcontrols:ChartGrid 
+                                                                Grid.Column="9"
+                                                                HeightRequest="7"
+                                                                WidthRequest="{OnIdiom Tablet=100, Phone=60}"
+                                                                Margin="{OnIdiom Phone='1,0,3,0', Tablet='1,0,3,0'}"
+                                                                HorizontalOptions="Center"
+                                                                VerticalOptions="Center"
+                                                                InnerColor="#5C9ECD" 
+                                                                OuterColor="#EBF3F9"
+                                                                BorderColor="#5C9ECD"
+                                                                BorderWidth="1"
+                                                                PercentValue="{Binding RemainingPercent}"
+                                                                ChartOrientation="Horizontal" />
+                                                    </Grid>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+                            </StackLayout>
+
+                            <StackLayout x:Name="CoinHopperList"
+                                    Orientation="Vertical" 
+                                    Margin="{OnIdiom Phone='2',Tablet='5'}"
+                                    IsVisible="{Binding CoinHopperDetailsIsVisible}">
+                                <Label Text="{extensions:Translate CoinHopper}" 
+                                       HorizontalOptions="Start" 
+                                       VerticalOptions="Start"
+                                       FontSize="{OnPlatform Android={OnIdiom Tablet=20, Phone=16}, iOS={OnIdiom Tablet=18, Phone=15}}" />
+                                <Frame
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Start"
+                                        HeightRequest="134"
+                                        BackgroundColor="White"
+                                        OutlineColor="Transparent"
+                                        BorderColor="DarkGray"
+                                        CornerRadius="5"
+                                        HasShadow="False"
+                                        Padding="0">
+                                    <Frame.Resources>
+                                        <ResourceDictionary>
+                                            <Style TargetType="Label">
+                                                <Setter Property="FontFamily" Value="{StaticResource KlavikaCHLight}"/>
+                                            </Style>
+                                        </ResourceDictionary>
+                                    </Frame.Resources>
+                                    <ListView 
+                                            WidthRequest="300"
+                                            Margin="1,0,1,0"
+                                            ItemsSource="{Binding CoinHopperDetails}"
+                                            HasUnevenRows="True"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="Start" >
+                                        <ListView.Resources>
+                                            <ResourceDictionary>
+                                                <Style TargetType="Label">
+                                                    <Setter Property="HorizontalOptions" Value="Center"/>
+                                                    <Setter Property="VerticalOptions" Value="Center"/>
+                                                    <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                                                    <Setter Property="VerticalTextAlignment" Value="Center"/>
+                                                    <Setter Property="FontFamily" Value="{StaticResource KlavikaCHLight}"/>
+                                                    <Setter Property="FontSize" Value="Small"/>
+                                                </Style>
+                                                <Style TargetType="Frame">
+                                                    <Setter Property="HasShadow" Value="False"/>
+                                                    <Setter Property="BorderColor" Value="DarkGray"/>
+                                                    <Setter Property="Padding" Value="0"/>
+                                                    <Setter Property="Margin" Value="0"/>
+                                                    <Setter Property="CornerRadius" Value="0"/>
+                                                    <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                    <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                                                    <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                                                </Style>
+                                            </ResourceDictionary>
+                                        </ListView.Resources>
+                                        <ListView.Header>
+                                            <Grid BackgroundColor="#66CBFF" HeightRequest="60" Padding="0" ColumnSpacing="0" RowSpacing="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="3*"/>
+                                                    <ColumnDefinition Width="3*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                    <ColumnDefinition Width="3*"/>
+                                                    <ColumnDefinition Width="3*"/>
+                                                    <ColumnDefinition Width="4*"/>
+                                                    <ColumnDefinition Width="6*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Frame Grid.Column="0" Grid.RowSpan="2">
+                                                    <Label Text="#"/>
+                                                </Frame>
+                                                <Frame Grid.Column="1" Grid.RowSpan="2">
+                                                    <Label Text="Currency"/>
+                                                </Frame>
+                                                <Frame Grid.Column="2" Grid.RowSpan="2">
+                                                    <Label Text="Denom" />
+                                                </Frame>
+                                                <Frame Grid.Column="3" Grid.ColumnSpan="2">
+                                                    <Label Text="Dispensed"/>
+                                                </Frame>
+                                                <Frame Grid.Column="3" Grid.Row="1">
+                                                    <Label Text="Unit"/>
+                                                </Frame>
+                                                <Frame Grid.Column="4" Grid.Row="1">
+                                                    <Label Text="Val"/>
+                                                </Frame>
+
+                                                <Frame Grid.Column="5" Grid.ColumnSpan="2">
+                                                    <Label Text="Remaining"/>
+                                                </Frame>
+                                                <Frame Grid.Column="5" Grid.Row="1">
+                                                    <Label Text="Unit"/>
+                                                </Frame>
+                                                <Frame Grid.Column="6" Grid.Row="1">
+                                                    <Label Text="Val"/>
+                                                </Frame>
+                                                <Frame Grid.Column="7" Grid.RowSpan="2">
+                                                    <Label Text="Remaining Status"/>
+                                                </Frame>
+
+                                            </Grid>
+                                        </ListView.Header>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <Grid  BackgroundColor="{Binding BackColor}" Padding="0,2,0,2" ColumnSpacing="0" RowSpacing="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="3*"/>
+                                                            <ColumnDefinition Width="3*"/>
+                                                            <ColumnDefinition Width="2*"/>
+                                                            <ColumnDefinition Width="3*"/>
+                                                            <ColumnDefinition Width="3*"/>
+                                                            <ColumnDefinition Width="4*"/>
+                                                            <ColumnDefinition Width="6*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Text="{Binding Id}" Grid.Column="0"/>
+                                                        <Label Text="{Binding Currency}" Grid.Column="1"/>
+                                                        <Label Text="{Binding DenomString}" Grid.Column="2"/>
+                                                        <Label Text="{Binding DispensedUnit}" Grid.Column="3"/>
+                                                        <Label Text="{Binding DispensedValue}" Grid.Column="4"/>
+                                                        <Label Text="{Binding RemainingUnit}" Grid.Column="5"/>
+                                                        <Label Text="{Binding RemainingValue}" Grid.Column="6"/>
+                                                        <customcontrols:ChartGrid 
+                                                                Grid.Column="7"
+                                                                HeightRequest="7"
+                                                                WidthRequest="{OnIdiom Tablet=100, Phone=60}"
+                                                                Margin="{OnIdiom Phone='1,0,3,0', Tablet='1,0,3,0'}"
+                                                                HorizontalOptions="Center"
+                                                                VerticalOptions="Center"
+                                                                InnerColor="#5C9ECD" 
+                                                                OuterColor="#EBF3F9"
+                                                                BorderColor="#5C9ECD"
+                                                                BorderWidth="1"
+                                                                PercentValue="{Binding RemainingPercent}"
+                                                                ChartOrientation="Horizontal" />
+                                                    </Grid>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" 
+                                             Margin="{OnIdiom Phone='2',Tablet='5'}"
+                                             IsVisible="{Binding BillAcceptorDetailsIsVisible}">
+                                <Label Text="Bill Validator" 
+                                       HorizontalOptions="Start" 
+                                       VerticalOptions="Start"
+                                       FontSize="{OnPlatform Android={OnIdiom Tablet=20, Phone=16}, iOS={OnIdiom Tablet=18, Phone=15}}" />
+                                <Frame
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Start"
+                                        HeightRequest="120"
+                                        BackgroundColor="White"
+                                        OutlineColor="Transparent"
+                                        BorderColor="DarkGray"
+                                        CornerRadius="5"
+                                        HasShadow="False"
+                                        Padding="0">
+                                    <Frame.Resources>
+                                        <ResourceDictionary>
+                                            <Style TargetType="Label">
+                                                <Setter Property="FontFamily" Value="{StaticResource KlavikaCHLight}"/>
+                                            </Style>
+                                        </ResourceDictionary>
+                                    </Frame.Resources>
+
+                                    <ListView 
+                                            WidthRequest="300"
+                                            Margin="1,0,1,0"
+                                            ItemsSource="{Binding BillAcceptorDetails}"
+                                            HasUnevenRows="True"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="Start" >
+                                        <ListView.Resources>
+                                            <ResourceDictionary>
+                                                <Style TargetType="Label">
+                                                    <Setter Property="HorizontalOptions" Value="Center"/>
+                                                    <Setter Property="VerticalOptions" Value="Center"/>
+                                                    <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                                                    <Setter Property="VerticalTextAlignment" Value="Center"/>
+                                                    <Setter Property="FontFamily" Value="{StaticResource KlavikaCHLight}"/>
+                                                    <Setter Property="FontSize" Value="Small"/>
+                                                </Style>
+                                                <Style TargetType="Frame">
+                                                    <Setter Property="HasShadow" Value="False"/>
+                                                    <Setter Property="BorderColor" Value="DarkGray"/>
+                                                    <Setter Property="Padding" Value="{OnIdiom Tablet=5,Phone=2}"/>
+                                                    <Setter Property="Margin" Value="0"/>
+                                                    <Setter Property="CornerRadius" Value="0"/>
+                                                    <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                    <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                                                    <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                                                </Style>
+                                            </ResourceDictionary>
+                                        </ListView.Resources>
+                                        <ListView.Header>
+                                            <Grid BackgroundColor="#66CBFF" HeightRequest="60" Padding="0" ColumnSpacing="0" RowSpacing="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="7*"/>
+                                                    <ColumnDefinition Width="3*"/>
+                                                    <ColumnDefinition Width="4*"/>
+                                                    <ColumnDefinition Width="3*"/>
+                                                    <ColumnDefinition Width="5*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Frame Grid.Column="0">
+                                                    <Label Text="BV"/>
+                                                </Frame>
+                                                <Frame Grid.Column="1">
+                                                    <Label Text="Batch No"/>
+                                                </Frame>
+                                                <Frame Grid.Column="2">
+                                                    <Label Text="Bill Count"/>
+                                                </Frame>
+                                                <Frame Grid.Column="3">
+                                                    <Label Text="Tickets &amp; coupons count"/>
+                                                </Frame>
+                                                <Frame Grid.Column="4">
+                                                    <Label Text="Total Count"/>
+                                                </Frame>
+                                                <Frame Grid.Column="5">
+                                                    <Label Text="Capacity"/>
+                                                </Frame>
+
+                                            </Grid>
+                                        </ListView.Header>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <Grid  BackgroundColor="{Binding BackColor}" Padding="0,2,0,2" ColumnSpacing="0" RowSpacing="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="7*"/>
+                                                            <ColumnDefinition Width="3*"/>
+                                                            <ColumnDefinition Width="4*"/>
+                                                            <ColumnDefinition Width="3*"/>
+                                                            <ColumnDefinition Width="5*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Text="{Binding Id}" Grid.Column="0"/>
+                                                        <Label Text="{Binding BatchNumber}" Grid.Column="1"/>
+                                                        <Label Text="{Binding BillsCount}" Grid.Column="2"/>
+                                                        <Label Text="{Binding TicketCount}" Grid.Column="3"/>
+                                                        <Label Text="{Binding TotalCount}" Grid.Column="4"/>
+                                                        <customcontrols:ChartGrid 
+                                                                Grid.Column="5"
+                                                                HeightRequest="7"
+                                                                WidthRequest="{OnIdiom Tablet=100, Phone=60}"
+                                                                Margin="{OnIdiom Phone='1,0,3,0', Tablet='1,0,3,0'}"
+                                                                HorizontalOptions="Center"
+                                                                VerticalOptions="Center"
+                                                                InnerColor="#5C9ECD" 
+                                                                OuterColor="#EBF3F9"
+                                                                BorderColor="#5C9ECD"
+                                                                BorderWidth="1"
+                                                                PercentValue="{Binding RemainingPercent}"
+                                                                ChartOrientation="Horizontal" />
+                                                    </Grid>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </ScrollView>
+                </Grid>
+                <Grid x:Name="DetailsGrid"
+                        IsVisible="{Binding DetailsGridVisible}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                    <ScrollView 
+                            Orientation="Vertical"
+                            Padding="5">
+                        <StackLayout 
+                                Orientation="Vertical"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="StartAndExpand">
+
+                            <Frame
+                                    BackgroundColor="White"
+                                    OutlineColor="Transparent"
+                                    CornerRadius="6"
+                                    HeightRequest="{OnIdiom Phone=100, Tablet=140}"
+                                    HasShadow="False"
+                                    Margin="{OnIdiom Phone='-5,0,-5,0', Tablet='-5,0,-5,0'}"
+                                    Padding="10">
+                                <customcontrols:RoundedCornerView
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        RoundedCornerRadius="6"
+                                        BorderWidth="{OnPlatform Android=10, iOS=10}"
+                                        BackgroundColor="White"
+                                        BorderColor="{Binding ColorState}"
+                                        FillColor="White">
+                                    <Grid
+                                            Margin="{OnIdiom Phone='20,10,20,10', Tablet='30,10,30,10'}"
+                                            ColumnSpacing="2"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Column="0" 
+                                                         Orientation="Vertical"
+                                                         HorizontalOptions="StartAndExpand"
+                                                         VerticalOptions="EndAndExpand"
+                                                         IsVisible="{Binding CashDispenserDetailsIsVisible}">
+                                            <customcontrols:FlowLayout 
+                                                    Margin="2,0,0,0"
+                                                    HeightRequest="{OnIdiom Phone=50, Tablet=80}" 
+                                                    Direction="Row"
+                                                    Wrap="Wrap" 
+                                                    FlowDirection="LeftToRight"
+                                                    AlignContent="Start" 
+                                                    JustifyContent="Start"  
+                                                    ItemsSource="{Binding CashDispenser}">
+                                                <customcontrols:FlowLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <customcontrols:ChartGrid x:Name="chartitem1"
+                                                                HeightRequest="{OnIdiom Phone=50,Tablet=80}"
+                                                                WidthRequest="{OnIdiom Phone=10,Tablet=20}"
+                                                                Padding="0,0,5,0"
+                                                                HorizontalOptions="Center"
+                                                                VerticalOptions="Center"
+                                                                IsDynamicColor="True"/>
+                                                    </DataTemplate>
+                                                </customcontrols:FlowLayout.ItemTemplate>
+                                            </customcontrols:FlowLayout>
+                                            <Label Text="CASH DIS."
+                                                    FontSize="{OnPlatform Android={OnIdiom Tablet=19, Phone=15}, iOS={OnIdiom Tablet=17, Phone=14}}" 
+                                                    HorizontalTextAlignment="Start"/>
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="1" 
+                                                         Orientation="Vertical"
+                                                         HorizontalOptions="StartAndExpand"
+                                                         VerticalOptions="EndAndExpand"
+                                                         IsVisible="{Binding CoinHopperDetailsIsVisible}">
+                                            <customcontrols:FlowLayout 
+                                                    Margin="2,0,0,0"
+                                                    HeightRequest="{OnIdiom Phone=50, Tablet=80}" 
+                                                    Direction="Row"
+                                                    Wrap="Wrap" 
+                                                    FlowDirection="LeftToRight"
+                                                    AlignContent="Start" 
+                                                    JustifyContent="Start" 
+                                                    ItemsSource="{Binding CoinHopper}">
+                                                <customcontrols:FlowLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <customcontrols:ChartGrid x:Name="chartitem2"
+                                                                HeightRequest="{OnIdiom Phone=50,Tablet=80}"
+                                                                WidthRequest="{OnIdiom Phone=10,Tablet=20}"
+                                                                Padding="0,0,5,0"
+                                                                HorizontalOptions="Center"
+                                                                VerticalOptions="Center"
+                                                                IsDynamicColor="True"/>
+                                                    </DataTemplate>
+                                                </customcontrols:FlowLayout.ItemTemplate>
+                                            </customcontrols:FlowLayout>
+                                            <Label Text="{extensions:Translate CoinsDis}" 
+                                                    FontSize="{OnPlatform Android={OnIdiom Tablet=19, Phone=15}, iOS={OnIdiom Tablet=17, Phone=14}}" 
+                                                    HorizontalTextAlignment="Start"/>
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="2" 
+                                                         Orientation="Vertical"
+                                                         HorizontalOptions="StartAndExpand"
+                                                         VerticalOptions="EndAndExpand"
+                                                         IsVisible="{Binding BillAcceptorDetailsIsVisible}">
+                                            <customcontrols:FlowLayout 
+                                                    Margin="2,0,0,0"
+                                                    HeightRequest="{OnIdiom Phone=50, Tablet=80}" 
+                                                    Direction="Row"
+                                                    Wrap="Wrap" 
+                                                    FlowDirection="LeftToRight"
+                                                    AlignContent="Start" 
+                                                    JustifyContent="Start"
+                                                    ItemsSource="{Binding BillAcceptor}">
+                                                <customcontrols:FlowLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <customcontrols:ChartGrid x:Name="chartitem3"
+                                                                HeightRequest="{OnIdiom Phone=50,Tablet=80}"
+                                                                WidthRequest="{OnIdiom Phone=10,Tablet=20}"
+                                                                Padding="0,0,5,0"
+                                                                HorizontalOptions="Center"
+                                                                VerticalOptions="Center"
+                                                                IsDynamicColor="True"/>
+                                                    </DataTemplate>
+                                                </customcontrols:FlowLayout.ItemTemplate>
+                                            </customcontrols:FlowLayout>
+                                            <Label Text="{extensions:Translate BillVal}" 
+                                                    FontSize="{OnPlatform Android={OnIdiom Tablet=19, Phone=15}, iOS={OnIdiom Tablet=17, Phone=14}}" 
+                                                    HorizontalTextAlignment="Start"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </customcontrols:RoundedCornerView>
+                            </Frame>
+
+                            <StackLayout Orientation="Vertical" 
+                                              Margin="{OnIdiom Phone='2',Tablet='5'}">
+                                <customcells:TextValuePairLayout
+                                        Key="Group"
+                                        Value="{Binding Group}"/>
+                                <customcells:TextValuePairLayout
+                                        Key="IP Address"
+                                        Value="{Binding IPAddress}"/>
+                                <customcells:TextValuePairLayout
+                                        Key="Keywords"
+                                        Value="{Binding Keywords}"/>
+                                <customcells:TextValuePairLayout
+                                        Key="Location"
+                                        Value="{Binding Location}"/>
+                                <customcells:TextValuePairLayout
+                                        Key="Serial number"
+                                        Value="{Binding SerialNumber}"/>
+                                <customcells:TextValuePairLayout
+                                        Key="Latest runtime status"
+                                        Value="{Binding RuntimeStatus}"/>
+                                <customcells:TextValuePairLayout
+                                        Key="Status"
+                                        Value="{Binding ExtendedStatus}"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" 
+                                              Margin="{OnIdiom Phone='2',Tablet='5'}">
+                                <Label Text="{extensions:Translate DeviceAndInterfaceVersion}" FontAttributes="Bold" FontSize="Large"/>
+                                <ListView
+                                        Margin="10, 0, 0, 10"
+                                        HasUnevenRows="True"
+                                        HeightRequest="300"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Start"
+                                        ItemsSource="{Binding DeviceAndInterfaceVersion}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid 
+                                                    HorizontalOptions="FillAndExpand"
+                                                    VerticalOptions="FillAndExpand">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="2*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding Key}" Grid.Column="0" FontSize="{OnPlatform Android={OnIdiom Tablet=19, Phone=15}, iOS={OnIdiom Tablet=17, Phone=14}}"/>
+                                                    <Label Text=":" Grid.Column="1" FontSize="{OnPlatform Android={OnIdiom Tablet=19, Phone=15}, iOS={OnIdiom Tablet=17, Phone=14}}"/>
+                                                    <Label Text="{Binding Value}" Grid.Column="2" FontSize="{OnPlatform Android={OnIdiom Tablet=19, Phone=15}, iOS={OnIdiom Tablet=17, Phone=14}}"/>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </ScrollView>
+                </Grid>
+                <Grid x:Name="TransactionsGrid"
+                        IsVisible="{Binding TransactionsGridVisible}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                    <ListView x:Name="transactionList"
+                            HasUnevenRows="True"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand" 
+                            ItemsSource="{Binding TransactionsList}"
+                            ItemAppearing="ListView_ItemAppearing"
+                            ItemTapped="ListView_ItemTapped">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+                                        <StackLayout 
+                                                Orientation="Vertical"
+                                                VerticalOptions="FillAndExpand"
+                                                HorizontalOptions="FillAndExpand">
+                                            <customcells:ATMTransactionLayoutPhone
+                                                    BackgroundColor="{Binding BackColor}"
+                                                    IsVisible="{OnIdiom Phone=True}"/>
+                                            <customcells:ATMTransactionLayoutTablet
+                                                    BackgroundColor="{Binding BackColor}"
+                                                    IsVisible="{OnIdiom Tablet=True}"/>
+                                        </StackLayout>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Label Text="{extensions:Translate NoDataAvailable}"
+                           FontSize="{StaticResource Large}"
+                           TextColor="#808080"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           IsVisible="{Binding TransactionsListHasNoData}"/>
+                </Grid>
+                <Grid x:Name="ParametersGrid"
+                          Margin="0,-2,0,-2"
+                          IsVisible="{Binding ParametersGridVisible}"
+                          HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand">
+                    <dxGrid:GridControl x:Name="parametersGrid"
+                                            HorizontalOptions="FillAndExpand"
+                                            RowTapCommand="{Binding ParameterTappedCommand}"
+                                            ItemsSource="{Binding ParametersList}">
+                        <dxGrid:GridControl.Columns>
+                            <dxGrid:TextColumn FieldName="Group" AllowGroup="True"></dxGrid:TextColumn>
+                            <dxGrid:TextColumn FieldName="Name" AllowGroup="True"></dxGrid:TextColumn>
+                            <dxGrid:TextColumn FieldName="Value" AllowGroup="False"></dxGrid:TextColumn>
+                            <dxGrid:TextColumn FieldName="Description" AllowGroup="False" Width="{OnIdiom Phone=170, Tablet=400}"></dxGrid:TextColumn>
+                        </dxGrid:GridControl.Columns>
+                    </dxGrid:GridControl>
+                    <Grid 
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            IsVisible="{Binding ParametersListHasNoData}">
+                        <Label Text="{extensions:Translate NoMachineParametersAvailable}"
+                                FontSize="{StaticResource Large}"
+                                TextColor="#808080"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                    <Grid x:Name="EditParamBlackOpacityGrid"
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="FillAndExpand"
+                            BackgroundColor="Black"
+                            Opacity="{StaticResource BlackMaskOpacity}"
+                            InputTransparent="False"
+                            IsVisible="{Binding EditParamVisible}">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding HideEditParamCommand}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <Grid x:Name="AddOrEditParamGrid"
+                              HorizontalOptions="FillAndExpand" 
+                              VerticalOptions="FillAndExpand"
+                              BackgroundColor="Transparent"
+                              IsVisible="{Binding EditParamVisible}">
+                        <!--<Grid.GestureRecognizers>
+                                 <TapGestureRecognizer Command="{Binding HideEditParamCommand}"/>
+                              </Grid.GestureRecognizers>-->
+                        <Frame
+                                WidthRequest="{OnIdiom Tablet=410,Phone=260}"
+                                HeightRequest="160"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                BackgroundColor="Transparent"
+                                IsClippedToBounds="True"
+                                OutlineColor="Transparent"
+                                BorderColor="Transparent"
+                                CornerRadius="5"
+                                HasShadow="False"
+                                Margin="0"
+                                Padding="0">
+                            <customcontrols:RoundedCornerView
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    BackgroundColor="White"
+                                    RoundedCornerRadius="5"
+                                    RowSpacing="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="45"/>
+                                </Grid.RowDefinitions>
+                                <Grid
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        BackgroundColor="#30A9D6">
+                                    <Label 
+                                            Text="{Binding AddOrEditParameterCaption}" 
+                                            TextColor="White"
+                                            FontFamily="{StaticResource KlavikaCHRegular}"
+                                            FontSize="{StaticResource Small}"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            HorizontalTextAlignment="Center"
+                                            VerticalTextAlignment="Center"/>
+                                </Grid>
+                                <Grid
+                                        Padding="0,0,10,0"
+                                        Grid.Row="1"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label 
+                                            Text="{extensions:Translate Name}"
+                                            FontFamily="{StaticResource KlavikaCHRegular}"
+                                            FontSize="{StaticResource ExtraSmall}"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"/>
+                                    <customcontrols:PickerWithPopover 
+                                            x:Name="popover"
+                                            VerticalPosition="RelativeToParent"
+                                            Location="Top"
+                                            Height="{OnIdiom Phone='175',Tablet='250'}"
+                                            IsIconVisible="False"
+                                            Grid.Column="1"
+                                            BackgroundColor="{OnPlatform Android='#fafafa',iOS='White'}"
+                                            BorderColor="#e7e7e7"
+                                            BorderWidth="{OnPlatform Android='2',iOS='1'}"
+                                            RoundedCornerRadius="5"
+                                            Placeholder="{extensions:Translate SelectParameterName}"
+                                            IsEnabled="{Binding IsParameterAdd}"
+                                            SelectedItem="{Binding SelectedParameterId, Mode=TwoWay}"
+                                            ItemsSource="{Binding ParameterIDs}"
+                                            VerticalOptions="FillAndExpand"
+                                            HorizontalOptions="FillAndExpand"/>
+                                </Grid>
+                                <Grid
+                                        Padding="0,0,10,0"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label 
+                                            Text="{extensions:Translate Value}"
+                                            FontFamily="{StaticResource KlavikaCHRegular}"
+                                            FontSize="{StaticResource ExtraSmall}"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"/>
+                                    <customcontrols:BorderlessEntry
+                                            Grid.Column="1"
+                                            VerticalOptions="FillAndExpand"
+                                            HorizontalOptions="FillAndExpand"
+                                            Text="{Binding Path=SelectedParameter.Value, Mode=TwoWay}"
+                                            FontFamily="{StaticResource KlavikaCHRegular}"
+                                            FontSize="{StaticResource ExtraSmall}"
+                                            Placeholder=""
+                                            RoundedStyle="White"
+                                            PlaceholderColor="LightGray"/>
+                                </Grid>
+                                <Grid
+                                        Grid.Row="3"
+                                        Padding="3"
+                                        VerticalOptions="FillAndExpand"
+                                        HorizontalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button    
+                                            Grid.Column="0"
+                                            BorderRadius="8"
+                                            Margin="5"
+                                            Text="Save"
+                                            TextColor="White"
+                                            Command="{Binding SaveParameterCommand}"
+                                            FontFamily="{StaticResource KlavikaCHRegular}"
+                                            FontSize="{StaticResource ExtraSmall}"
+                                            VerticalOptions="FillAndExpand"
+                                            HorizontalOptions="FillAndExpand"
+                                            BackgroundColor="#30A9D6"/>
+                                    <Button  
+                                            Grid.Column="1"
+                                            BorderRadius="8"
+                                            Margin="5"
+                                            Text="Cancel"
+                                            TextColor="White"
+                                            Command="{Binding HideEditParamCommand}"
+                                            FontFamily="{StaticResource KlavikaCHRegular}"
+                                            FontSize="{StaticResource ExtraSmall}"
+                                            VerticalOptions="FillAndExpand"
+                                            HorizontalOptions="FillAndExpand"
+                                            BackgroundColor="#30A9D6"/>
+                                </Grid>
+                            </customcontrols:RoundedCornerView>
+                        </Frame>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid x:Name="BottomMenuGrid" Grid.Row="1"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      BackgroundColor="LightGray">
+                <BoxView HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"
+                             HeightRequest="1"
+                             Opacity="{StaticResource BlackMaskOpacity}"
+                             BackgroundColor="Gray"/>
+                <Grid HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand"
+                          Margin="{OnIdiom Tablet='150,0,150,0', Phone='20,0,20,0'}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Resources>
+                        <ResourceDictionary>
+                            <Style TargetType="StackLayout">
+                                <Setter Property="Orientation" Value="Vertical"/>
+                                <Setter Property="HorizontalOptions" Value="Center"/>
+                                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                                <Setter Property="Spacing" Value="0"/>
+                            </Style>
+                            <Style TargetType="Label">
+                                <Setter Property="VerticalTextAlignment" Value="Start"/>
+                                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                            </Style>
+                        </ResourceDictionary>
+                    </Grid.Resources>
+
+                    <StackLayout Grid.Column="0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LabelTappedCommand}" CommandParameter="{Binding OverviewLabelName}"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label 
+                                FontSize="{StaticResource ExtraLarge}"
+                                FontFamily="{StaticResource ChsIcons}"
+                                TextColor="{Binding OverviewLableColor}" 
+                                Text="{StaticResource CHSIconOverview}"/>
+                        <Label 
+                                FontFamily="{StaticResource KlavikaCHLight}" 
+                                TextColor="{Binding OverviewLableColor}" 
+                                Text="{Binding OverviewLabelName}" 
+                                FontSize="{StaticResource Medium}"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LabelTappedCommand}" CommandParameter="{Binding DetailsLabelName}"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label 
+                                FontSize="{StaticResource ExtraLarge}"
+                                FontFamily="{StaticResource ChsIcons}"
+                                TextColor="{Binding DetailsLableColor}" 
+                                Text="{StaticResource CHSIconDetails}"/>
+                        <Label 
+                                FontFamily="{StaticResource KlavikaCHLight}" 
+                                TextColor="{Binding DetailsLableColor}" 
+                                Text="{Binding DetailsLabelName}" 
+                                FontSize="{StaticResource Medium}"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="2">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LabelTappedCommand}" CommandParameter="{ Binding TransactionsLabelName}"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label 
+                                FontSize="{StaticResource ExtraLarge}"
+                                FontFamily="{StaticResource ChsIcons}"
+                                TextColor="{Binding TransactionsLableColor}" 
+                                Text="{StaticResource CHSIconTransactions}"/>
+                        <Label 
+                                FontFamily="{StaticResource KlavikaCHLight}" 
+                                TextColor="{Binding TransactionsLableColor}" 
+                                Text="{Binding TransactionsLabelName}" 
+                                FontSize="{StaticResource Medium}"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="3">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LabelTappedCommand}" CommandParameter="{Binding ParametersLabelName}"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label 
+                                FontSize="{StaticResource ExtraLarge}"
+                                FontFamily="{StaticResource ChsIcons}"
+                                TextColor="{Binding ParametersLableColor}" 
+                                Text="{StaticResource CHSIconParameters}"/>
+                        <Label 
+                                FontFamily="{StaticResource KlavikaCHLight}" 
+                                TextColor="{Binding ParametersLableColor}" 
+                                Text="{Binding ParametersLabelName}" 
+                                FontSize="{StaticResource Medium}"/>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+            <Grid x:Name="RemoteBlackOpacityGrid"
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    BackgroundColor="Black"
+                    Opacity="{StaticResource BlackMaskOpacity}"
+                    InputTransparent="False"
+                    IsVisible="{Binding RemoteControlVisible}">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding HideRemoteCommand}"/>
+                </Grid.GestureRecognizers>
+            </Grid>
+            <Grid x:Name="RemoteMenuGrid"
+                    Padding="0,0,10,0"
+                    WidthRequest="{OnIdiom Tablet=200,Phone=160}"
+                    HeightRequest="{OnIdiom Tablet=346,Phone=246}"
+                    IsVisible="{Binding RemoteControlMenuVisible}"
+                    HorizontalOptions="End"
+                    RowSpacing="0"
+                    VerticalOptions="Start">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding HideRemoteCommand}"/>
+                </Grid.GestureRecognizers>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="16"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0"
+                        Margin="{StaticResource RemoteControlUpIcon}"
+                        HorizontalOptions="End"
+                        Source="PopupPickerArrowTop.png"
+                        Aspect="AspectFit"/>
+                <Frame Grid.Row="1"
+                        WidthRequest="{OnIdiom Tablet=200,Phone=160}"
+                        HeightRequest="{OnIdiom Tablet=330,Phone=230}"
+                        HorizontalOptions="End"
+                        VerticalOptions="Start"
+                        BackgroundColor="Transparent"
+                        IsClippedToBounds="True"
+                        OutlineColor="Transparent"
+                        BorderColor="Transparent"
+                        CornerRadius="5"
+                        HasShadow="False"
+                        Margin="0"
+                        Padding="0">
+                    <customcontrols:RoundedCornerView
+                            BackgroundColor="White"
+                            FillColor="White"
+                            BorderWidth="0"
+                            RoundedCornerRadius="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{OnIdiom Phone=30,Tablet=50}"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0"
+                                BackgroundColor="{StaticResource PopoverTopPanelColor}"
+                                RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="1"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                    Text="Remote Command" 
+                                    FontSize="{StaticResource Medium}"
+                                    FontFamily="{StaticResource KlavikaCHMedium}"
+                                    HorizontalOptions="FillAndExpand" 
+                                    VerticalOptions="FillAndExpand" 
+                                    HorizontalTextAlignment="Center" 
+                                    VerticalTextAlignment="Center"/>
+                            <BoxView Grid.Row="1"
+                                    HeightRequest="1"
+                                    BackgroundColor="{StaticResource PopoverTopPanelLineColor}"/>
+                        </Grid>
+                        <StackLayout Grid.Row="1"
+                                    Margin="15"
+                                    Spacing="10">
+                            <StackLayout.Resources>
+                                <ResourceDictionary>
+                                    <Style TargetType="Button">
+                                        <Setter Property="BorderRadius" Value="8"/>
+                                        <Setter Property="FontSize" Value="{StaticResource Medium}"/>
+                                        <Setter Property="TextColor" Value="White"/>
+                                        <Setter Property="BackgroundColor" Value="#30A9D6"/>
+                                        <Setter Property="WidthRequest" Value="{OnIdiom Tablet=180,Phone=150}"/>
+                                        <Setter Property="HeightRequest" Value="{OnIdiom Tablet=40,Phone=25}"/>
+                                        <Setter Property="VerticalOptions" Value="Center"/>
+                                        <Setter Property="HorizontalOptions" Value="Start"/>
+                                    </Style>
+                                </ResourceDictionary>
+                            </StackLayout.Resources>
+                            <Button Text="Shutdown"
+                                        IsEnabled="{Binding ShutdownCommandEnabled}"
+                                        Command="{Binding RemoteCommand}"
+                                        CommandParameter="Shutdown"/>
+                            <Button Text="Reboot"
+                                        IsEnabled="{Binding RebootCommandEnabled}"
+                                        Command="{Binding RemoteCommand}"
+                                        CommandParameter="Reboot"/>
+                            <Button Text="Close"
+                                        IsEnabled="{Binding CloseCommandEnabled}"
+                                        Command="{Binding RemoteCommand}"
+                                        CommandParameter="Close"/>
+                            <Button Text="In Service"
+                                        IsEnabled="{Binding InServiceCommandEnabled}"
+                                        Command="{Binding RemoteCommand}"
+                                        CommandParameter="InService"/>
+                            <Button Text="Out Of Service"
+                                        IsEnabled="{Binding OutOfServiceCommandEnabled}"
+                                        Command="{Binding RemoteCommand}"
+                                        CommandParameter="OutOfService"/>
+                        </StackLayout>
+                    </customcontrols:RoundedCornerView>
+
+                </Frame>
+
+            </Grid>
+            <Grid x:Name="RemoteConfirmationGrid"
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    BackgroundColor="Transparent"
+                    IsVisible="{Binding RemoteControlConfirmVisible}">
+                <Grid HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand"
+                          BackgroundColor="Transparent">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding HideRemoteCommand}"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Frame
+                        WidthRequest="{OnIdiom Tablet=410,Phone=260}"
+                        HeightRequest="{OnIdiom Tablet=290,Phone=240}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        BackgroundColor="White"
+                        OutlineColor="Transparent"
+                        BorderColor="Transparent"
+                        CornerRadius="5"
+                        HasShadow="False"
+                        Padding="{OnIdiom Tablet=20, Phone=10}">
+                    <Grid
+                            BackgroundColor="Transparent"
+                            ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{OnIdiom Tablet=25,Phone=50}"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="45"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label 
+                                Text="{Binding CommandConfirmationText}"
+                                FontFamily="{StaticResource KlavikaCHMedium}"
+                                FontSize="{StaticResource Medium}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalTextAlignment="Center"
+                                VerticalTextAlignment="Center"
+                                Grid.ColumnSpan="2"/>
+                        <Label
+                                Text="{extensions:Translate Comment}" 
+                                FontFamily="{StaticResource KlavikaCHMedium}"
+                                FontSize="{StaticResource Small}"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                Margin="5, 5, 0, 5"
+                                HorizontalTextAlignment="Center"
+                                VerticalTextAlignment="Center"
+                                Grid.Row="1"/>
+                        <Editor
+                                Margin="3"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                Text="{Binding CommandCommentText, Mode=TwoWay}"
+                                FontFamily="{StaticResource KlavikaCHRegular}"
+                                FontSize="{StaticResource Small}"
+                                BackgroundColor="#f4f4f4"/>
+                        <Grid
+                                Grid.Column="0"
+                                Grid.Row="2"
+                                Grid.ColumnSpan="2"
+                                Padding="3"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button    
+                                    Grid.Column="0"
+                                    BorderRadius="8"
+                                    Margin="5"
+                                    Text="Confirm"
+                                    TextColor="White"
+                                    Command="{Binding SendCommand}"
+                                    FontFamily="{StaticResource KlavikaCHRegular}"
+                                    FontSize="{StaticResource Medium}"
+                                    VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    BackgroundColor="#30A9D6"/>
+                            <Button  
+                                    Grid.Column="1"
+                                    BorderRadius="8"
+                                    Margin="5"
+                                    Text="Cancel"
+                                    TextColor="White"
+                                    Command="{Binding HideRemoteCommand}"
+                                    FontFamily="{StaticResource KlavikaCHRegular}"
+                                    FontSize="{StaticResource Medium}"
+                                    VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    BackgroundColor="#30A9D6"/>
+                        </Grid>
+                    </Grid>
+                </Frame>
+            </Grid>
+            <Grid x:Name="RemoteSendedMessageGrid"
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    BackgroundColor="Transparent"
+                    IsVisible="{Binding RemoteControlSendedVisible}">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding HideRemoteCommand}"/>
+                </Grid.GestureRecognizers>
+                <Frame
+                        WidthRequest="{OnIdiom Tablet=260,Phone=160}"
+                        HeightRequest="100"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        BackgroundColor="White"
+                        OutlineColor="Transparent"
+                        BorderColor="Transparent"
+                        CornerRadius="5"
+                        HasShadow="False"
+                        Padding="0">
+                    <Grid
+                            BackgroundColor="Transparent" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="45"/>
+                        </Grid.RowDefinitions>
+                        <Label 
+                                Text="{Binding CommandSendResultText}" 
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalTextAlignment="Center"
+                                VerticalTextAlignment="Center"/>
+                        <Button  
+                                Grid.Row="1"
+                                BorderRadius="8"
+                                Text="Ok"
+                                Margin="5"
+                                TextColor="White"
+                                Command="{Binding HideRemoteCommand}"
+                                FontSize="{StaticResource ExtraSmall}"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#30A9D6"/>
+                    </Grid>
+                </Frame>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

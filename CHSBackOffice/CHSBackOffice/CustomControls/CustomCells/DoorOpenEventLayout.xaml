@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customcells:FastCell
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customcells="clr-namespace:CHSBackOffice.CustomControls.CustomCells"
+    xmlns:api="clr-namespace:CHBackOffice.ApiServices.ChsProxy;assembly=CHBackOffice.ApiServices"
+    HeightRequest="90"
+    x:Name="cell"
+    x:Class="CHSBackOffice.CustomControls.CustomCells.DoorOpenEventLayout">
+  <Grid
+    BackgroundColor="{Binding ColorState,Source={x:Reference cell}}"
+    Margin="5,5,5,5"
+    Padding="5,5,5,5">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.3*"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <Label
+        Grid.Row="0"
+        FontFamily="{StaticResource KlavikaCHRegular}"
+        HorizontalOptions="Start"
+        VerticalOptions="Center"
+        Text="{Binding Id}"/>
+    <Label
+        Grid.Row="1"
+        HorizontalOptions="StartAndExpand"
+        VerticalOptions="FillAndExpand"
+        HeightRequest="50"
+        MaxLines="3"
+        FontFamily="{StaticResource KlavikaCHRegular}"
+        LineBreakMode="{OnIdiom Tablet=WordWrap,Phone=TailTruncation}"
+        Text="{Binding Description}"/>
+  </Grid>    
+</customcells:FastCell>
+

@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ExtendedNaviPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    
+    Title="{Binding PageTitle}"
+    BackgroundColor="Transparent"
+    NaviBarBackgroundColor="{StaticResource LoginTitleColor}"
+    
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.BackOfficeHostAddressPage">
+    <customcontrols:ExtendedNaviPage.Content>
+        <Grid
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{OnIdiom Tablet='0.25*', Phone='0.15*'}"/>
+                <ColumnDefinition Width="{OnIdiom Tablet='0.5*', Phone='0.7*'}"/>
+                <ColumnDefinition Width="{OnIdiom Tablet='0.25*', Phone='0.15*'}"/>
+            </Grid.ColumnDefinitions>
+            <Image
+                Grid.ColumnSpan="3"
+                Source="{Binding BackgroundIcon}"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Aspect="Fill"/>
+            <!--<Grid
+                Padding="{OnIdiom Phone='0,35,0,0', Tablet='0,50,0,0'}"
+                Grid.Column="1"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{OnIdiom Phone=1.6*,Tablet=1.2*}"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>-->
+                <Grid
+                    Padding="{OnIdiom Phone='0,35,0,0', Tablet='0,50,0,0'}"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    VerticalOptions="StartAndExpand"
+                    HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.4*"/>
+                        <RowDefinition Height="0.8*"/>
+                    </Grid.RowDefinitions>
+                    <Grid
+                        Grid.Row="0"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Image
+                            Grid.Row="0"
+                            Source="{Binding LogoIcon}"
+                            Aspect="AspectFit"/>
+                        <Label
+                            HorizontalOptions="Center"
+                            Grid.Row="1"
+                            FontSize="{StaticResource Mega}"
+                            Text="{Binding CompanyName}"
+                            TextColor="White"/>
+                    </Grid>
+                    <!--Host adress section-->
+                    <StackLayout
+                        Orientation="Vertical"
+                        Grid.Row="1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <Label
+                            MaxLines="2"
+                            Margin="{OnIdiom Tablet='50,0,50,0',Phone='10,0,0,10'}"
+                            FontSize="{StaticResource Medium}"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding InfoText,Converter={StaticResource NewLineConverter}}"
+                            TextColor="White"/>
+                        <customcontrols:BorderlessEntry
+                            HeightRequest="{OnIdiom Tablet=40,Phone=25}"
+                            Margin="{OnIdiom Tablet='0,20,0,0',Phone='0'}"
+                            HorizontalOptions="FillAndExpand"
+                            FontSize="{StaticResource Small}"
+                            TextColor="White"
+                            Keyboard="Url"
+                            Text="{Binding ServiceUrl}"
+                            PlaceholderColor="White"
+                            RoundedStyle="Oppacity"
+                            Placeholder="Enter URL"/>
+                        <customcontrols:CheckBox
+                                Margin="{OnIdiom Tablet='0,20,0,0',Phone='0,10,0,0'}"
+                                DefaultText="{Binding IgnoreCertText}"
+                                FontSize="{StaticResource Large}"
+                                Checked="{Binding IgnoreCert, Mode=TwoWay}"
+                                HorizontalOptions="FillAndExpand"
+                                TextColor="White"/>
+                        <Button
+                            BorderRadius="8"
+                            Margin="{OnIdiom Tablet='0,20,0,0',Phone='0,10,0,0'}"
+                            WidthRequest="{OnIdiom Tablet=180,Phone=150}"
+                            HeightRequest="{OnIdiom Tablet=50,Phone=34}"
+                            Text="{Binding ButtonText}"
+                            TextColor="White"
+                            Command="{Binding ButtonCommand}"
+                            FontSize="{StaticResource Large}"
+                            HorizontalOptions="Center"
+                            BackgroundColor="#579072"/>
+                    </StackLayout>
+                </Grid>
+            <!--</Grid>-->
+        </Grid>
+    </customcontrols:ExtendedNaviPage.Content>
+</customcontrols:ExtendedNaviPage>

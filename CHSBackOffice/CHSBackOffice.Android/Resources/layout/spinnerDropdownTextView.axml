@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dropdownItemText"
+    android:singleLine="true"
+    android:minHeight="40dp"
+    android:gravity="start|center"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:text="dropdown text"
+    android:fontFamily="sans-serif"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />

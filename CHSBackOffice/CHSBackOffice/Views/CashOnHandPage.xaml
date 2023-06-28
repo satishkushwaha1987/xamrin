@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ReportPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:CHSBackOffice.Extensions"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:support="clr-namespace:CHSBackOffice.Support" 
+    prism:ViewModelLocator.AutowireViewModel="True"
+    
+    Title="{extensions:Translate CashOnHandTitle}"
+    NaviBarBackgroundColor="{StaticResource CashOnHandTitleColor}"
+    ChangeLocationToolbarButtonIsVisible="True"
+    IsNetworkDependent="True"
+    
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.CashOnHandPage">
+    <customcontrols:ReportPage.Content>
+        <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="1">
+            <Grid HorizontalOptions="FillAndExpand" RowSpacing="1"
+                  VerticalOptions="FillAndExpand"
+                  Padding="{OnIdiom Tablet='20,20,20,60',Phone='10,10,10,50'}"
+                  IsVisible="{Binding IsLoadingVisible, Source={x:Static support:CommonViewObjects.Instance}, Converter={StaticResource InvertBooleanConverter}}">
+                <Grid x:Name="dashboardContainer"
+                      HorizontalOptions="FillAndExpand" 
+                      VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      Padding="{OnIdiom Tablet='0,0,10,0', Phone='0,0,15,0'}">
+                        <ScrollView x:Name="graphScrollContainer"
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="FillAndExpand" 
+                                Orientation="Horizontal"
+                                HorizontalScrollBarVisibility="Never">
+                        </ScrollView>
+                    </Grid>
+                    <Grid Grid.Row="1"
+                      HorizontalOptions="Fill">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" 
+                           Text="Accepted Cach" 
+                           HorizontalOptions="StartAndExpand"
+                           FontSize="{StaticResource Small}"/>
+                        <Label Grid.Row="0" Grid.Column="1" x:Name="acceptedCach" 
+                           Text="{Binding AcceptedCach}"
+                           HorizontalOptions="EndAndExpand"
+                           FontSize="{StaticResource Small}"/>
+                        <Label Grid.Row="1" Grid.Column="0" 
+                           Text="Accepted Tickets" 
+                           HorizontalOptions="StartAndExpand"
+                           FontSize="{StaticResource Small}"/>
+                        <Label Grid.Row="1" Grid.Column="1" x:Name="acceptedTickets"
+                           Text="{Binding AcceptedTickets}"
+                           HorizontalOptions="EndAndExpand"
+                           FontSize="{StaticResource Small}"/>
+                        <Label Grid.Row="2" Grid.Column="0" 
+                           Text="Remaining" 
+                           HorizontalOptions="StartAndExpand"
+                           FontSize="{StaticResource Small}"/>
+                        <Label Grid.Row="2" Grid.Column="1" x:Name="remaining"
+                           Text="{Binding Remaining}"
+                           HorizontalOptions="EndAndExpand"
+                           FontSize="{StaticResource Small}"/>
+                    </Grid>
+                </Grid>
+                <Label x:Name="noDataAvailable"
+                       Text="No Data Available"
+                       FontSize="{StaticResource Large}"
+                       TextColor="#808080"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       Opacity="0"/>
+            </Grid>
+            <Grid VerticalOptions="End" Padding="10,0,10,10">
+                <customcontrols:HorizontalSelectPanel 
+                    ItemsSource="{Binding StateCollection}" 
+                    SelectedKey="{Binding SelectedGroupKey}"
+                    ItemTappedCommand="{Binding GroupSelectedCommand}" 
+                    ItemSelectedCommand="{Binding GroupSelectedCommand}"/>
+            </Grid>
+        </Grid>
+    </customcontrols:ReportPage.Content>
+</customcontrols:ReportPage>

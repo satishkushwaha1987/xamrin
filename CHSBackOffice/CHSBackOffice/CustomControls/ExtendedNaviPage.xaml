@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+             x:Name="ThisExtendedNaviPage"
+             x:Class="CHSBackOffice.CustomControls.ExtendedNaviPage">
+    <NavigationPage.TitleView>
+        <Grid        
+            Padding="10, 0, 10, 0"
+            Margin="1"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            x:Name="NavigationGrid">
+            <Grid x:Name="TitleGrid" 
+                IsVisible="True"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0"
+                      HorizontalOptions="Start"
+                      VerticalOptions="Center"
+                      IsVisible="{Binding Source={x:Reference ThisExtendedNaviPage}, Path=HasLeftButton}">
+                    <Label
+                        TextColor="White"
+                        FontSize="{Binding Source={x:Reference ThisExtendedNaviPage}, Path=LeftButton.FontSize}"
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Source={x:Reference ThisExtendedNaviPage}, Path=LeftButton.Text}" 
+                        IsVisible="{Binding Source={x:Reference ThisExtendedNaviPage}, Path=LeftButton.IsButtonVisible}"
+                        FontFamily="{Binding Source={x:Reference ThisExtendedNaviPage}, Path=LeftButton.FontName}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference ThisExtendedNaviPage}, Path=LeftButtonPressedCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <Grid Grid.Column="0"
+                    ColumnSpacing="0"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0"
+                        IsVisible="{Binding Source={x:Reference ThisExtendedNaviPage}, Path=HasTitleIcon}"
+                        HeightRequest="40"
+                        WidthRequest="90"
+                        Aspect="AspectFill"
+                        Source="{Binding Source={x:Reference ThisExtendedNaviPage}, Path=TitleIcon}"/>
+                    <Label Grid.Column="1"        
+                        HorizontalTextAlignment="Start"
+                        VerticalTextAlignment="Center"
+                        FontSize="{Binding Source={x:Reference ThisExtendedNaviPage}, Path=TitleFontSize}"
+                        FontFamily="{Binding Source={x:Reference ThisExtendedNaviPage}, Path=TitleFont}"
+                        TextColor="{Binding Source={x:Reference ThisExtendedNaviPage},Path=TitleTextColor}"
+                        Text="{Binding Source={x:Reference ThisExtendedNaviPage}, Path=Title}" />
+                </Grid>
+                <customcontrols:ExtendedStackLayout  Grid.Column="1"
+                    Spacing="15"
+                    HorizontalOptions="EndAndExpand"
+                    VerticalOptions="Center"
+                    Orientation="Horizontal"
+                    ItemTappedAnimationType="Fade"
+                    ItemTappedCommand="{Binding ToolbarButtonPressedCommand}"
+                    ItemsSource="{Binding Source={x:Reference ThisExtendedNaviPage}, Path=ToolbarButtons}">
+                    <customcontrols:ExtendedStackLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label
+                                    TextColor="White"
+                                    FontSize="{Binding FontSize}"
+                                    HorizontalOptions="EndAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    VerticalTextAlignment="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Text}" 
+                                    IsVisible="{Binding IsButtonVisible}"
+                                    FontFamily="{Binding FontName}">
+                                </Label>
+                            </Grid>
+                        </DataTemplate>
+                    </customcontrols:ExtendedStackLayout.ItemTemplate>
+                </customcontrols:ExtendedStackLayout>
+            </Grid>
+            <Grid x:Name="SearchGrid" 
+                IsVisible="False"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <customcontrols:BorderlessEntry
+                    x:Name="SearchPanelEntry"
+                    Placeholder="Search"
+                    PlaceholderColor="White"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    FontSize="{StaticResource Large}"
+                    RoundedStyle="None"
+                    Text="{Binding Source={x:Reference ThisExtendedNaviPage}, Path=SearchText}">
+                </customcontrols:BorderlessEntry>
+                <Grid Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference ThisExtendedNaviPage}, Path=BindingContext.HideSearchCommand}"/>
+                    </Grid.GestureRecognizers>
+                    <Label 
+                        FontSize="{StaticResource CHSIconSize}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        Text="{StaticResource CHSIconCancel}" 
+                        FontFamily="{StaticResource ChsIcons}" 
+                        TextColor="White"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </NavigationPage.TitleView>
+</ContentPage>

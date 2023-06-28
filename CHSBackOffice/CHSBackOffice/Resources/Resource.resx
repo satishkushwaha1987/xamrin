@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BackOffice" xml:space="preserve">
+    <value>BACK OFFICE</value>
+  </data>
+  <data name="BBMaxBundles" xml:space="preserve">
+    <value>Specifies the maximum number of bundles for a Bill Breaking transaction, from "1" to "n" where "n" has no limit</value>
+  </data>
+  <data name="BBMaxDenonimation" xml:space="preserve">
+    <value>Specefies the maximum receiving denomination for Bill Breaking in cents (ex. $1 = 100).</value>
+  </data>
+  <data name="BBMinBundles" xml:space="preserve">
+    <value>Specifies the minimum number of bundles for a Bill Breaking transaction, from "1" to "n" where "n" has no limit</value>
+  </data>
+  <data name="BBMinDenonimation" xml:space="preserve">
+    <value>Specefies the minimum receiving denomination for Bill Breaking in cents (ex. $1 = 100).</value>
+  </data>
+  <data name="BBRule20_2" xml:space="preserve">
+    <value>Bill Breaking Rule #2 for $20</value>
+  </data>
+  <data name="BillBreaking" xml:space="preserve">
+    <value>Specifies a receiving currency that is used for Bill Breaking transactions</value>
+  </data>
+  <data name="BillBreakingEnable" xml:space="preserve">
+    <value>Is enabled in order to process Bill Breaking transactions</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Re-Enter to confirm</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="EndpointNotFound" xml:space="preserve">
+    <value>Endpoint not found</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Enter Password</value>
+  </data>
+  <data name="InfoText" xml:space="preserve">
+    <value>Enter the Host address for your CHS \r\n BackOffice mobile screen</value>
+  </data>
+  <data name="PleaseEnterURL" xml:space="preserve">
+    <value>Please enter URL</value>
+  </data>
+  <data name="PrintReceiptBB" xml:space="preserve">
+    <value>States when to print a Bill Breaking transaction on the receipt</value>
+  </data>
+  <data name="UnsupportedURL" xml:space="preserve">
+    <value>unsupported URL</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="UserPassword" xml:space="preserve">
+    <value>User Password</value>
+  </data>
+  <data name="PleaseEnterLogin" xml:space="preserve">
+    <value>Please enter login</value>
+  </data>
+  <data name="PleaseEnterPassword" xml:space="preserve">
+    <value>Please enter password</value>
+  </data>
+  <data name="AreYouSureSetStartPage" xml:space="preserve">
+    <value>Are you sure, you want to set '</value>
+  </data>
+  <data name="AreYouSureSwitchUrl" xml:space="preserve">
+    <value>Are you sure, you want to switch host url?</value>
+  </data>
+  <data name="AsStartPage" xml:space="preserve">
+    <value>' as Start Page ?</value>
+  </data>
+  <data name="CharacterLongError" xml:space="preserve">
+    <value>Password must be 4 to 15 character long.</value>
+  </data>
+  <data name="ConfirmPassword2" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Current Password</value>
+  </data>
+  <data name="HasNotNumberUpperChar" xml:space="preserve">
+    <value>Password must contain at least one upper case(A-Z), one number(0-9).</value>
+  </data>
+  <data name="HostURLUpdated" xml:space="preserve">
+    <value>Host URL has been updated successfully.</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="PasswordNotMatch" xml:space="preserve">
+    <value>New password does not match, please re-enter</value>
+  </data>
+  <data name="PleaseEnter" xml:space="preserve">
+    <value>Please enter  </value>
+  </data>
+  <data name="PleaseEnterHostUrl" xml:space="preserve">
+    <value>Please enter Host URL</value>
+  </data>
+  <data name="SaveHostURL" xml:space="preserve">
+    <value>Save Host URL</value>
+  </data>
+  <data name="SignedOut" xml:space="preserve">
+    <value>Note: You will be signed out </value>
+  </data>
+  <data name="StartPageUpdated" xml:space="preserve">
+    <value>Start page has been updated to </value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success!</value>
+  </data>
+  <data name="WantToChangePassword" xml:space="preserve">
+    <value>Are you sure, you want to change password?</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="InvalidCurrentPassword" xml:space="preserve">
+    <value>Invalid Current Password</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Password has been changed successfully</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="CauseOfError" xml:space="preserve">
+    <value>Cause of Error</value>
+  </data>
+  <data name="EmailNotyfyStatus" xml:space="preserve">
+    <value>Email notification status</value>
+  </data>
+  <data name="ErrorCode" xml:space="preserve">
+    <value>Error Code</value>
+  </data>
+  <data name="EventDescription" xml:space="preserve">
+    <value>Event Descriptions</value>
+  </data>
+  <data name="EventTimestamp" xml:space="preserve">
+    <value>Event Timestamp</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="Severity" xml:space="preserve">
+    <value>Severity</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Unknown error</value>
+  </data>
+  <data name="SetHostURLString" xml:space="preserve">
+    <value>Set Host URL</value>
+  </data>
+  <data name="AddParameterTitle" xml:space="preserve">
+    <value>Add parameter</value>
+  </data>
+  <data name="EditParameterTitle" xml:space="preserve">
+    <value>Edit parameter</value>
+  </data>
+  <data name="ParameterAdd" xml:space="preserve">
+    <value>Parameter-Add</value>
+  </data>
+  <data name="ParameterUpdate" xml:space="preserve">
+    <value>Parameter-Update</value>
+  </data>
+  <data name="ActiveFloatsTitle" xml:space="preserve">
+    <value>Active Floats</value>
+  </data>
+  <data name="AllTransactionsTitle" xml:space="preserve">
+    <value>All Transactions</value>
+  </data>
+  <data name="BillVal" xml:space="preserve">
+    <value>BILL VAL.</value>
+  </data>
+  <data name="CashDis" xml:space="preserve">
+    <value>CASH DIS.</value>
+  </data>
+  <data name="CashDispenser" xml:space="preserve">
+    <value>Cash Dispenser</value>
+  </data>
+  <data name="CashOnHandTitle" xml:space="preserve">
+    <value>Cash On Hand</value>
+  </data>
+  <data name="CashUtilizationTitle" xml:space="preserve">
+    <value>Cash Utilization</value>
+  </data>
+  <data name="CoinHopper" xml:space="preserve">
+    <value>Coin Hopper</value>
+  </data>
+  <data name="CoinsDis" xml:space="preserve">
+    <value>COINS DIS.</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment:</value>
+  </data>
+  <data name="DashboardTitle" xml:space="preserve">
+    <value>BackOffice</value>
+  </data>
+  <data name="DeviceAndInterfaceVersion" xml:space="preserve">
+    <value>Device and Interface Version</value>
+  </data>
+  <data name="DoorOpenEventsTitle" xml:space="preserve">
+    <value>Door Open Events</value>
+  </data>
+  <data name="EmployeeManagmentTitle" xml:space="preserve">
+    <value>Employee Managment Page</value>
+  </data>
+  <data name="EmployeesTitle" xml:space="preserve">
+    <value>Employees</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Events</value>
+  </data>
+  <data name="EventsFilterTitle" xml:space="preserve">
+    <value>Events Filter</value>
+  </data>
+  <data name="EventsTitle" xml:space="preserve">
+    <value>Events</value>
+  </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MachineAvailabilityTitle" xml:space="preserve">
+    <value>Machine Availability</value>
+  </data>
+  <data name="MachineStatusTitle" xml:space="preserve">
+    <value>Machine Status</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NoActiveFloatFound" xml:space="preserve">
+    <value>No Active Float Found</value>
+  </data>
+  <data name="NoDataAvailable" xml:space="preserve">
+    <value>No Data Available</value>
+  </data>
+  <data name="NoInternetText" xml:space="preserve">
+    <value>No connection to server</value>
+  </data>
+  <data name="NoMachineParametersAvailable" xml:space="preserve">
+    <value>No Machine Parameters Available</value>
+  </data>
+  <data name="RemoteControlTitle" xml:space="preserve">
+    <value>Remote Control</value>
+  </data>
+  <data name="SelectParameterName" xml:space="preserve">
+    <value>Select Parameter Name</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SOPUsersTitle" xml:space="preserve">
+    <value>SOP Users</value>
+  </data>
+  <data name="SystemParametersTitle" xml:space="preserve">
+    <value>System Parameters</value>
+  </data>
+  <data name="TransactionByTypeTitle" xml:space="preserve">
+    <value>Transaction By Type</value>
+  </data>
+  <data name="TransactionDetailsTitle" xml:space="preserve">
+    <value>Transaction Details</value>
+  </data>
+  <data name="TransactionFilterTitle" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="TransactionInfoTitle" xml:space="preserve">
+    <value>Transaction Details</value>
+  </data>
+  <data name="TransactionsTitle" xml:space="preserve">
+    <value>Transactions</value>
+  </data>
+  <data name="UsersTitle" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="SelectStartPage" xml:space="preserve">
+    <value>Select Start Page</value>
+  </data>
+  <data name="IgnoreCertText" xml:space="preserve">
+    <value>Ignore server certificate</value>
+  </data>
+  <data name="AutoRefreshText" xml:space="preserve">
+    <value>Auto-refresh machine status info</value>
+  </data>
+  <data name="ArentDigits" xml:space="preserve">
+    <value>The password can contain digits only</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
+  <data name="DepositAmount" xml:space="preserve">
+    <value>Deposit Amount</value>
+  </data>
+  <data name="Net" xml:space="preserve">
+    <value>Net</value>
+  </data>
+  <data name="NetAmount" xml:space="preserve">
+    <value>Net Amount</value>
+  </data>
+  <data name="Shift" xml:space="preserve">
+    <value>Shift</value>
+  </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>Withdrawal</value>
+  </data>
+  <data name="WithdrawalAmount" xml:space="preserve">
+    <value>Withdrawal Amount</value>
+  </data>
+  <data name="Recycler" xml:space="preserve">
+    <value>Recycler</value>
+  </data>
+  <data name="TimeoutAlertText" xml:space="preserve">
+    <value>Looks like the server is taking too long to respond, please try again in some while</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="Definition" xml:space="preserve">
+    <value>Definition</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+</root>

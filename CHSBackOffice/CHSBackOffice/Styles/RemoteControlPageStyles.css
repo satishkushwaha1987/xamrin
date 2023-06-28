@@ -1,0 +1,14 @@
+﻿.topbutton {
+    background-color: #59419F;
+    width: 150;
+}
+
+.middlebutton {
+    background-color: #8371D5;
+}
+
+.container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

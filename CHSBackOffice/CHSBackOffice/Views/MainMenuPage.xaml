@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                  xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+                  xmlns:support="clr-namespace:CHSBackOffice.Support"
+                  prism:ViewModelLocator.AutowireViewModel="True"
+                  
+                  MasterBehavior="Popover"
+                  
+                  x:Class="CHSBackOffice.Views.MainMenuPage">
+    <MasterDetailPage.Master>
+        <ContentPage Title="☰">
+            <Grid
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                BackgroundColor="{StaticResource MainMenuBackgroundColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                    BackgroundColor="{Binding Source={x:Static support:MainMenuData.Instance}, Path=MainMenuBackgroundColor}"
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0"
+                        Text="{Binding Source={x:Static support:MainMenuData.Instance}, Path=MainMenuUserSiluetText}" 
+                        TextColor="{Binding Source={x:Static support:MainMenuData.Instance}, Path=MainMenuUserSiluetColor}"
+                        FontFamily="{StaticResource ChsIcons}"
+                        FontSize="80"
+                        HorizontalOptions="FillAndExpand" 
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        VerticalOptions="FillAndExpand" 
+                        BackgroundColor="{Binding Source={x:Static support:MainMenuData.Instance}, Path=MainMenuBackgroundColor}">
+                    </Label>
+                    <StackLayout Grid.Row="1"
+                        HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="FillAndExpand" 
+                        Spacing="8"
+                        BackgroundColor="{Binding Source={x:Static support:MainMenuData.Instance}, Path=MainMenuBackgroundColor}"
+                        Orientation="Horizontal">
+                        <Label
+                            FontSize="15"
+                            Text="{Binding Source={x:Static support:CommonViewObjects.Instance}, Path=UserFirstName}"
+                            HorizontalOptions="FillAndExpand" 
+                            HorizontalTextAlignment="End"
+                            VerticalTextAlignment="Center"
+                            VerticalOptions="FillAndExpand" 
+                            TextColor="{Binding Source={x:Static support:MainMenuData.Instance}, Path=MainMenuUserSiluetColor}"
+                            BackgroundColor="{Binding Source={x:Static support:MainMenuData.Instance}, Path=MainMenuBackgroundColor}"/>
+                        <Label
+                            FontSize="15"
+                            Text="{Binding Source={x:Static support:CommonViewObjects.Instance}, Path=UserLastName}"
+                            HorizontalOptions="FillAndExpand" 
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            VerticalOptions="FillAndExpand" 
+                            TextColor="{Binding Source={x:Static support:MainMenuData.Instance}, Path=MainMenuUserSiluetColor}"
+                            BackgroundColor="{Binding Source={x:Static support:MainMenuData.Instance}, Path=MainMenuBackgroundColor}"/>
+                    </StackLayout>
+                </Grid>
+                <ScrollView Grid.Row="2"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Orientation="Vertical">
+                    <customcontrols:ExtendedStackLayout    
+                        Spacing="2"
+                        x:Name="UpLevelMenu"
+                        ItemTappedAnimationType="Fade"
+                        ItemTappedCommand="{Binding Source={x:Static support:MainMenuData.Instance}, Path=MenuItemTappedCommand}"
+                        ItemsSource="{Binding Source={x:Static support:MainMenuData.Instance}, Path=MainMenuItems}">
+                        <customcontrols:ExtendedStackLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid                                         
+                                    Margin="{Binding Margin}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label 
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Text="{Binding Icon}" 
+                                        FontSize="{StaticResource MainMenuIconSize}"
+                                        FontFamily="{StaticResource ChsIcons}"
+                                        TextColor="{Binding IconColor}"
+                                        VerticalTextAlignment="Center"
+                                        HorizontalTextAlignment="Start"
+                                        HorizontalOptions="FillAndExpand" 
+                                        VerticalOptions="FillAndExpand"/>
+                                    <Label 
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Text="{Binding Title}" 
+                                        FontSize="{StaticResource MainMenuFontSize}"
+                                        FontFamily="{StaticResource KlavikaCHRegular}" 
+                                        HorizontalOptions="FillAndExpand" 
+                                        VerticalOptions="FillAndExpand"
+                                        VerticalTextAlignment="Center"
+                                        HorizontalTextAlignment="Start"
+                                        LineBreakMode="NoWrap"
+                                        TextColor="Black"/>
+                                </Grid>
+                            </DataTemplate>
+                        </customcontrols:ExtendedStackLayout.ItemTemplate>
+                    </customcontrols:ExtendedStackLayout>
+                </ScrollView>
+            </Grid>
+        </ContentPage>
+    </MasterDetailPage.Master>
+</MasterDetailPage>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ExtendedNaviPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:CHSBackOffice.Extensions"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns:cells="clr-namespace:CHSBackOffice.CustomControls.CustomCells"
+    xmlns:support="clr-namespace:CHSBackOffice.Support"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    
+    Title="{extensions:Translate ActiveFloatsTitle}"
+    NaviBarBackgroundColor="{StaticResource ActiveFloatsTitleColor}"
+    ChangeLocationToolbarButtonIsVisible="True"
+    AppearingCommand="{Binding AppearingCommand}"
+    SearchPanelEnabled="True"
+    SearchText="{Binding SearchText, Mode=TwoWay}"
+    IsNetworkDependent="True"
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.ActiveFloatsPage">
+    <customcontrols:ExtendedNaviPage.ToolbarButtons>
+    </customcontrols:ExtendedNaviPage.ToolbarButtons>
+    <customcontrols:ExtendedNaviPage.Content>
+        <Grid HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand"
+                  IsVisible="{Binding IsLoadingVisible,Source={x:Static support:CommonViewObjects.Instance}, Converter={StaticResource InvertBooleanConverter}}">
+            <Label IsVisible="{Binding IsNoDataLabelVisible}"
+                   Text="{extensions:Translate NoActiveFloatFound}"
+                   FontFamily="{StaticResource KlavikaCHRegular}"
+                   FontSize="{StaticResource Large}"
+                   TextColor="#808080"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"/>
+            <ScrollView IsVisible="{Binding IsNoDataLabelVisible, Converter={StaticResource InvertBooleanConverter}}">
+                <ListView
+                    InputTransparent="False"
+                    RowHeight="{OnIdiom Tablet=125,Phone=95}"
+                    HasUnevenRows="True"
+                    Margin="0,5,0,0"
+                    SeparatorColor="#E6E6E6"
+                    ItemsSource="{Binding ActiveFloats}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid 
+                                    HeightRequest="{OnIdiom Tablet=125,Phone=95}"
+                                    Margin="{OnIdiom Tablet='8,4,8,4',Phone='6,3,6,3'}">
+                                    <cells:ActiveFloatTabletLayout IsVisible="{OnIdiom Tablet=True, Phone=False}"/>
+                                    <cells:ActiveFloatPhoneLayout IsVisible="{OnIdiom Tablet=False, Phone=True}"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+            
+        </Grid>
+    </customcontrols:ExtendedNaviPage.Content>
+</customcontrols:ExtendedNaviPage>
+    

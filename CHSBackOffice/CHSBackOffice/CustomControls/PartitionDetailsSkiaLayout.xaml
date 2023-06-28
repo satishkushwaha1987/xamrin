@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:CHSBackOffice.CustomControls.SkiaControls"
+    x:Name="root"
+    mc:Ignorable="d"
+    VerticalOptions="FillAndExpand"
+    Padding="5"
+    x:Class="CHSBackOffice.CustomControls.PartitionDetailsSkiaLayout">
+    <controls:PartitionDetailsView 
+        DataSource="{Binding Path=DataSource,Source={x:Reference root}}"/>
+</ContentView>

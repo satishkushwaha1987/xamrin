@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
+    xmlns:converters="clr-namespace:CHSBackOffice.Converters"
+    x:Class="CHSBackOffice.App">
+	<Application.Resources>
+        <ResourceDictionary>
+            <!-- Converters -->
+            <converters:PercentToColorConverter x:Key="PercentToColorConverter" />
+            <converters:SelectedMachineBackcolorConverter x:Key="SelectedMachineBackcolorConverter" />
+            <converters:CoeffConverter x:Key="CoeffConverter" />
+            <converters:TextLenghtConverter x:Key="TextLenghtConverter"/>
+            <converters:NewLineConverter x:Key="NewLineConverter"/>
+            <converters:InvertBooleanConverter x:Key="InvertBooleanConverter"/>
+            <converters:DateConverter x:Key="DateConverter"/>
+            <converters:TimeConverter x:Key="TimeConverter"/>
+            <converters:DateConverter2 x:Key="DateConverter2"/>
+            <converters:TimeConverter2 x:Key="TimeConverter2"/>
+            <converters:PercentConverter x:Key="PercentConverter"/>
+            <converters:TimeFromStringConverter x:Key="TimeFromStringConverter"/>
+            <converters:AmountConverter x:Key="AmountConverter"/>
+            <converters:HalfValueConverter x:Key="HalfValueConverter"/>
+            <converters:IEnumerableHasDataConverter x:Key="IEnumerableHasDataConverter"/>
+            <converters:EventDateConverter x:Key="EventDateConverter"/>
+            <converters:ActiveFloatDateConverter x:Key="ActiveFloatDateConverter"/>
+
+            
+
+            <!-- Color Definitions -->
+            <Color x:Key="SelectedIconColor">#235DBA</Color>
+            <Color x:Key="OddRowBackgroundColor">#E8E8E8</Color>
+            <Color x:Key="EvenRowBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="MainMenuBackgroundColor">#F2F2F2</Color>
+            <Color x:Key="MachineStateLayoutBackgroundColor">#FAFAFA</Color>
+            
+            <Color x:Key="LoginTitleColor">#579072</Color>
+            <Color x:Key="MachineStatusTitleColor">#40BCEF</Color>
+            <Color x:Key="EventsTitleColor">#EA7563</Color>
+            <Color x:Key="EventsFilterTitleColor">#E85A44</Color>
+            <Color x:Key="DoorOpenEventsTitleColor">#FCD04B</Color>
+            <Color x:Key="DashboardTitleColor">#68A284</Color>
+            <Color x:Key="CashOnHandTitleColor">#4EB1AE</Color>
+            <Color x:Key="CashUtilizationTitleColor">#4EB1AE</Color>
+            <Color x:Key="AllTransactionsTitleColor">#4EB1AE</Color>
+            <Color x:Key="TransactionByTypeTitleColor">#4EB1AE</Color>
+            <Color x:Key="MachineAvalabitityTitleColor">#4EB1AE</Color>
+            <Color x:Key="RemoteControlTitleColor">#866EC3</Color>
+            <Color x:Key="ActiveFloatsTitleColor">#2588CA</Color>
+            <Color x:Key="SystemParametersTitleColor">#97504E</Color>
+            <Color x:Key="TransactionsTitleColor">#86C857</Color>
+            <Color x:Key="EmployeeManagmentTitleColor">#E9A32E</Color>
+            <Color x:Key="UsersTitleColor">#E9A32E</Color>
+            <Color x:Key="SOPUsersTitleColor">#E9A32E</Color>
+            <Color x:Key="EmployeesTitleColor">#E9A32E</Color>
+            <Color x:Key="SettingsTitleColor">#C4B79B</Color>
+
+            <Color x:Key="StatusNormal">#63EEB0</Color>
+            <Color x:Key="StatusWarning">#FEDE76</Color>
+            <Color x:Key="StatusSOP">#62C8F5</Color>
+            <Color x:Key="StatusCritical">#FCA35A</Color>
+            <Color x:Key="StatusOffline">#CDCDCD</Color>
+            <Color x:Key="StatusOOS">#FD6F82</Color>
+
+            <Color x:Key="StatusCompleted">#0288D1</Color>
+            <Color x:Key="StatusFailed">#ff0000</Color>
+            <Color x:Key="StatusPartialDispense">#ff0000</Color>
+
+            <Color x:Key="ActiveFloatNormal">#F0F0F0</Color>
+            <Color x:Key="ActiveFloatInService">#5EEEAF</Color>
+            <Color x:Key="ActiveFloatCritical">#FEA454</Color>
+
+            <Color x:Key="SeverityInformation">#348FCE</Color>
+            <Color x:Key="SeverityCritical0">#F99D52</Color>
+            <Color x:Key="SeverityCriticalB">#F99D52</Color>
+            <Color x:Key="SeverityWarning">#ffdf6f</Color>
+
+            <Color x:Key="ChartNormal">#65a77b</Color>
+            <Color x:Key="ChartWarning">#F7E076</Color>
+            <Color x:Key="ChartCritical">#EA6964</Color>
+            <Color x:Key="ChartCapacity">#F1F0F3</Color>
+
+            <Color x:Key="PopoverTopPanelColor">#f4f4f4</Color>
+            <Color x:Key="PopoverTopPanelLineColor">#e6e6e6</Color>
+            <Color x:Key="PopoverTopPanelButtonColor">#0000FF</Color>
+
+            <!-- Fonts Definitions -->
+            <OnPlatform x:TypeArguments="x:String" x:Key="KlavikaCHLight">
+                <On Platform="Android">KlavikaCHLightCond.otf#Klavika CH Light</On>
+                <On Platform="iOS">KlavikaCH-Light</On>
+            </OnPlatform>
+            
+            <OnPlatform x:TypeArguments="x:String" x:Key="KlavikaCHLightCond">
+                <On Platform="Android">KlavikaCHLightCond.otf#Klavika CH Light Condensed</On>
+                <On Platform="iOS">KlavikaCH-LightCondensed</On>
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="KlavikaCHMedium">
+                <On Platform="Android">KlavikaCHMedium.otf#Klavika CH Medium</On>
+                <On Platform="iOS">KlavikaCH-Medium</On>
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="KlavikaCHMediumCond">
+                <On Platform="Android">KlavikaCHMediumCond.otf#Klavika CH Medium Condensed</On>
+                <On Platform="iOS">KlavikaCH-MediumCondensed</On>
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="KlavikaCHRegular">
+                <On Platform="Android">KlavikaCHRegular.otf#Klavika CH Regular</On>
+                <On Platform="iOS">KlavikaCH-Regular</On>
+            </OnPlatform>
+
+            <!--http://zavoloklom.github.io/material-design-iconic-font/cheatsheet.html-->
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="MaterialDesignIcons">
+                <On Platform="Android">MaterialDesignIconicFont.ttf#Material-Design-Iconic-Font</On>
+                <On Platform="iOS">Material-Design-Iconic-Font</On>
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="ChsIcons">
+                <On Platform="Android">chs-icons.ttf#chs-icons</On>
+                <On Platform="iOS">chs-icons</On>
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:Double" x:Key="FlowHeight">
+                <On Platform="Android">245</On>
+                <On Platform="iOS">270</On>
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:Double" x:Key="FlowHeightPhone">
+                <On Platform="Android">155</On>
+                <On Platform="iOS">165</On>
+            </OnPlatform>
+            
+            <OnPlatform x:TypeArguments="x:Double" x:Key="FlowSkiaHeight">
+                <On Platform="Android">244</On>
+                <On Platform="iOS">259</On>
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:Double" x:Key="FlowSkiaHeightPhone">
+                <On Platform="Android">156</On>
+                <On Platform="iOS">163</On>
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:Double" x:Key="ChartHeight">
+                <On Platform="Android">40</On>
+                <On Platform="iOS">45</On>
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:Double" x:Key="ChartHeightPhone">
+                <On Platform="Android">20</On>
+                <On Platform="iOS">30</On>
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="Thickness" x:Key="ChartMargin">
+                <On Platform="Android">5,0,0,0</On>
+                <On Platform="iOS">5,5,0,5</On>
+            </OnPlatform>
+
+            <OnIdiom x:TypeArguments="Thickness" x:Key="SysParamUpIconAndroid" Phone="0,0,38,0" Tablet="0,0,56,0"/>
+            <OnIdiom x:TypeArguments="Thickness" x:Key="SysParamUpIconIos" Phone="0,0,46,0" Tablet="0,0,54,0"/>
+            <OnPlatform x:Key="SysParamUpIcon" x:TypeArguments="Thickness" Android="{StaticResource SysParamUpIconAndroid}" iOS="{StaticResource SysParamUpIconIos}"/>
+
+            <OnIdiom x:TypeArguments="Thickness" x:Key="EmployeesUpIconAndroid" Phone="0,0,38,0" Tablet="0,0,56,0"/>
+            <OnIdiom x:TypeArguments="Thickness" x:Key="EmployeesUpIconIos" Phone="0,0,46,0" Tablet="0,0,54,0"/>
+            <OnPlatform x:Key="EmployeesUpIcon" x:TypeArguments="Thickness" Android="{StaticResource EmployeesUpIconAndroid}" iOS="{StaticResource EmployeesUpIconIos}"/>
+
+            <OnIdiom x:TypeArguments="Thickness" x:Key="UsersUpIconAndroid" Phone="0,0,5,0" Tablet="0,0,20,0"/>
+            <OnIdiom x:TypeArguments="Thickness" x:Key="UsersUpIconIos" Phone="0,0,9,0" Tablet="0,0,15,0"/>
+            <OnPlatform x:Key="UsersUpIcon" x:TypeArguments="Thickness" Android="{StaticResource UsersUpIconAndroid}" iOS="{StaticResource UsersUpIconIos}"/>
+            
+            <OnIdiom x:TypeArguments="Thickness" x:Key="RemoteControlUpIconAndroid" Phone="0,0,5,0" Tablet="0,0,20,0"/>
+            <OnIdiom x:TypeArguments="Thickness" x:Key="RemoteControlUpIconIos" Phone="0,0,9,0" Tablet="0,0,15,0"/>
+            <OnPlatform x:Key="RemoteControlUpIcon" x:TypeArguments="Thickness" Android="{StaticResource RemoteControlUpIconAndroid}" iOS="{StaticResource RemoteControlUpIconIos}"/>
+
+            <OnIdiom x:Key="AtmInfoYOffsetAndroid" x:TypeArguments="x:Double" Phone="150" Tablet="180"/>
+            <OnIdiom x:Key="AtmInfoYOffsetIos" x:TypeArguments="x:Double" Phone="150" Tablet="180"/>
+            <OnPlatform x:Key="AtmInfoYOffset" x:TypeArguments="x:Double" Android="{StaticResource AtmInfoYOffsetAndroid}" iOS="{StaticResource AtmInfoYOffsetIos}"/>
+
+            <!-- FontSize Definitions -->
+            <OnIdiom x:Key="Mega" x:TypeArguments="x:Double" Phone="35" Tablet="45"/>
+            <OnIdiom x:Key="Grand" x:TypeArguments="x:Double" Phone="28" Tablet="34"/>
+            <OnIdiom x:Key="ExtraLarge" x:TypeArguments="x:Double" Phone="22" Tablet="26"/>
+            <OnIdiom x:Key="Large" x:TypeArguments="x:Double" Phone="18" Tablet="22"/>
+            <OnIdiom x:Key="Medium" x:TypeArguments="x:Double" Phone="15" Tablet="18"/>
+            <OnIdiom x:Key="Small" x:TypeArguments="x:Double" Phone="12" Tablet="15"/>
+            <OnIdiom x:Key="ExtraSmall" x:TypeArguments="x:Double" Phone="10" Tablet="13"/>
+            <OnIdiom x:Key="Micro" x:TypeArguments="x:Double" Phone="8" Tablet="11"/>
+            <OnIdiom x:Key="Nano" x:TypeArguments="x:Double" Phone="6" Tablet="9"/>
+
+            <OnIdiom x:Key="CHSIconSize" x:TypeArguments="x:Double" Phone="22" Tablet="25"/>
+            <OnIdiom x:Key="CHSIconSearchSize" x:TypeArguments="x:Double" Phone="18" Tablet="21"/>
+            <OnIdiom x:Key="CHSIconOffSize" x:TypeArguments="x:Double" Phone="20" Tablet="23"/>
+            
+            <!--Images -->
+            <x:String x:Key="CHSIconImage">chs.png</x:String>
+            
+            <!-- CHSIcons Definitions -->
+            <x:String x:Key="CHSIconOff">&#xe662;</x:String>
+            <x:String x:Key="CHSIconLocationSwitcher">&#xe6d8;</x:String>
+            <x:String x:Key="CHSIconSearch">&#xe651;</x:String>
+            <x:String x:Key="CHSIconFilter">&#xe7c0;</x:String>
+            <x:String x:Key="CHSIconAdd">&#xe7b3;</x:String>
+            <x:String x:Key="CHSIconGear">&#xe717;</x:String>
+            <x:String x:Key="CHSIconArrowRight">&#xe6a7;</x:String>
+            <x:String x:Key="CHSIconCancel">&#xe7ba;</x:String>
+            <x:String x:Key="CHSIconSelected">&#xe6d9;</x:String>
+            <x:String x:Key="CHSIconOverview">&#xe752;</x:String>
+            <x:String x:Key="CHSIconDetails">&#xe827;</x:String>
+            <x:String x:Key="CHSIconTransactions">&#xe70f;</x:String>
+            <x:String x:Key="CHSIconParameters">&#xe73d;</x:String>
+            <x:String x:Key="CHSIconNoInternet">&#xe81b;</x:String>
+
+            <!-- Styles -->
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource KlavikaCHRegular}"  />
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource KlavikaCHRegular}"  />
+            </Style>
+
+            <Style TargetType="ListView">
+                <Setter Property="SeparatorVisibility" Value="None"/>
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="FontFamily" Value="{StaticResource KlavikaCHRegular}"  />
+            </Style>
+
+            <Style TargetType="DatePicker">
+                <Setter Property="FontFamily" Value="{StaticResource KlavikaCHRegular}"  />
+            </Style>
+
+            <Style TargetType="Picker">
+                <Setter Property="FontFamily" Value="{StaticResource KlavikaCHRegular}"  />
+            </Style>
+
+            <!-- Shared Constants -->
+            <OnIdiom x:Key="OuterWidthIos" x:TypeArguments="x:Double" Phone="60" Tablet="100"/>
+            <OnIdiom x:Key="OuterWidthAndroid" x:TypeArguments="x:Double" Phone="60" Tablet="100"/>
+
+            <OnIdiom x:Key="InnerWidthAndroid" x:TypeArguments="x:Double" Phone="40" Tablet="80"/>
+            <OnIdiom x:Key="InnerWidthIos" x:TypeArguments="x:Double" Phone="50" Tablet="90"/>
+            
+            <OnIdiom x:Key="MainMenuIconSize" x:TypeArguments="x:Double" Phone="19" Tablet="22"/>
+            <OnIdiom x:Key="MainMenuFontSize" x:TypeArguments="x:Double" Phone="19" Tablet="20"/>
+            <x:Double x:Key="BlackMaskOpacity">0.3</x:Double>
+
+
+            <OnIdiom x:Key="ChartWidthAndroid" x:TypeArguments="GridLength" Phone="59" Tablet="100"/>
+            <OnIdiom x:Key="ChartWidthIos" x:TypeArguments="GridLength" Phone="59" Tablet="100"/>
+
+            <OnPlatform x:Key="ChartWidth" x:TypeArguments="GridLength" Android="{StaticResource ChartWidthAndroid}" iOS="{StaticResource ChartWidthIos}"/>
+
+            <OnIdiom x:Key="PartitionWidth" x:TypeArguments="GridLength" Tablet="95" Phone="55"/>
+            
+            <OnPlatform x:TypeArguments="GridLength" x:Key="ContainerHeight">
+                <On Platform="Android">244</On>
+                <On Platform="iOS">259</On>
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="GridLength" x:Key="ContainerHeightPhone">
+                <On Platform="Android">156</On>
+                <On Platform="iOS">163</On>
+            </OnPlatform>
+
+
+        </ResourceDictionary>
+	</Application.Resources>
+</prism:PrismApplication>

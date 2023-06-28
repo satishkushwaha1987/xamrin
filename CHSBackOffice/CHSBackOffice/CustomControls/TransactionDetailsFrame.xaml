@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ExtendedNaviPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+             xmlns:customcells="clr-namespace:CHSBackOffice.CustomControls.CustomCells"
+             mc:Ignorable="d"
+             NaviBarBackgroundColor="{StaticResource TransactionsTitleColor}"
+             x:Name="ThisFrame"
+             x:Class="CHSBackOffice.CustomControls.TransactionDetailsFrame">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ButtonsBackgroundColor">#92CC3D</Color>
+            <Color x:Key="ButtonsTextColor">#FFFFFF</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout
+            BackgroundColor="#ebebeb"
+            Orientation="Vertical"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid
+                BackgroundColor="White"
+                HeightRequest="35"
+                Padding="10,0,0,0"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Start">
+                    <Button
+                        HeightRequest="30"
+                        WidthRequest="50"
+                        CornerRadius="8"
+                        Command="{Binding GoToTransactionCommand}"
+                        CommandParameter="First"
+                        Text="First"
+                        FontSize="{StaticResource Small}"
+                        FontFamily="{StaticResource KlavikaCHRegular}"
+                        BackgroundColor="{StaticResource ButtonsBackgroundColor}"
+                        TextColor="{StaticResource ButtonsTextColor}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"/>
+                    <Button
+                        HeightRequest="30"
+                        WidthRequest="50"
+                        CornerRadius="8"
+                        Command="{Binding GoToTransactionCommand}"
+                        CommandParameter="Last"
+                        Text="Last"
+                        FontSize="{StaticResource Small}"
+                        FontFamily="{StaticResource KlavikaCHRegular}"
+                        BackgroundColor="{StaticResource ButtonsBackgroundColor}"
+                        TextColor="{StaticResource ButtonsTextColor}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"/>
+                </StackLayout>
+                <Label
+                    Text="{Binding TransactionNumberText}"
+                    FontSize="{StaticResource Small}"
+                    FontFamily="{StaticResource KlavikaCHRegular}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
+            </Grid>
+            
+            <ScrollView
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Fill">
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <customcells:TransactionDetailRow
+                        HeightRequest="{OnIdiom Phone=300,Tablet=525}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        InputTransparent="False"
+                        WidthRequest="{Binding Path=Width,Source={x:Reference ThisFrame}}"
+                        Context="{Binding Path=BindingContext.SelectedTransaction,Source={x:Reference ThisFrame}}"/>
+                    <Grid
+                        IsVisible="{Binding ShowResolveArea}"
+                        RowSpacing="0"
+                        ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{OnIdiom Phone=20,Tablet=35}"/>
+                            <RowDefinition Height="{OnIdiom Tablet=100,Phone=60}"/>
+                            <RowDefinition Height="{OnIdiom Tablet=50,Phone=35}"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid                    
+                            BackgroundColor="White"
+                            Padding="10,0,0,0"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label                        
+                                Grid.Column="0"
+                                FontFamily="{StaticResource KlavikaCHRegular}"
+                                FontSize="{StaticResource Small}"
+                                Text="Dispute Resolution Date"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center"/>
+                            <Label
+                                Grid.Column="1"
+                                FontFamily="{StaticResource KlavikaCHRegular}"
+                                FontSize="{StaticResource Small}"
+                                Text=":"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center"/>
+                            <Label
+                                Text="{Binding DisputeDate}"
+                                Grid.Column="2"
+                                FontFamily="{StaticResource KlavikaCHRegular}"
+                                FontSize="{StaticResource Small}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center"/>
+                        </Grid>
+                        <Grid
+                            Padding="10,0,0,0"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                FontFamily="{StaticResource KlavikaCHRegular}"
+                                FontSize="{StaticResource Small}"
+                                Text="Comment"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center"/>
+                            <Label
+                                Grid.Column="1"
+                                FontFamily="{StaticResource KlavikaCHRegular}"
+                                FontSize="{StaticResource Small}"
+                                Text=":"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center"/>
+                            <customcontrols:ExtendedEditor
+                                IsEnabled="{Binding IsFailed}"
+                                Grid.Column="2"
+                                x:Name="comment"
+                                Margin="0,10,0,0"  
+                                HorizontalOptions="Start"
+                                Text="{Binding DisputeComment}"
+                        
+                                FontFamily="{StaticResource KlavikaCHRegular}"
+                                FontSize="{StaticResource Small}"
+                                WidthRequest="{OnIdiom Tablet=300,Phone=150}"                               
+                                HeightRequest="{OnIdiom Tablet=100,Phone=60}"/>
+                            <!--TextChanged="Comment_TextChanged"-->
+                        </Grid>
+                        <Button
+                            IsVisible="{Binding IsFailed}"
+                            InputTransparent="False"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            x:Name="button"
+                            Margin="0,10,0,0"
+                            BorderRadius="8"
+                            WidthRequest="{OnIdiom Tablet=350,Phone=200}"
+                            HeightRequest="{OnIdiom Tablet=50,Phone=35}"
+                            Text="Resolve Dispute"
+                            BackgroundColor="{StaticResource ButtonsBackgroundColor}"
+                            TextColor="{StaticResource ButtonsTextColor}"
+                            FontFamily="{StaticResource KlavikaCHRegular}"
+                            FontSize="{StaticResource Medium}"
+                            Command="{Binding ResolveDisputeCommand}"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</customcontrols:ExtendedNaviPage>

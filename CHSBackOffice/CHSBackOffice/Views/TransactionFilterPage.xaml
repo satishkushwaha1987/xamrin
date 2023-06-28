@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customcontrols:ExtendedNaviPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:extensions="clr-namespace:CHSBackOffice.Extensions"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    
+    Title="{extensions:Translate TransactionFilterTitle}"
+    NaviBarBackgroundColor="{StaticResource TransactionsTitleColor}"
+    IsNetworkDependent="True"
+    
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.TransactionFilterPage">
+    <customcontrols:ExtendedNaviPage.Content>
+        <Grid>
+            <ScrollView
+                x:Name="scroll">
+                <StackLayout
+                    Spacing="5"
+                    Padding="20,10,20,10"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <Label
+                        Text="MACHINE ID"
+                        FontSize="{StaticResource Small}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"/>
+                    <customcontrols:PickerWithPopoverBottom
+                        x:Name="machineIdPopover"
+                        Location="Bottom"
+                        VerticalPosition="RelativeToParent"
+                        BackgroundColor="#f0f0f8"
+                        Placeholder="SELECT MACHINE ID"
+                        IsMultiSelect="True"
+                        SelectedItem="{Binding MachineIdSelected,Mode=TwoWay}"
+                        ItemsSource="{Binding MachineIDs}"
+                        RoundedCornerRadius="0"
+                        HeightRequest="{OnIdiom Tablet=40,Phone=25}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"/>
+                    <Label 
+                        Text="TRANSACTION DATE"
+                        FontSize="{StaticResource Small}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"/>
+                    <customcontrols:RadioButtonGroup
+                        x:Name="DatesRadioGroup"
+                        SelectedStartDateTime="{Binding Path=BindingContext.StartDateTime,Source={x:Reference ThisPage},Mode=TwoWay}"
+                        SelectedEndDateTime="{Binding Path=BindingContext.EndDateTime,Source={x:Reference ThisPage}, Mode=TwoWay}"
+                        SelectedCheckIndex="{Binding Path=BindingContext.CheckedIndex,Source={x:Reference ThisPage},Mode=TwoWay}"
+                        HeightRequest="180"/>
+                    <Label
+                        Text="TRANSACTION ID"
+                        FontSize="{StaticResource Small}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"/>
+                    <customcontrols:BorderlessEntry
+                        RoundedStyle="White"
+                        Borderless="True"
+                        LineColor="Gray"
+                        Placeholder="ENTER TRANSACTION ID"
+                        PlaceholderColor="Black"
+                        HeightRequest="{OnIdiom Tablet=40,Phone=25}"
+                        FontSize="{StaticResource ExtraSmall}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        Text="{Binding TransactionId}"/>
+                    <Label
+                        Text="SEQUENCE ID"
+                        FontSize="{StaticResource Small}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"/>
+                    <customcontrols:BorderlessEntry
+                        RoundedStyle="White"
+                        Borderless="True"
+                        LineColor="Gray"
+                        Placeholder="ENTER SEQUENCE ID"
+                        PlaceholderColor="Gray"
+                        HeightRequest="{OnIdiom Tablet=40,Phone=25}"
+                        FontSize="{StaticResource ExtraSmall}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        Text="{Binding SequenceId}"/>
+                    <Label
+                        Text="TRANSACTION TYPE"
+                        FontSize="{StaticResource Small}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"/>
+                    <customcontrols:PickerWithPopoverWithoutArrow
+                        x:Name="transactionTypePopover"
+                        Location="Top"
+                        VerticalPosition="RelativeToParent"
+                        BackgroundColor="#f0f0f8"
+                        Placeholder="SELECT TRANSACTION TYPE"
+                        IsMultiSelect="True"
+                        SelectedItem="{Binding TransactionTypeSelected,Mode=TwoWay}"
+                        ItemsSource="{Binding TransactionTypes}"
+                        RoundedCornerRadius="0"
+                        HeightRequest="{OnIdiom Tablet=40,Phone=25}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"/>
+                    <Label
+                        Text="TRANSACTION STATUS"
+                        FontSize="{StaticResource Small}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"/>
+                    <customcontrols:PickerWithPopoverWithoutArrow
+                        x:Name="transactionStatusPopover"
+                        Location="Top"
+                        VerticalPosition="RelativeToParent"
+                        BackgroundColor="#f0f0f8"
+                        Placeholder="SELECT TRANSACTION STATUS"
+                        IsMultiSelect="True"
+                        SelectedItem="{Binding TransactionStatusSelected,Mode=TwoWay}"
+                        ItemsSource="{Binding TransactionStatuses}"
+                        RoundedCornerRadius="0"
+                        HeightRequest="{OnIdiom Tablet=40,Phone=25}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"/>
+                    <Grid 
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button
+                            Grid.Column="0"
+                            WidthRequest="{OnIdiom Tablet=150,Phone=120}"
+                            HeightRequest="{OnIdiom Tablet=50,Phone=34}"
+                            Command="{Binding SubmitCommand}"
+                            Text="Submit"
+                            FontSize="{StaticResource Large}"
+                            TextColor="White"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            BackgroundColor="{StaticResource TransactionsTitleColor}"/>
+                        <Button 
+                            Grid.Column="1"
+                            WidthRequest="{OnIdiom Tablet=150,Phone=120}"
+                            HeightRequest="{OnIdiom Tablet=50,Phone=34}"
+                            Command="{Binding ResetCommand}"
+                            Text="Reset"
+                            FontSize="{StaticResource Large}"
+                            TextColor="White"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            BackgroundColor="{StaticResource TransactionsTitleColor}"/>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </customcontrols:ExtendedNaviPage.Content>
+</customcontrols:ExtendedNaviPage>

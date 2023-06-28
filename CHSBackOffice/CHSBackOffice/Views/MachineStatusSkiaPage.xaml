@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customcontrols:ExtendedNaviPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:customcontrols="clr-namespace:CHSBackOffice.CustomControls"
+    xmlns:cells="clr-namespace:CHSBackOffice.CustomControls.CustomCells"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:extensions="clr-namespace:CHSBackOffice.Extensions"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Title="{extensions:Translate MachineStatusTitle}"
+    NaviBarBackgroundColor="{StaticResource MachineStatusTitleColor}"
+    ChangeLocationToolbarButtonIsVisible="True"
+    AppearingCommand="{Binding AppearingCommand}"
+    DisappearingCommand="{Binding DisappearingCommand}"
+    SearchPanelEnabled="True"
+    SearchText="{Binding SearchText, Mode=TwoWay}"
+    IsNetworkDependent="True"
+    x:Name="ThisPage"
+    x:Class="CHSBackOffice.Views.MachineStatusSkiaPage">
+    <customcontrols:ExtendedNaviPage.ToolbarButtons>
+    </customcontrols:ExtendedNaviPage.ToolbarButtons>
+    <customcontrols:ExtendedNaviPage.Content>
+        <Grid 
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="FillAndExpand"
+            RowSpacing="0">
+            <Grid
+                RowSpacing="0"
+                HorizontalOptions="FillAndExpand" 
+                VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" IsVisible="{OnIdiom Tablet='True'}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Padding="5,10,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <customcontrols:ExtendedStackLayout
+                            ItemsSource="{Binding LegendColumn1}"
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Grid.Column="0">
+                        <customcontrols:ExtendedStackLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal">
+                                    <BoxView VerticalOptions="Center" HorizontalOptions="Start"  HeightRequest="10" WidthRequest="10" BackgroundColor="{Binding BoxColor}"/>
+                                    <Label VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Caption}" FontSize="{StaticResource ExtraSmall}"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </customcontrols:ExtendedStackLayout.ItemTemplate>
+                    </customcontrols:ExtendedStackLayout>
+
+                    <customcontrols:ExtendedStackLayout
+                            ItemsSource="{Binding LegendColumn2}"
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Grid.Column="1">
+                        <customcontrols:ExtendedStackLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal">
+                                    <BoxView VerticalOptions="Center" HorizontalOptions="Start"  HeightRequest="10" WidthRequest="10" BackgroundColor="{Binding BoxColor}"/>
+                                    <Label VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Caption}" FontSize="{StaticResource ExtraSmall}"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </customcontrols:ExtendedStackLayout.ItemTemplate>
+                    </customcontrols:ExtendedStackLayout>
+
+                    <customcontrols:ExtendedStackLayout
+                            ItemsSource="{Binding LegendColumn3}"
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Grid.Column="2">
+                        <customcontrols:ExtendedStackLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal">
+                                    <BoxView VerticalOptions="Center" HorizontalOptions="Start"  HeightRequest="10" WidthRequest="10" BackgroundColor="{Binding BoxColor}"/>
+                                    <Label VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Caption}" FontSize="{StaticResource ExtraSmall}"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </customcontrols:ExtendedStackLayout.ItemTemplate>
+                    </customcontrols:ExtendedStackLayout>
+                </Grid>
+                <Grid Grid.Row="0" IsVisible="{OnIdiom Phone='True'}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Padding="5,10,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <customcontrols:ExtendedStackLayout
+                            ItemsSource="{Binding LegendColumn1}"
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Grid.Column="0">
+                        <customcontrols:ExtendedStackLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal">
+                                    <BoxView VerticalOptions="Center" HorizontalOptions="Start"  HeightRequest="10" WidthRequest="10" BackgroundColor="{Binding BoxColor}"/>
+                                    <Label VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Caption}" FontSize="{StaticResource ExtraSmall}"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </customcontrols:ExtendedStackLayout.ItemTemplate>
+                    </customcontrols:ExtendedStackLayout>
+
+                    <customcontrols:ExtendedStackLayout
+                            ItemsSource="{Binding LegendColumn2}"
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Grid.Column="1">
+                        <customcontrols:ExtendedStackLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal">
+                                    <BoxView VerticalOptions="Center" HorizontalOptions="Start"  HeightRequest="10" WidthRequest="10" BackgroundColor="{Binding BoxColor}"/>
+                                    <Label VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Caption}" FontSize="{StaticResource ExtraSmall}"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </customcontrols:ExtendedStackLayout.ItemTemplate>
+                    </customcontrols:ExtendedStackLayout>
+                </Grid>
+                <ScrollView
+                    Grid.Row="2"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <customcontrols:FlowLayout
+                        x:Name="tilesLayout"
+                        HorizontalOptions="Center"
+                        Direction="Row"
+                        Wrap="Wrap"
+                        FlowDirection="LeftToRight"
+                        AlignContent="Start"
+                        JustifyContent="Start"
+                        ItemsSource="{Binding MachineStatuses}"
+                        ItemTappedAnimationType="{OnPlatform Android='ScaleInForce',iOS='ScaleIn'}"
+                        ItemTappedCommand="{Binding MachineTappedCommand}">
+                        <!-- Disabled, because app crashes in Xamarin.forms.core.layout.cs -->
+                        <!-- IsVisible="{Binding IsLoadingVisible, Source={x:Static support:CommonViewObjects.Instance}, Converter={StaticResource InvertBooleanConverter}}"-->
+                        <customcontrols:FlowLayout.ItemTemplate>
+                            <DataTemplate>
+                                <cells:MachineStateSkiaLayout
+                                    ParentContext="{Binding Source={x:Reference tilesLayout}}"
+                                    HeightRequest="{OnIdiom Phone={StaticResource FlowSkiaHeightPhone}, Tablet={StaticResource FlowSkiaHeight}}">
+                                    <cells:MachineStateSkiaLayout.WidthRequest>
+                                        <OnPlatform x:TypeArguments="x:Double" Android="{StaticResource OuterWidthAndroid}" iOS="{StaticResource OuterWidthIos}"/>
+                                    </cells:MachineStateSkiaLayout.WidthRequest>
+                                </cells:MachineStateSkiaLayout>
+                            </DataTemplate>
+                        </customcontrols:FlowLayout.ItemTemplate>
+                    </customcontrols:FlowLayout>
+                </ScrollView>
+            </Grid>
+        </Grid>
+    </customcontrols:ExtendedNaviPage.Content>
+</customcontrols:ExtendedNaviPage>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Frame 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="tile"
+    HasShadow="False"
+    HeightRequest="{OnIdiom Tablet=180,Phone=110}"
+    WidthRequest="{OnIdiom Tablet=260,Phone=140}"
+    HorizontalOptions="Start"
+    Padding="0"
+    Margin="0"
+    x:Class="CHSBackOffice.CustomControls.CustomCells.DashboardTileLayout">
+    <StackLayout Orientation="Vertical">
+        <Label
+            x:Name="icon"
+           Text="{Binding Icon}"
+           FontFamily="{StaticResource ChsIcons}"
+           FontSize="{OnIdiom Tablet=150, Phone=90}"
+           TextColor="{Binding IconColor}"
+            VerticalOptions="Start"
+           HorizontalTextAlignment="Center"/>
+        <Label
+            x:Name="description"
+           FontFamily="{StaticResource KlavikaCHRegular}"
+           FontSize="{OnIdiom Tablet=26, Phone=16}"
+           HorizontalOptions="CenterAndExpand"
+           HorizontalTextAlignment="Center"
+            VerticalOptions="End"
+           TextColor="Black"
+           Text="{Binding Title}"/>
+    </StackLayout>
+</Frame>
